@@ -71,6 +71,11 @@ public class ScheduleAlgorithm {
                     for (int k = 0; k < dtcSize; k++) {
                         DateTimeClass currentLocation = dtc[k];
                         if (solution[j][k]) {
+                            // если аудитория уже занята в это время
+                            if (location.date.compareTo(currentLocation.date) == 0){
+                                success = false;
+                                break;
+                            }
                             // если у преподавателя в этот день уже были занятия
                             if (currentEvent.teacher.name.equals(teacher.name) && currentLocation.date == location.date
                             ) {
