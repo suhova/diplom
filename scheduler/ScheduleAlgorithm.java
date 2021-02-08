@@ -49,14 +49,15 @@ public class ScheduleAlgorithm {
         if (time < 0) return -1;
 
         int duration = events[event].type.duration;
-        for (int i = 0; i < dtcSize; i++) {
+        for (int i = time; i < dtcSize; i++) {
             DateTimeClass location = dtc[i];
             Event ev = events[event];
             Group group = ev.group;
             Teacher teacher = ev.teacher;
             boolean success = false;
 
-            if (ev.wishedClassroomType <= location.classroom.type //есть ли в аудитории нужное оборудование
+            if (solution[i] == -1 // аудитория в это время свободна
+                    && ev.wishedClassroomType <= location.classroom.type //есть ли в аудитории нужное оборудование
                     && group.size <= location.classroom.size //влезает ли группа в аудиторию
                     // не слишком ли сейчас поздно для начала проведения длительного события
                     && location.classroom.num == dtc[i + duration].classroom.num
