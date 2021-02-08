@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class ScheduleAlgorithm {
     Event[] events;
     DateTimeClass[] dtc;
-    boolean[][] solution;
+    int[] solution;
     int eventSize;
     int dtcSize;
     int maxTimePerDay;
@@ -17,7 +17,10 @@ public class ScheduleAlgorithm {
         this.dtcSize = dtc.length;
         this.maxTimePerDay = maxTimePerDay;
 
-        this.solution = new boolean[eventSize][dtcSize];
+        this.solution = new int[dtcSize];
+        for (int i = 0; i < dtcSize; i++) {
+            solution[i] = -1;
+        }
     }
 
     boolean findSolution() {
@@ -51,6 +54,7 @@ public class ScheduleAlgorithm {
             Event ev = events[event];
             Group group = ev.group;
             Teacher teacher = ev.teacher;
+            boolean success = false;
 
             if (ev.wishedClassroomType <= location.classroom.type //есть ли в аудитории нужное оборудование
                     && group.size <= location.classroom.size //влезает ли группа в аудиторию
@@ -64,62 +68,52 @@ public class ScheduleAlgorithm {
             ) {
                 int teacherTime = 0;
                 int countPerDay = 0;
+                for (int k = 0; k < dtcSize; k++) {
+                    // если время-место свободны, они не повлияют на ограничения
+                    if (solution[k] == -1) continue;
 
-                for (int j = 0; j < event; j++) {
-                    Event currentEvent = events[j];
-                    boolean success = true;
-                    for (int k = 0; k < dtcSize; k++) {
-                        DateTimeClass currentLocation = dtc[k];
-                        if (solution[j][k]) {
-                            // если аудитория уже занята в это время
-                            if (location.date.compareTo(currentLocation.date) == 0){
-                                success = false;
-                                break;
-                            }
-                            // если у преподавателя в этот день уже были занятия
-                            if (currentEvent.teacher.name.equals(teacher.name) && currentLocation.date == location.date
-                            ) {
-                                teacherTime++;
-                                // если преподаватель уже достаточно отработал в этот день.
-                                if (teacherTime > maxTimePerDay - duration) {
-                                    success = false;
-                                    break;
-                                }
-                            }
-                            if (currentEvent.group.group.equals(group.group)) {
-                                //если в этот день уже были занятия у этой группы
-                                if (currentEvent.type.type.equals(ev.type.type) && location.date == currentLocation.date) {
-                                    countPerDay++;
-                                    if (ev.type.countPerDay < countPerDay) {
-                                        success = false;
-                                        break;
-                                    }
-                                }
-                                //если до или после события есть другое событие, до которого меньше "отдыха", чем нужно
-                                if (location.date.minusDays(ev.type.pauseBefore).compareTo(currentLocation.date) <= 0
-                                && location.date.plusDays(ev.type.pauseAfter).compareTo(currentLocation.date) >= 0){
-                                    success = false;
-                                    break;
-                                }
+                    Event currentEvent = events[solution[k]];
+                    DateTimeClass currentLocation = dtc[k];
 
-                            }
+                    // если проверяемая аудитория в это время занята
+                    if (location.date.compareTo(currentLocation.date) == 0) {
+                        break;
+                    }
+                    // если у преподавателя в этот день уже были занятия
+                    if (currentEvent.teacher.name.equals(teacher.name) && currentLocation.date == location.date
+                    ) {
+                        teacherTime++;
+                        // если преподаватель уже достаточно отработал в этот день.
+                        if (teacherTime > maxTimePerDay - duration) {
+                            break;
                         }
                     }
-                    if(!success) break;
+                    if (currentEvent.group.group.equals(group.group)) {
+                        //если в этот день уже были занятия у этой группы
+                        if (currentEvent.type.type.equals(ev.type.type) && location.date == currentLocation.date) {
+                            countPerDay++;
+                            if (ev.type.countPerDay < countPerDay) {
+                                break;
+                            }
+                        }
+                        //если до или после события есть другое событие, до которого меньше "отдыха", чем нужно
+                        if (location.date.minusDays(ev.type.pauseBefore).compareTo(currentLocation.date) <= 0
+                                && location.date.plusDays(ev.type.pauseAfter).compareTo(currentLocation.date) >= 0) {
+                            break;
+                        }
 
-                    if (j == event-1) {
-                        return i;
                     }
+                    if (k == dtcSize - 1) success = true;
                 }
-
             }
+            if (success) return i;
         }
         return -1;
     }
 
     private void cleanEvent(int event) {
         for (int i = 0; i < dtcSize; i++) {
-            solution[event][i] = false;
+            if (solution[i] == event) solution[i] = -1;
         }
     }
 
@@ -127,18 +121,30 @@ public class ScheduleAlgorithm {
     private void submitDateTimeClass(int event, int nextTime) {
         int duration = events[event].type.duration;
         for (int i = nextTime; i < nextTime + duration; i++) {
-            solution[event][i] = true;
+            solution[i] = event;
         }
     }
 
-    // возвращает первый свободный индекс столбца (идентификатор DateTimeClass)
+    // возвращает следующий свободный индекс DateTimeClass для указанного события
     private int getTime(int event) {
+        int min = -1;
+        boolean contains = false;
         for (int i = 0; i < dtcSize - 1; i++) {
-            if (solution[event][i] && !solution[event][i + 1]) return i + 1;
-            // если последняя ячейка не пуста
-            if (i == dtcSize - 2 && solution[event][i + 1]) return -1;
+            // если аудитория в это время ещё никем не забронирована
+            if (solution[i] == -1) {
+                if (contains) {
+                    return i;
+                } else {
+                    min = i;
+                }
+            }
+            // если это событие уже бронировало какое-то время и место
+            if (solution[i] == event) {
+                contains = true;
+            }
         }
-        // если строка события пуста
-        return 0;
+        // если последняя ячейка была занята текущим событием, то следующей для него нет
+        if (contains) return -1;
+        return min;
     }
 }
