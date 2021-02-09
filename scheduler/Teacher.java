@@ -7,4 +7,8 @@ public class Teacher {
     public Date[] date;
     public int[] time;
     public int prior;
+
+    public int compareTo(Teacher teacher) {
+        return Integer.compare(this.prior, teacher.prior);
+    }
 }

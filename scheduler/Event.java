@@ -14,4 +14,8 @@ public class Event {
         this.course = course;
         this.wishedClassroomType = wishedClassroomType;
     }
+
+    public int compareTo(Event event) {
+        return this.teacher.compareTo(event.teacher);
+    }
 }
