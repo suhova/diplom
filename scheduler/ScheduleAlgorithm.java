@@ -27,10 +27,8 @@ public class ScheduleAlgorithm {
         int event = 0;
         while (event < eventSize) {
             int time = this.getTime(event);
+            this.cleanEvent(event);
             int nextTime = this.findNextStartTime(event, time);
-            if (nextTime > 0) {
-                this.cleanEvent(event);
-            }
             if (nextTime == -1) { //если не удалось найти другого подходящего DateTimeClass для этого события
                 if (event == 0) {
                     return false; //если речь о первом событии, то уже были перебраны все остальные варинты, и решения нет
@@ -118,7 +116,7 @@ public class ScheduleAlgorithm {
         }
     }
 
-    // броинирование за событием помещения и времени
+    // бронинирование за событием помещения и времени
     private void submitDateTimeClass(int event, int nextTime) {
         int duration = events[event].type.duration;
         for (int i = nextTime; i < nextTime + duration; i++) {
