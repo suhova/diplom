@@ -1,7 +1,6 @@
 package ru.technopolis.scheduler;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class DateTimeClass {
     public LocalDate date;

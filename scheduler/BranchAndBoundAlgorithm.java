@@ -1,26 +1,39 @@
 package ru.technopolis.scheduler;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
-public class ScheduleAllSolutions {
-    List<int[]> solutions;
+public class BranchAndBoundAlgorithm {
+    List<Integer[]> solutions;
     Event[] events;
     DateTimeClass[] dtc;
-    int[] solution;
+    List<Teacher> teachers;
+    Integer[] solution;
+    long[] metrics;
+    long[] bestMetrics;
     int eventSize;
     int dtcSize;
     int maxTimePerDay;
 
-    public ScheduleAllSolutions(Event[] events, DateTimeClass[] dtc, int maxTimePerDay) {
+    public BranchAndBoundAlgorithm(Event[] events, DateTimeClass[] dtc, ArrayList<Teacher> teachers, int maxTimePerDay) {
         this.events = events;
+        // отсортируем события так, чтобы аттестации, которые проводятся более приоритетным преподавателями, были раньше
+        Arrays.sort(this.events);
         this.dtc = dtc;
         this.eventSize = events.length;
         this.dtcSize = dtc.length;
         this.maxTimePerDay = maxTimePerDay;
+        this.teachers = teachers;
+        this.teachers.sort(Comparator.comparingInt(t -> t.prior));
+        this.metrics = new long[teachers.size()];
+        this.bestMetrics = new long[teachers.size()];
+        bestMetrics[0] = -1;
 
-        this.solution = new int[dtcSize];
+        this.solution = new Integer[dtcSize];
         for (int i = 0; i < dtcSize; i++) {
             solution[i] = -1;
         }
@@ -35,20 +48,51 @@ public class ScheduleAllSolutions {
             int nextTime = this.findNextStartTime(event, time);
             if (nextTime == -1) { //если не удалось найти другого подходящего DateTimeClass для этого события
                 if (event == 0) {
-                    return; //если речь о первом событии, то уже были перебраны все остальные варинты, и решения нет
+                    return; //если речь о первом событии, то уже были перебраны все остальные варианты, и решения нет
                 } else {
                     event--; // иначе возвращаемся к предыдущему событию и пробуем изменить для него DateTimeClass
                 }
             } else {
                 this.submitDateTimeClass(event, nextTime); //бронируем за событием время и аудиторию
-                event++; // переходим к следующему событию
+                // если решение уже хуже, чем лучшее, можно не продолжать его строить
+                if (event == 0 || !isItWorse(event)) {
+                    event++; // переходим к следующему событию
+                }
             }
-            // если решение найдено, добавляем его в список решений и продолжаем искать решения
-            if (event == eventSize){
+            // если решение найдено, добавляем его в список решений и продолжаем искать другие
+            if (event == eventSize) {
                 solutions.add(solution.clone());
+                // теперь метрики этого решения считаются лучшими
+                if (bestMetrics[0] == -1) {
+                    bestMetrics = metrics.clone();
+                }
                 event--;
             }
         }
+    }
+
+    private boolean isItWorse(int event) {
+        Event e = events[event];
+        int i = event - 1;
+        List<Integer> list = Arrays.asList(solution);
+        int ind = list.indexOf(event);
+        LocalDate min = dtc[ind].date;
+        LocalDate max = min;
+        //для рассматриваемого преподавателя пересчитываем длительность его сессии
+        while (i >= 0 && events[i].teacher.name.equals(e.teacher.name)) {
+            LocalDate dt = dtc[list.indexOf(i)].date;
+            if (dt.compareTo(max) > 0) {
+                max = dt;
+            } else if (dt.compareTo(min) < 0) {
+                min = dt;
+            }
+            i--;
+        }
+        long diff = ChronoUnit.DAYS.between(min, max);
+        metrics[event] = diff;
+        int t = teachers.indexOf(e.teacher);
+        // если это не первое решение и длительнольность сессии преподавателя уже больше, чем в прошлом решении, считаем, что это хуже
+        return bestMetrics[0] != -1 && bestMetrics[t] < metrics[t];
     }
 
     private int findNextStartTime(int event, int time) {
@@ -155,4 +199,5 @@ public class ScheduleAllSolutions {
         if (contains) return -1;
         return min;
     }
+
 }

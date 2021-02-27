@@ -14,7 +14,7 @@ public class SchedulePriorAlgorithm {
     public SchedulePriorAlgorithm(Event[] events, DateTimeClass[] dtc, int maxTimePerDay) {
         this.events = events;
         // отсортируем события так, чтобы аттестации, котороые проводятся более приоритетным преподавателями, были раньше
-        Arrays.sort(events);
+        Arrays.sort(this.events);
         this.dtc = dtc;
         this.eventSize = events.length;
         this.dtcSize = dtc.length;

@@ -15,7 +15,8 @@ public class Event {
         this.wishedClassroomType = wishedClassroomType;
     }
 
+    // чтобы при сортировке сначала был больший приоритет
     public int compareTo(Event event) {
-        return this.teacher.compareTo(event.teacher);
+        return -this.teacher.compareTo(event.teacher);
     }
 }
