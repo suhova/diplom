@@ -1,0 +1,248 @@
+\chapter{Классы для храрнения входных данных}\label{appendix-classes}	
+
+\begin{lstlisting}
+public class ClassConstraint {
+	public Integer room;
+	public List<Integer> dof;
+	public List<Integer> time;
+	
+	public ClassConstraint(Integer room, List<Integer> dof, List<Integer> time) {
+		this.room = room;
+		this.dof = dof;
+		this.time = time;
+	}
+}
+public class AttestationType {
+	public String type;
+	public int pauseBefore;
+	public int pauseAfter;
+	public int duration;
+	public int countPerDay;
+	
+	public AttestationType(String type, int pauseBefore, int pauseAfter, int duration, int countPerDay) {
+		this.type = type;
+		this.pauseBefore = pauseBefore;
+		this.pauseAfter = pauseAfter;
+		this.duration = duration;
+		this.countPerDay = countPerDay;
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		AttestationType that = (AttestationType) o;
+		return Objects.equals(type, that.type);
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(type);
+	}
+}
+
+public class Classroom {
+	public int num;
+	public int type;
+	public int size;
+	
+	public Classroom(int num, int type, int size) {
+		this.num = num;
+		this.type = type;
+		this.size = size;
+	}
+}
+
+public class DateTime {
+	LocalDate date;
+	Integer time;
+	
+	public DateTime(LocalDate date, Integer time) {
+		this.date = date;
+		this.time = time;
+	}
+}
+
+public class DateTimeClass {
+	public LocalDate date;
+	public int time;
+	public Classroom classroom;
+	
+	public DateTimeClass(LocalDate date, int time, Classroom classroom) {
+		this.date = date;
+		this.time = time;
+		this.classroom = classroom;
+	}
+	
+	@Override
+	public String toString() {
+		return "DateTimeClass{" +
+			"date=" + date.toString() +
+			", time=" + time +
+			", classroom=" + classroom.num +
+			'}';
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		DateTimeClass that = (DateTimeClass) o;
+		return time == that.time && Objects.equals(date, that.date) && Objects.equals(classroom, that.classroom);
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(date, time, classroom);
+	}
+}
+
+
+public class Event implements Comparable {
+	public Group group;
+	public Set<Teacher> teacher;
+	public AttestationType type;
+	public String course;
+	public int wishedClassroomType;
+	
+	public Event(Group group, Set<Teacher> teacher, AttestationType type, String course, int wishedClassroomType) {
+		this.group = group;
+		this.teacher = teacher;
+		this.type = type;
+		this.course = course;
+		this.wishedClassroomType = wishedClassroomType;
+	}
+	
+	// чтобы при сортировке сначала был больший приоритет
+	@Override
+	public int compareTo(Object o) {
+		Event event = (Event) o;
+		return -Integer.compare(Teacher.maxPrior(this.teacher), Teacher.maxPrior(event.teacher));
+	}
+	
+	@Override
+	public String toString() {
+		return "Event{" +
+			"group=" + group.group +
+			", teacher=" + teacher.toString() +
+			", type=" + type +
+			", course='" + course + '\'' +
+			", wishedClassroomType=" + wishedClassroomType +
+			'}';
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Event event = (Event) o;
+		return Objects.equals(group.group, event.group.group) && Objects.equals(teacher, event.teacher) && Objects.equals(type.type, event.type.type) && Objects.equals(course, event.course);
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(group, teacher, type, course);
+	}
+}
+
+public class Group {
+	public String group;
+	public int size;
+	
+	public Group(String group, int size) {
+		this.group = group;
+		this.size = size;
+	}
+}
+
+public class Solution {
+	public Event event;
+	public DateTimeClass dtc;
+	
+	public Solution(Event event, DateTimeClass dtc) {
+		this.event = event;
+		this.dtc = dtc;
+	}
+	
+	@Override
+	public String toString() {
+		return event.group.group + "," + event.teacher.toString()+","+event.course+","+event.type.type+","+
+		dtc.date+ ","+ dtc.time+","+ dtc.classroom.num;
+	}
+}
+
+
+public class Teacher {
+	public String name;
+	public List<LocalDate> date;
+	public List<Integer> time;
+	public int prior;
+	
+	public Teacher(String name, List<LocalDate> date, List<Integer> time, int prior) {
+		this.name = name;
+		this.date = date;
+		this.time = time;
+		this.prior = prior;
+	}
+	
+	public static int maxPrior(Set<Teacher> set){
+		return set.stream().mapToInt(x -> x.prior).max().orElse(0);
+	}
+	
+	@Override
+	public String toString() {
+		return name;
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Teacher teacher = (Teacher) o;
+		return Objects.equals(name, teacher.name);
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(name);
+	}
+	
+	public int compareTo(Teacher teacher) {
+		return Integer.compare(this.prior, teacher.prior);
+	}
+}
+
+public class TeacherDate {
+	public String name;
+	public LocalDate date;
+	
+	public TeacherDate(String name, LocalDate date) {
+		this.name = name;
+		this.date = date;
+	}
+}
+
+
+public class TeacherPrior {
+	public String name;
+	public Integer prior;
+	
+	public TeacherPrior(String name, Integer prior) {
+		this.name = name;
+		this.prior = prior;
+	}
+}
+
+
+public class TeacherTime {
+	public String name;
+	public Integer time;
+	
+	public TeacherTime(String name, Integer time) {
+		this.name = name;
+		this.time = time;
+	}
+}
+
+
+\end{lstlisting}
