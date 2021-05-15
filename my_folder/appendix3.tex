@@ -1,116 +1,168 @@
 \chapter{Модуль взаимодействия с API ruz.spbstu.ru}\label{appendix-api}	
 
 \begin{lstlisting}
+@Controller
 public class ApiRuz {
-	public Set<Rasp> rasp;
-	public Set<Rasp> raspPI;
-	public Set<Rasp> raspMO;
-	public List<Group> pi;
-	public List<Group> mo;
+	public Set<ExamFromRuz> rasp;
+	private Map<String, Set<Group>> specMap;
+	private Map<String, Set<ExamFromRuz>> raspMap;
+	private List<Integer> enabledLevels = List.of(1, 2, 3, 4, 5, 6);
+	private List<String> allGroupsNames;
 	
-			public ApiRuz() {
-				raspPI = new HashSet<>();
-				raspMO = new HashSet<>();
-				rasp = new HashSet<>();
-				pi = new ArrayList<>();
-				mo = new ArrayList<>();
-				RuzSpbStu.getGroupsbyFacultyId(95).forEach(x -> {
-					if (x.getNameGroup().startsWith("3530903/") ) {
-								pi.add(x);
-							}
-							if (x.getNameGroup().startsWith("3530203/")){
-										mo.add(x);
-									}
-								});
-								for (Group g : pi) {
-									int idGroup = g.getIdGroup();
-									String groupName = g.getNameGroup();
-									int level = g.getLevel();
-									for (int i = 0; i < 3; i++) {
-										java.util.ArrayList<Day> days = RuzSpbStu.getScheduleByGroupIdAndDate(idGroup, LocalDate.now().minusWeeks(i)).getDays();
-										for (Day d : days) {
-											List<Lesson> lessons = d.getLessons();
-											for (Lesson x : lessons) {
-												String sub = x.getSubject();
-												List<Teacher> t = x.getTeachers();
-												if (t != null) {
-													Set<String> set = new HashSet<>();
-													for (Teacher te : t) {
-														set.add(te.getFullName());
-													}
-													Rasp r = new Rasp(set, groupName, sub, level);
-													if (raspPI.contains(r)) {
-														for (Rasp y : raspPI) {
-															if (y.equals(r)) {
-																Set<String> n = y.teacherName;
-																set.addAll(n);
-																raspPI.remove(y);
-																break;
-															}
-														}
-													}
-													Rasp ra = new Rasp(set, groupName, sub, level);
-													raspPI.remove(ra);
-													raspPI.add(ra);
-													rasp.remove(ra);
-													rasp.add(ra);
-												}
-											}
+	private List<StudyGroup> allGroups;
+	private Set<ExamFromRuz> allExamFromRuz = new HashSet<>();
+	
+	public static List<DateTime> getDateTimesByRoomAndDate(String room, LocalDate localDate) {
+		List<com.fleshka4.spbstu.ruz.api.models.Room> rooms = RuzSpbStu.getAuditoriesByBuildingId(25).getRooms();
+		List<DateTime> dt = new ArrayList<>();
+		int id = -1;
+		for (int i = 0; i < rooms.size(); i++) {
+			if (rooms.get(i).getName().equals(room)) {
+				id = rooms.get(i).getId();
+				break;
+			}
+		}
+		if (id != -1) {
+			List<Day> days = RuzSpbStu.getScheduleByAuditoryIdAndDate(id, localDate).getDays();
+			for (Day d : days) {
+				LocalDate date = LocalDate.parse(d.getDate());
+				List<Lesson> lessons = d.getLessons();
+				for (Lesson l : lessons) {
+					int start = l.getTimeStart().getHour();
+					int end = l.getTimeEnd().getHour();
+					for (int i = start; i <= end; i++) {
+						dt.add(new DateTime(date, i));
+					}
+				}
+			}
+		}
+		return dt;
+	}
+	
+	public ApiRuz() {
+	}
+	
+	public ApiRuz(Set<ExamFromRuz> exams, Iterable<String> spec) {
+		this.allExamFromRuz = exams;
+		raspMap = new HashMap<>();
+		for (String code : spec) {
+			raspMap.put(code, new HashSet<>());
+			for (ExamFromRuz ex : exams) {
+				if (ex.groupName.startsWith(code)) {
+					raspMap.get(code).add(ex);
+				}
+			}
+		}
+	}
+	
+	public ApiRuz(List<Integer> levels, Iterable<String> specNames) {
+		enabledLevels = levels;
+		initGroups(specNames);
+		initRasp();
+	}
+	
+	private int getRealLevel(Group g) {
+		int level = g.getLevel();
+		if (g.getKind() == 1) {
+			level += 4;
+		}
+		return level;
+	}
+	
+	private void initGroups(Iterable<String> spec) {
+		specMap = new HashMap<>();
+		RuzSpbStu.getGroupsbyFacultyId(95).forEach(x -> {
+			for (String specCode : spec) {
+				if (x.getNameGroup().startsWith(specCode)) {
+					if (enabledLevels.contains(getRealLevel(x))) {
+						if (!specMap.containsKey(specCode)) {
+							Set<Group> set = new HashSet<>();
+							set.add(x);
+							specMap.put(specCode, set);
+						}
+						specMap.get(specCode).add(x);
+					}
+				}
+			}
+		});
+		initAllGroups();
+	}
+	
+	private void initAllGroups() {
+		allGroupsNames = new ArrayList<>();
+		allGroups = new ArrayList<>();
+		for (Set<Group> set : specMap.values()) {
+			allGroupsNames.addAll(set.stream().map(Group::getNameGroup).collect(Collectors.toList()));
+			allGroups.addAll(set.stream()
+			.map(x -> new StudyGroup(x.getNameGroup(), 10, x.getLevel() + 4 * x.getKind()))
+			.collect(Collectors.toList()));
+		}
+		allGroupsNames.sort(String::compareTo);
+	}
+	
+	private void initAllRasp() {
+		this.allExamFromRuz = new HashSet<>();
+		for (Set<ExamFromRuz> set : raspMap.values()) {
+			this.allExamFromRuz.addAll(set);
+		}
+	}
+	
+	public List<StudyGroup> getAllGroups() {
+		return allGroups;
+	}
+	
+	public List<String> getAllGroupsNames() {
+		return allGroupsNames;
+	}
+	
+	public Set<ExamFromRuz> getAllRasp() {
+		return this.allExamFromRuz;
+	}
+	
+	private void initRasp() {
+		raspMap = new HashMap<>();
+		for (Map.Entry<String, Set<Group>> entry : specMap.entrySet()) {
+			Set<Group> list = entry.getValue();
+			String specCode = entry.getKey();
+			raspMap.put(specCode, new HashSet<>());
+			for (Group g : list) {
+				String groupName = g.getNameGroup();
+				int idGroup = g.getIdGroup();
+				int level = getRealLevel(g);
+				for (int i = -2; i < 6; i++) {
+					java.util.ArrayList<Day> days = RuzSpbStu.getScheduleByGroupIdAndDate(idGroup, LocalDate.now().minusWeeks(i)).getDays();
+					for (Day d : days) {
+						List<Lesson> lessons = d.getLessons();
+						for (Lesson x : lessons) {
+							String sub = x.getSubject();
+							List<Teacher> t = x.getTeachers();
+							if (t != null) {
+								Set<String> set = new HashSet<>();
+								for (Teacher te : t) {
+									set.add(te.getFullName());
+								}
+								ExamFromRuz r = new ExamFromRuz(set, groupName, sub, level);
+								Set<ExamFromRuz> examFromRuzSet = raspMap.get(specCode);
+								if (examFromRuzSet.contains(r)) {
+									for (ExamFromRuz currentExamFromRuz : examFromRuzSet) {
+										if (currentExamFromRuz.equals(r)) {
+											Set<String> n = currentExamFromRuz.teacherName;
+											set.addAll(n);
+											examFromRuzSet.remove(currentExamFromRuz);
+											break;
 										}
 									}
 								}
-								
-								for (Group g : mo) {
-									int idGroup = g.getIdGroup();
-									String groupName = g.getNameGroup();
-									int level = g.getLevel();
-									for (int i = 0; i < 3; i++) {
-										java.util.ArrayList<com.fleshka4.spbstu.ruz.api.models.Day> days = RuzSpbStu.getScheduleByGroupIdAndDate(idGroup, LocalDate.now().minusWeeks(i))
-										.getDays();
-										for (Day d : days) {
-											List<Lesson> lessons = d.getLessons();
-											for (Lesson x : lessons) {
-												String sub = x.getSubject();
-												List<Teacher> t = x.getTeachers();
-												if (t != null) {
-													Set<String> set = new HashSet<>();
-													for (Teacher te : t) {
-														set.add(te.getFullName());
-													}
-													Rasp r = new Rasp(set, groupName, sub, level);
-													if (raspMO.contains(r)) {
-														for (Rasp y : raspMO) {
-															if (y.equals(r)) {
-																Set<String> n = y.teacherName;
-																set.addAll(n);
-																break;
-															}
-														}
-													}
-													Rasp ra = new Rasp(set, groupName, sub, level);
-													raspMO.remove(ra);
-													raspMO.add(ra);
-													rasp.remove(ra);
-													rasp.add(ra);
-												}
-											}
-										}
-									}
-								}
-								
-								raspMO.forEach(System.out::println);
-								raspPI.forEach(System.out::println);
-							}
-							
-							public Map<String, Integer> getTeachersNames() {
-								Map<String, Integer> names = new HashMap<>();
-								for (Rasp r : raspPI) {
-									r.teacherName.forEach(t -> names.put(t, names.getOrDefault(t, 0)));
-								}
-								for (Rasp r : raspMO) {
-									r.teacherName.forEach(t -> names.put(t, names.getOrDefault(t, 0)));
-								}
-								return names;
+								ExamFromRuz ra = new ExamFromRuz(set, groupName, sub, level);
+								raspMap.get(specCode).add(ra);
 							}
 						}
+					}
+				}
+			}
+		}
+		initAllRasp();
+	}
+}
+
 \end{lstlisting}		

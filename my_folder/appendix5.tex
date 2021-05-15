@@ -1,0 +1,311 @@
+\chapter{Класс SessionService}\label{appendix-session}	
+
+\begin{lstlisting}
+	
+@Controller
+public class SessionService {
+	
+	public SessionDao dao;
+	
+	@Autowired
+	public SessionService(SessionDao dao) {
+		this.dao = dao;
+	}
+	
+	@RequestMapping(value = "/session")
+	public String index(Model model) {
+		return "session/index";
+	}
+	
+	@RequestMapping(value = "/session/date_settings")
+	public String dateSettings(Model model) {
+		model.addAttribute("dates", dao.getSessionDates());
+		return "session/date_settings/index";
+	}
+	
+	@RequestMapping(value = "/session/curriculum")
+	public String curriculum(Model model) {
+		createEvents();
+		Iterable<Event> events = dao.getEvents();
+		model.addAttribute("events", events);
+		return "session/curriculum/index";
+	}
+	
+	@RequestMapping(value = "/session/class_settings")
+	public String classSettings(Model model) {
+		model.addAttribute("classrooms", dao.getClassrooms());
+		return "session/class_settings/index";
+	}
+	@RequestMapping(value = "/session/clean_exam")
+	public String cleanExam(Model model) {
+		dao.clearExam();
+		return "session/curriculum/index";
+	}
+	@RequestMapping(value = "/session/external_exams")
+	public String externalExamsSettings(Model model) {
+		model.addAttribute("link", dao.getExternalExamsLink());
+		return "session/external_exams/index";
+	}
+	
+	@RequestMapping(value = "/session/attestationTypes")
+	public String attestationTypeSettings(Model model) {
+		model.addAttribute("attestationTypes", dao.getAttestationType());
+		return "session/attestationTypes/index";
+	}
+	
+	@RequestMapping(value = "/session/time_settings")
+	public String timeSettings(Model model) {
+		return "session/time_settings/index";
+	}
+	
+	@RequestMapping(value = "/session/exam_settings")
+	public String examSettings(Model model) {
+		return "session/exam_settings/index";
+	}
+	
+	@RequestMapping(value = "/session/teacher_settings")
+	public String teacherSettings(Model model) {
+		return "session/teacher_settings/index";
+	}
+	
+	@RequestMapping(value = "/session/result/clear_links")
+	public String clear_links(Model model) {
+		dao.clearLinks();
+		model.addAttribute("rasp", dao.getResultLink());
+		return "session/result/link/index";
+	}
+	
+	@RequestMapping(value = "/update_exam", method = RequestMethod.POST)
+	public @ResponseBody
+	String update_exam(
+	@RequestParam(name = "specCode") String specCode,
+	@RequestParam(name = "examFile") String examFile
+	) throws IOException {
+		String tmp = "tmpexams";
+		Writer w = new FileWriter(tmp);
+		w.write(examFile);
+		w.close();
+		CSVReader reader = new CSVReader(new FileReader(tmp), ',', '"');
+		String[] nextLine;
+		List<Curriculum> curriculumList = new ArrayList<>();
+		while ((nextLine = reader.readNext()) != null) {
+			curriculumList.add(new Curriculum(specCode, nextLine[0], nextLine[1], nextLine[2]));
+		}
+		dao.createCurriculum(curriculumList);
+		new File(tmp).delete();
+		return "session";
+	}
+	@RequestMapping(value = "/update_exam_teacher", method = RequestMethod.POST)
+	public @ResponseBody
+	String update_exam_teacher(
+	@RequestParam(name = "spec") String spec,
+	@RequestParam(name = "examFile") String examFile
+	) throws IOException {
+		String tmp = "tmpexamst";
+		Writer w = new FileWriter(tmp);
+		w.write(examFile);
+		w.close();
+		CSVReader reader = new CSVReader(new FileReader(tmp), ',', '"');
+		String[] nextLine;
+		List<Exam> examList = new ArrayList<>();
+		while ((nextLine = reader.readNext()) != null) {
+			examList.add(new Exam(spec, nextLine[2], nextLine[0], nextLine[3], nextLine[1], nextLine[4]));
+		}
+		dao.createExam(spec, examList);
+		dao.getExams().forEach(System.out::println);
+		new File(tmp).delete();
+		return "session";
+	}
+	
+	public void generateWindows(List<LocalDate> dates, List<Integer> time, List<Classroom> classrooms) {
+		System.out.println("Start generate windows");
+		if (dates.size() != 0 && time.size() != 0 && classrooms.size() != 0) {
+			List<DateTimeClass> dtc = createListDTC(dates, time, classrooms);
+			dao.createDateTimeClass(dtc);
+		}
+		System.out.println("Stop generate windows");
+	}
+	
+	public static List<DateTimeClass> createListDTC(List<LocalDate> dates, List<Integer> time, List<Classroom> classrooms){
+		List<DateTimeClass> dtc = new ArrayList<>();
+		int d1 = dates.get(0).getDayOfWeek().getValue();
+		List<DateTime> dateTimes = new ArrayList<>();
+		for (LocalDate date : dates) {
+			for (Classroom classroom : classrooms) {
+				if (date.getDayOfWeek().getValue() == d1) {
+					dateTimes = ApiRuz.getDateTimesByRoomAndDate(classroom.num, date);
+				}
+				List<Integer> dateTimesThisDate = new ArrayList<>();
+				for (DateTime dateTime : dateTimes) {
+					if (dateTime.date.equals(date)) {
+						dateTimesThisDate.add(dateTime.time);
+					}
+				}
+				for (Integer t : time) {
+					if (!dateTimesThisDate.contains(t)) {
+						dtc.add(new DateTimeClass(date, t, classroom));
+					}
+				}
+				
+			}
+		}
+		return dtc;
+	}
+	
+	@RequestMapping(value = "/update_time", method = RequestMethod.POST)
+	public @ResponseBody
+	String update_time(
+	@RequestParam(name = "time1") String time1,
+	@RequestParam(name = "time2") String time2
+	) {
+		List<SessionTime> times = new ArrayList<>();
+		for (int i = Integer.parseInt(time1.substring(0, 2)); i <= Integer.parseInt(time2.substring(0, 2)); i++) {
+			times.add(new SessionTime(i));
+		}
+		dao.createTimes(times);
+		List<LocalDate> dates = dao.getSessionDates();
+		List<Integer> time = dao.getTime();
+		List<Classroom> classrooms = dao.getClassrooms();
+		generateWindows(dates, time, classrooms);
+		return "session";
+	}
+	@RequestMapping(value = "/update_external", method = RequestMethod.POST)
+	public @ResponseBody
+	String update_external(
+	@RequestParam(name = "externalId") String externalId
+	) {
+		dao.createExternalExamsLink(externalId);
+		return "session";
+	}
+	
+	@RequestMapping(value = "/update_class", method = RequestMethod.POST)
+	public @ResponseBody
+	String updateClass(
+	@RequestParam(name = "classroomFile") String classroomFile
+	) {
+		String[] lines = classroomFile.split("\\r\\n");
+		List<Classroom> list = new ArrayList<>();
+		for (String line : lines) {
+			//Формат: номер аудитории, количество мест
+			String[] str = line.split(",");
+			String num = str[0];
+			int type = Integer.parseInt(str[1]);
+			int sits = Integer.parseInt(str[2]);
+			Classroom cl = new Classroom(num, type, sits);
+			list.add(cl);
+		}
+		dao.createClassrooms(list);
+		List<LocalDate> dates = dao.getSessionDates();
+		List<Integer> time = dao.getTime();
+		List<Classroom> classrooms = dao.getClassrooms();
+		generateWindows(dates, time, classrooms);
+		return "session";
+	}
+	
+	@RequestMapping(value = "/update_att", method = RequestMethod.POST)
+	public @ResponseBody
+	String updateAttestationTypes(@RequestParam(name = "attestationFile") String attetstaionTypes) {
+		String[] lines = attetstaionTypes.split("\\r\\n");
+		List<AttestationType> list = new ArrayList<>();
+		for (String line : lines) {
+			String[] str = line.split(",");
+			AttestationType att = new AttestationType(str[0],
+			Integer.parseInt(str[1])
+			, Integer.parseInt(str[2])
+			, Integer.parseInt(str[3])
+			, Integer.parseInt(str[4]));
+			list.add(att);
+		}
+		dao.createAttestationType(list);
+		return "session";
+	}
+	
+	public SessionService createEvents() {
+		dao.clearEvents();
+		dao.clearExamsFromRuz();
+		Iterable<Curriculum> curriculumList = dao.getCurriculum();
+		curriculumList.forEach(x -> System.out.println(x.specCode));
+		Set<String> specList = new HashSet<>();
+		curriculumList.forEach(x -> specList.add(x.specCode));
+		ApiRuz apiRuz = new ApiRuz(List.of(1, 2, 3, 4, 5, 6), specList);
+		apiRuz.getAllRasp().forEach(x -> dao.createExamFromRuz(x));
+		dao.createGroups(apiRuz.getAllGroups());
+		Iterable<StudyGroup> groupIterable = dao.getGroups();
+		HashMap<String, StudyGroup> groupHashMap = new HashMap<>();
+		for (StudyGroup gr : groupIterable) {
+			groupHashMap.put(gr.name, gr);
+		}
+		
+		List<ExamFromRuz> examFromRuz = (List<ExamFromRuz>) dao.getExamFromRuz();
+		List<AttestationType> attestationTypes = (List<AttestationType>) dao.getAttestationType();
+		int odd = LocalDate.now().getMonth().getValue() < 3 || LocalDate.now().getMonth().getValue() > 8 ? 1 : 2;
+		for (ExamFromRuz exam : examFromRuz) {
+			System.out.println("examFromRuz");
+			String l = ((Integer) ((exam.level - 1) * 2 + odd)).toString();
+			for (Curriculum curriculum : curriculumList) {
+				if (exam.course.equalsIgnoreCase(curriculum.course)
+				&& exam.groupName.startsWith(curriculum.specCode)
+				&& curriculum.semesters.contains(l)) {
+					StudyGroup group = groupHashMap.get(exam.groupName);
+					String att = curriculum.types.toLowerCase();
+					for (AttestationType at : attestationTypes) {
+						if (att.contains(at.type)) {
+							dao.createEvent(group, exam.getTeacherName(), at, exam.course);
+							break;
+						}
+					}
+				}
+			}
+		}
+		Iterable<Exam> exams = dao.getExams();
+		for (Exam exam : exams) {
+			String[] str = exam.teacherName.split(",");
+			Set<String> teachers = new HashSet<>(Arrays.asList(str));
+			for (AttestationType at : attestationTypes) {
+				if (exam.type.equalsIgnoreCase(at.type)) {
+					dao.createEvent(new StudyGroup(exam.groupName, 10, Integer.parseInt(exam.levels)/2 + 1), teachers, at, exam.course);
+					break;
+				}
+			}
+		}
+		return this;
+	}
+	
+	@RequestMapping(value = "/update_date", method = RequestMethod.POST)
+	public @ResponseBody
+	String updateDate(
+	@RequestParam(name = "days") String[] days
+	) {
+		List<LocalDate> list = new ArrayList<>();
+		for (int i = 0; i < days.length / 2; i++) {
+			LocalDate date1 = null;
+			LocalDate date2 = null;
+			try {
+				date1 = LocalDate.parse(days[2 * i]);
+			} catch (Exception ignored) {
+			}
+			try {
+				date2 = LocalDate.parse(days[2 * i + 1]);
+			} catch (Exception ignored) {
+			}
+			if (date1 != null && date2 != null) {
+				while (date1.compareTo(date2) <= 0) {
+					if (date1.getDayOfWeek().getValue() != 7) {
+						list.add(date1);
+					}
+					date1 = date1.plusDays(1);
+				}
+			}
+		}
+		if (list.size() > 0) {
+			dao.createDates(list);
+		}
+		List<LocalDate> dates = dao.getSessionDates();
+		List<Integer> time = dao.getTime();
+		List<Classroom> classrooms = dao.getClassrooms();
+		generateWindows(dates, time, classrooms);
+		return "session";
+	}
+}
+	
+\end{lstlisting}

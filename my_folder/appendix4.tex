@@ -1,0 +1,83 @@
+\chapter{Классы-репозитории}\label{appendix-repo}	
+
+\begin{lstlisting}
+	
+	@Repository
+	public interface AttestationTypeRepository extends CrudRepository<AttestationType, Long> {
+		@Query("SELECT r FROM AttestationType r where r.type = ?1")
+		public List<AttestationType> getAttestationTypeByName(String name);
+	}
+
+@Repository
+public interface ClassroomRepository extends CrudRepository<Classroom, Long> {
+	@Query("SELECT r FROM Classroom r ORDER BY r.num")
+	public List<Classroom> allClassroom();
+}
+
+@Repository
+public interface CurriculumRepository extends CrudRepository<Curriculum, Long> {
+	@Query("SELECT r FROM Curriculum r where r.specCode = ?1")
+	public List<Curriculum> findBySpecCode(String spec);
+	@Query("SELECT r FROM Curriculum r where r.specCode in ?1")
+	public List<Curriculum> findBySpecCode(List<String> spec);
+}
+
+@Repository
+public interface DateTimeClassRepository extends CrudRepository<DateTimeClass, Long> {
+}
+
+@Repository
+public interface EventRepository extends CrudRepository<Event, Long> {
+	@Query("SELECT r FROM Event r where r.group is not null order by r.group.name, r.course")
+	public List<Event> getEvent();
+}
+
+@Repository
+public interface ExamFromRuzRepository extends CrudRepository<ExamFromRuz, Long> {
+	@Query("SELECT count(r) FROM ExamFromRuz r")
+	public int countExams();
+}
+
+@Repository
+public interface ExamRepository extends CrudRepository<Exam, Long> {
+	@Query("SELECT r FROM Exam r where r.specName = ?1")
+	public List<Exam> getExamBySpec(String spec);
+}
+
+@Repository
+public interface ExternalExamsLinkRepository extends CrudRepository<ExternalExamsLink, Long> {
+}
+
+@Repository
+public interface GroupRepository extends CrudRepository<StudyGroup, Long> {
+}
+
+@Repository
+public interface ResultLinkRepository extends CrudRepository<ResultLink, Long> {
+}
+
+@Repository
+public interface SessionDatesRepository extends CrudRepository<SessionDates, Long>{
+	@Query("SELECT r.day FROM SessionDates r ORDER BY r.day")
+	public List<LocalDate> sessionDates();
+}
+
+@Repository
+public interface SessionTimeRepository extends CrudRepository<SessionTime, Long> {
+	@Query("SELECT time FROM SessionTime r ")
+	public List<Integer> sessionTime();
+	@Query("SELECT max(time) FROM SessionTime r ")
+	public Integer getMaxTime();
+	@Query("SELECT min(time) FROM SessionTime r ")
+	public Integer getMinTime();
+	@Query("SELECT count(time) FROM SessionTime r where time = ?1")
+	public Integer countTimes(Integer time);
+}
+
+@Repository
+public interface TeacherRepository extends CrudRepository<Teacher, Long> {
+	@Query("SELECT r FROM Teacher r where r.name = ?1")
+	public List<Teacher> getTeacherByName(String name);
+}
+	
+\end{lstlisting}

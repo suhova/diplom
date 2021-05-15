@@ -1,50 +1,109 @@
-\chapter{Реализация алгоритма поиска расписаний с учётом приоритетов преподавателей на Java}\label{appendix-source}	
+\chapter{Поиск расписаний с учётом приоритетов преподавателей}\label{appendix-source}	
 
 \begin{lstlisting}
+ipackage ru.technopolis.scheduler;
+
+import ru.technopolis.model.*;
+
+import java.time.LocalDate;
 import java.util.*;
+
+public class SchedulePriorAlgorithm {
+	public List<int[]> solutions;
+	List<Event> events;
+	List<Solution> external;
+	List<DateTimeClass> dtc;
+	Map<Event, DateTimeClass> externalMap = new HashMap<>();
+	List<DateTimeClass> externalDtc = new ArrayList<>();
+	int[] solution;
+	int eventSize;
+	int dtcSize;
+	int maxTimePerDay;
+	int solutionsMaxSize;
+	boolean[] ignoreWishes; //приходится ли игнорировать пожелания преподавателя для этого события
 	
-	public class SchedulePriorAlgorithm {
-		List<Event> events;
-		List<DateTimeClass> dtc;
-		int[] solution;
-		int eventSize;
-		int dtcSize;
-		int maxTimePerDay;
-		boolean[] ignoreWishes; //приходится ли игнорировать пожелания преподавателя для этого события
+	public SchedulePriorAlgorithm(List<Event> events, List<DateTimeClass> dtc, List<Solution> externalExams, int maxTimePerDay, int solutionsMaxSize, List<Solution> externalSolutions) {
+		this.events = new ArrayList<>();
+		this.dtc = new ArrayList<>();
 		
-		public SchedulePriorAlgorithm(List<Event> events, List<DateTimeClass> dtc, int maxTimePerDay) {
-			this.events = events;
-			// отсортируем события так, чтобы аттестации, котороые проводятся более приоритетным преподавателями, были раньше
-			Collections.sort(this.events);
-			this.dtc = dtc;
-			this.eventSize = events.size();
-			this.dtcSize = dtc.size();
-			this.maxTimePerDay = maxTimePerDay;
-			
-			this.solution = new int[dtcSize];
-			for (int i = 0; i < dtcSize; i++) {
-				solution[i] = -1;
+		this.events.addAll(events);
+		Collections.sort(this.events);
+		Set<DateTimeClass> dtcSet = new HashSet<>(dtc);
+		//сначала те события, для которых определено время
+		if (externalExams != null && externalExams.size() > 0) {
+			this.external = externalExams;
+			for (Solution sol : this.external) {
+				Event e = sol.event;
+				System.out.println(e);
+				externalMap.put(e, sol.dtc);
+				for (int i = 0; i < e.type.duration; i++) {
+					DateTimeClass dtc2 = new DateTimeClass(sol.dtc.date, sol.dtc.time + i, sol.dtc.classroom);
+					externalDtc.add(dtc2);
+				}
+				int i = this.events.size() - 1;
+				while (i >= 0) {
+					Event ev = this.events.get(i);
+					if (e.course.equals(ev.course) && e.group.name.equals(ev.group.name)) {
+						this.events.remove(ev);
+						break;
+					}
+					i--;
+				}
 			}
-			this.ignoreWishes = new boolean[eventSize];
+			dtcSet.addAll(externalDtc);
+		}
+		Collections.sort(this.events);
+		this.events.addAll(0, externalMap.keySet());
+		this.dtc.addAll(dtcSet);
+		Collections.sort(this.dtc);
+		this.eventSize = this.events.size();
+		this.dtcSize = this.dtc.size();
+		this.maxTimePerDay = maxTimePerDay;
+		this.external = externalSolutions;
+		this.solutionsMaxSize = solutionsMaxSize;
+		this.solution = new int[dtcSize];
+		for (int i = 0; i < dtcSize; i++) {
+			solution[i] = -1;
+		}
+		this.solutions = new ArrayList<>();
+		for (Event event : externalMap.keySet()) {
+			for (int i = 0; i < dtcSize; i++) {
+				if (this.dtc.get(i).equals(this.externalMap.get(event))) {
+					this.submitDateTimeClass(this.events.indexOf(event), i);
+					break;
+				}
+			}
 		}
 		
-		boolean findSolution() {
-			int event = 0;
-			while (event < eventSize) {
+		this.ignoreWishes = new boolean[eventSize];
+	}
+	
+	public SchedulePriorAlgorithm findSolutions() {
+		System.out.println("START FIND SOL");
+		int externalSize = externalMap.keySet().size();
+		int event = externalSize;
+		if (externalSize == eventSize) {
+			solutions.add(solution);
+			return this;
+		}
+		while (event < eventSize) {
+			//            if (event < externalSize) {
+				//                event++;
+				//            } else {
 				int time = this.getTime(event);
-				int nextTime;
 				this.cleanEvent(event);
-				nextTime = this.findNextStartTime(event, time);
+				int nextTime = this.findNextStartTime(event, time);
 				
 				//переходим в режим игнорирования пожеланий преподавателя, если не смогли найти идеального решения
-				if(!ignoreWishes[event] && nextTime == -1){
+				if (!ignoreWishes[event] && nextTime == -1) {
 					ignoreWishes[event] = true;
 					nextTime = this.findNextStartTime(event, 0);
 				}
 				
 				if (nextTime == -1) { //если не удалось найти другого подходящего DateTimeClass для этого события
-					if (event == 0) {
-						return false; //если речь о первом событии, то уже были перебраны все остальные варинты, и решения нет
+					if (event == externalSize) {
+						System.out.println("END FIND SOL :(");
+						return this; //если речь о первом событии, то уже были перебраны все остальные варинты даже без учёта пожеланий преподавателя
 					} else {
 						ignoreWishes[event] = false;
 						event--; // иначе возвращаемся к предыдущему событию и пробуем изменить для него DateTimeClass
@@ -53,130 +112,228 @@ import java.util.*;
 					this.submitDateTimeClass(event, nextTime); //бронируем за событием время и аудиторию
 					event++; // переходим к следующему событию
 				}
-			}
-			return true;
-		}
-		
-		private int findNextStartTime(int event, int time) {
-			if (time < 0) return -1;
-			
-			int duration = events.get(event).type.duration;
-			for (int i = time; i < dtcSize; i++) {
-				DateTimeClass location = dtc.get(i);
-				Event ev = events.get(event);
-				Group group = ev.group;
-				Set<Teacher> teachers = ev.teacher;
-				boolean success = false;
-				
-				boolean teacherWishes = teachers.stream().mapToInt(teacher -> {
-					if (teacher.date.stream().anyMatch(dt -> dt.equals(location.date))
-					&& teacher.time.stream().anyMatch(t -> t == location.time)
-					&& teacher.time.stream().anyMatch(t -> t == location.time + duration)) return 0;
-					else return 1;
-				}).sum() == 0;
-				if (ignoreWishes[event]) {
-					teacherWishes = !teacherWishes;
+				// если решение найдено, добавляем его в список решений и продолжаем искать решения
+				if (event == eventSize) {
+					solutions.add(solution.clone());
+					if (solutions.size() >= solutionsMaxSize) return this;
+					event--;
 				}
-				if (solution[i] == -1 // аудитория в это время свободна
-				&& ev.wishedClassroomType <= location.classroom.type //есть ли в аудитории нужное оборудование
-				&& group.size <= location.classroom.size //влезает ли группа в аудиторию
-				// не слишком ли сейчас поздно для начала проведения длительного события
-				&& i + duration < dtcSize
-				&& location.classroom.num == dtc.get(i + duration).classroom.num
-				&& location.date.equals(dtc.get(i + duration).date)
-				// подходит ли дата и время преподавателю
-				&& teacherWishes
-				) {
-					Map<String, Integer> teacherTime = new HashMap<>();
-					int countPerDay = 0;
-					for (int k = 0; k < dtcSize; k++) {
-						// если время-место свободны, они не повлияют на ограничения
-						if (solution[k] == -1) continue;
-						
-						Event currentEvent = events.get(solution[k]);
-						DateTimeClass currentLocation = dtc.get(k);
-						
-						// если проверяемая аудитория в это время занята
-						if (location.date.compareTo(currentLocation.date) == 0) {
-							break;
-						}
-						// если у преподавателя в этот день уже были занятия
-						if (currentLocation.date == location.date) {
-							for (Teacher curT : currentEvent.teacher) {
-								for (Teacher teacher : teachers) {
-									if (curT.name.equals(teacher.name)) {
-										if (teacherTime.containsKey(teacher.name)) {
-											teacherTime.put(teacher.name, 1);
-										} else {
-											teacherTime.compute(teacher.name, (key, v) -> v + 1);
-										}
-										// если преподаватель уже достаточно отработал в этот день.
-										if (teacherTime.get(teacher.name) > maxTimePerDay - duration) {
-											break;
-										}
+				// }
+		}
+		System.out.println("END FIND SOL :)");
+		return this;
+	}
+	
+	boolean findSolution() {
+		int event = 0;
+		while (event < eventSize) {
+			int time = this.getTime(event);
+			int nextTime;
+			this.cleanEvent(event);
+			nextTime = this.findNextStartTime(event, time);
+			
+			//переходим в режим игнорирования пожеланий преподавателя, если не смогли найти идеального решения
+			if (!ignoreWishes[event] && nextTime == -1) {
+				ignoreWishes[event] = true;
+				nextTime = this.findNextStartTime(event, 0);
+			}
+			
+			if (nextTime == -1) { //если не удалось найти другого подходящего DateTimeClass для этого события
+				if (event == 0) {
+					return false; //если речь о первом событии, то уже были перебраны все остальные варинты, и решения нет
+				} else {
+					ignoreWishes[event] = false;
+					event--; // иначе возвращаемся к предыдущему событию и пробуем изменить для него DateTimeClass
+				}
+			} else {
+				this.submitDateTimeClass(event, nextTime); //бронируем за событием время и аудиторию
+				event++; // переходим к следующему событию
+			}
+		}
+		return true;
+	}
+	
+	public List<List<Solution>> getSolutions() {
+		System.out.println("GET SOL");
+		if (solutions.size() == 0) return new ArrayList<>();
+		List<List<Solution>> res = new ArrayList<>();
+		for (int[] ints : solutions) {
+			List<Solution> sh = new ArrayList<>();
+			for (int j = 0; j < ints.length; j++) {
+				if (ints[j] != -1) {
+					sh.add(new Solution(events.get(ints[j]), dtc.get(j)));
+				}
+			}
+			res.add(sh);
+		}
+		return res;
+	}
+	
+	private int findNextStartTime(int event, int time) {
+		if (time < 0) return -1;
+		Event ev = events.get(event);
+		StudyGroup group = ev.group;
+		Set<Teacher> teachers = ev.teacher;
+		int duration = ev.type.duration - 1;
+		LocalDate dateGroupEvent = null;
+		Integer timeGroupEvent = null;
+		if (ev.eventGroup != -1 && event != 0) {
+			for (int i = 0; i < solution.length; i++) {
+				if (solution[i] != -1 && solution[i] != event && events.get(solution[i]).eventGroup.equals(ev.eventGroup)) {
+					dateGroupEvent = dtc.get(i).date;
+					if (ev.teacher.size() > 1) {
+						timeGroupEvent = dtc.get(i).time;
+					}
+					break;
+				}
+			}
+		}
+		for (int i = time; i < dtcSize; i++) {
+			DateTimeClass location = dtc.get(i);
+			// если для события установлено, что оно должно проводиться в один день с другим
+			if ((dateGroupEvent != null && !dateGroupEvent.equals(location.date)) ||
+			(timeGroupEvent != null && !timeGroupEvent.equals(location.time))) {
+				continue;
+			}
+			boolean teacherWishes = teachers.stream().mapToInt(teacher -> {
+				if (
+				teacher.date.stream().anyMatch(dt -> dt.equals(location.date))
+				&& teacher.time.stream().anyMatch(t -> t.equals(location.time))
+				&& teacher.time.stream().anyMatch(t -> t.equals(location.time + duration))) return 0;
+				else return 1;
+			}).sum() == 0;
+			// в режиме игнорирования учитываем только события НЕ удовлетворяющие пожелания преподавателя
+			if (ignoreWishes[event]) {
+				teacherWishes = !teacherWishes;
+			}
+			
+			boolean classRoom;
+			if (ev.link != null && !ev.link.equals("")) {
+				classRoom = location.classroom.num.equals(ev.link);
+			} else if (ev.wishedClassroomNums != null && !ev.wishedClassroomNums.equals("")) {
+				classRoom = ev.wishedClassroomNums.contains(location.classroom.num);
+			} else {
+				classRoom = ev.wishedClassroomType <= location.classroom.type;
+			}
+			
+			if (classRoom //есть ли в аудитории нужное оборудование
+			&& teacherWishes // подходит ли дата и время преподавателю
+			&& solution[i] == -1 // аудитория в это время свободна
+			&& group.size <= location.classroom.size //влезает ли группа в аудиторию
+			// не слишком ли сейчас поздно для начала проведения длительного события
+			&& i + duration < dtcSize
+			&& location.classroom.num.equals(dtc.get(i + duration).classroom.num)
+			&& location.time + duration == dtc.get(i + duration).time // в массиве времени нет разрывов
+			&& location.date.equals(dtc.get(i + duration).date)
+			) {
+				Map<String, Integer> teacherTime = new HashMap<>();
+				int countPerDay = 0;
+				int k = 0;
+				while (k < dtcSize) {
+					// если время-место свободны, они не повлияют на ограничения
+					if (solution[k] == -1) {
+						k++;
+						continue;
+					}
+					Event currentEvent = events.get(solution[k]);
+					DateTimeClass currentLocation = dtc.get(k);
+					// если проверяемая аудитория в это время занята
+					if (location.date.equals(currentLocation.date) && currentLocation.time >= location.time && currentLocation.time < location.time + ev.type.duration && location.classroom.num.equals(currentLocation.classroom.num)) {
+						break;
+					}
+					boolean success = false;
+					// если у преподавателя в этот день уже были занятия
+					if (currentLocation.date.equals(location.date)
+					&& !(dateGroupEvent != null && ev.eventGroup.equals(currentEvent.eventGroup) && ev.teacher.size() > 1)
+					) {
+						for (Teacher curT : currentEvent.teacher) {
+							for (Teacher teacher : teachers) {
+								if (curT.name.equals(teacher.name)) {
+									if (!teacherTime.containsKey(teacher.name)) {
+										teacherTime.put(teacher.name, 1);
+									} else {
+										teacherTime.compute(teacher.name, (key, v) -> v + 1);
+									}
+									// если преподаватель в это время ведёт другую аттестацию
+									if (currentLocation.time >= location.time
+									&& currentLocation.time <= location.time + duration) {
+										success = true;
+										break;
+									}
+									// если преподаватель уже достаточно отработал в этот день.
+									if (teacherTime.get(teacher.name) > maxTimePerDay - duration) {
+										success = true;
+										break;
 									}
 								}
 							}
+							if (success) break;
 						}
-						if (currentEvent.group.group.equals(group.group)) {
-							//если в этот день уже были занятия у этой группы
-							if (currentEvent.type.type.equals(ev.type.type) && location.date == currentLocation.date) {
-								countPerDay++;
-								if (ev.type.countPerDay < countPerDay) {
-									break;
-								}
-							}
-							//если до или после события есть другое событие, до которого меньше "отдыха", чем нужно
-							if (location.date.minusDays(ev.type.pauseBefore).compareTo(currentLocation.date) <= 0
-							&& location.date.plusDays(ev.type.pauseAfter).compareTo(currentLocation.date) >= 0) {
+						if (success) {
+							break;
+						}
+					}
+					if (currentEvent.group.name.equals(group.name)) {
+						//если в этот день уже были занятия у этой группы
+						if (currentEvent.type.type.equals(ev.type.type) && location.date.equals(currentLocation.date)) {
+							countPerDay++;
+							if (ev.type.countPerDay < countPerDay) {
 								break;
 							}
-							
 						}
-						if (k == dtcSize - 1) success = true;
+						//если до или после события есть другое событие, до которого меньше "отдыха", чем нужно
+						if (location.date.minusDays(Math.max(ev.type.pauseBefore, currentEvent.type.pauseAfter)).compareTo(currentLocation.date) <= 0
+						&& location.date.plusDays(Math.max(ev.type.pauseAfter, currentEvent.type.pauseBefore)).compareTo(currentLocation.date) >= 0) {
+							break;
+						}
 					}
+					k++;
 				}
-				if (success) return i;
-			}
-			return -1;
-		}
-		
-		private void cleanEvent(int event) {
-			for (int i = 0; i < dtcSize; i++) {
-				if (solution[i] == event) solution[i] = -1;
-			}
-		}
-		
-		// бронинирование за событием помещения и времени
-		private void submitDateTimeClass(int event, int nextTime) {
-			int duration = events.get(event).type.duration;
-			for (int i = nextTime; i < nextTime + duration; i++) {
-				solution[i] = event;
-			}
-		}
-		
-		// возвращает следующий свободный индекс DateTimeClass для указанного события
-		private int getTime(int event) {
-			int min = -1;
-			boolean contains = false;
-			for (int i = 0; i < dtcSize - 1; i++) {
-				// если аудитория в это время ещё никем не забронирована
-				if (solution[i] == -1) {
-					if (contains) {
-						return i;
-					} else if (min == -1) {
-						min = i;
-					}
-				}
-				// если это событие уже бронировало какое-то время и место
-				if (solution[i] == event) {
-					if (contains) return i;
-					contains = true;
+				if (k == dtcSize) {
+					return i;
 				}
 			}
-			// если последняя ячейка была занята текущим событием, то следующей для него нет
-			if (contains) return -1;
-			return min;
+		}
+		return -1;
+	}
+	
+	private void cleanEvent(int event) {
+		for (int i = 0; i < dtcSize; i++) {
+			if (solution[i] == event) solution[i] = -1;
 		}
 	}
+	
+	// бронинирование за событием помещения и времени
+	private void submitDateTimeClass(int event, int nextTime) {
+		int duration = events.get(event).type.duration;
+		for (int i = nextTime; i < nextTime + duration; i++) {
+			solution[i] = event;
+		}
+	}
+	
+	// возвращает следующий свободный индекс DateTimeClass для указанного события
+	private int getTime(int event) {
+		int min = -1;
+		boolean contains = false;
+		for (int i = 0; i < dtcSize - 1; i++) {
+			// если аудитория в это время ещё никем не забронирована
+			if (solution[i] == -1) {
+				if (contains) {
+					return i;
+				} else if (min == -1) {
+					min = i;
+				}
+			}
+			// если это событие уже бронировало какое-то время и место
+			if (solution[i] == event) {
+				if (contains) return i;
+				contains = true;
+			}
+		}
+		// если последняя ячейка была занята текущим событием, то следующей для него нет
+		if (contains) return -1;
+		return min;
+	}
+}
+
 \end{lstlisting}
