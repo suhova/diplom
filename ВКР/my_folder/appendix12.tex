@@ -1,0 +1,52 @@
+\chapter{Форма выбора дат сессии}\label{appendix-date}	
+
+\begin{lstlisting}
+	<!DOCTYPE html>
+	<html dir="ltr" lang="ru" xml:lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+	<head>
+	<title>ИКНТ: настройки сессии</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="_csrf" th:content="${_csrf.token}"/>
+	<meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+	<link href="../../teacher_wish.css" rel="stylesheet"/>
+	<script type="module" src="../../js/session_settings.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="keywords" content="ИКНТ: настройки сессии"/>
+	<meta name="robots" content="noindex"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+	<body>
+	<div class="page-wrapper">
+	<h2>Настройки сессии</h2>
+	<section class="day_section">
+	<h4>Даты проведения экзаменов</h4>
+	<div id="calendar">
+	<div class="item" id="dates0">
+	<div class="date__items">
+	с
+	<input type="date" name="date1" class="date__item date1">
+	по
+	<input type="date" name="date2" class="date__item date2">
+	</div>
+	<div class="del" id="del_0"> &#10006;</div>
+	</div>
+	</div>
+	<button id="add_new_date" type="button">
+	Добавить ещё один временной интервал
+	</button>
+	</section>
+	<select>
+	<option> Выбранные даты </option>
+	<option  th:each="date : ${dates}">
+	<p class="exam_course" th:value="${date}" th:text="${date}"></p>
+	</option>
+	</select>
+	
+	<button type="submit" id="submit_date" class="submit">Отправить форму</button>
+	
+	
+	<button class="back_button" onclick="window.location.href = '/session';">Назад</button>
+	</div>
+	</body>
+	</html>
+\end{lstlisting}

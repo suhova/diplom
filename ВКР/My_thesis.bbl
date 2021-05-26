@@ -1,0 +1,306 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{1с}{online}{}
+      \field{sortinit}{1}
+      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \field{labeltitlesource}{title}
+      \field{langid}{russian}
+      \field{title}{1С: ХроноГраф Расписание}
+      \field{urlday}{11}
+      \field{urlmonth}{3}
+      \field{urlyear}{2021}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://1c.ru/rus/products/1c/predpr/compat/catalog/solution.jsp?SolutionID=15710
+      \endverb
+      \verb{url}
+      \verb https://1c.ru/rus/products/1c/predpr/compat/catalog/solution.jsp?SolutionID=15710
+      \endverb
+    \endentry
+    \entry{unitime}{online}{}
+      \field{sortinit}{A}
+      \field{sortinithash}{a3dcedd53b04d1adfd5ac303ecd5e6fa}
+      \field{labeltitlesource}{title}
+      \field{langid}{russian}
+      \field{title}{Apereo UniTime}
+      \field{urlday}{11}
+      \field{urlmonth}{3}
+      \field{urlyear}{2021}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.unitime.org/
+      \endverb
+      \verb{url}
+      \verb https://www.unitime.org/
+      \endverb
+    \endentry
+    \entry{branch}{book}{}
+      \name{author}{1}{}{%
+        {{hash=e4a9b5f658eabd2e5b25903d5521445a}{%
+           family={Doig},
+           familyi={D\bibinitperiod},
+           given={Land\bibnamedelimb A.\bibnamedelimi H.;},
+           giveni={L\bibinitperiod\bibinitdelim A\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+      }
+      \strng{namehash}{e4a9b5f658eabd2e5b25903d5521445a}
+      \strng{fullhash}{e4a9b5f658eabd2e5b25903d5521445a}
+      \strng{bibnamehash}{e4a9b5f658eabd2e5b25903d5521445a}
+      \strng{authorbibnamehash}{e4a9b5f658eabd2e5b25903d5521445a}
+      \strng{authornamehash}{e4a9b5f658eabd2e5b25903d5521445a}
+      \strng{authorfullhash}{e4a9b5f658eabd2e5b25903d5521445a}
+      \field{sortinit}{D}
+      \field{sortinithash}{c438b3d5d027251ba63f5ed538d98af5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{langid}{russian}
+      \field{title}{An automatic method of solving discrete programming problems}
+      \field{year}{1960}
+    \endentry
+    \entry{dropwizard}{online}{}
+      \field{sortinit}{D}
+      \field{sortinithash}{c438b3d5d027251ba63f5ed538d98af5}
+      \field{labeltitlesource}{title}
+      \field{langid}{russian}
+      \field{title}{Dropwizard Docs}
+      \field{urlday}{17}
+      \field{urlmonth}{3}
+      \field{urlyear}{2021}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.dropwizard.io/en/latest/getting-started.html
+      \endverb
+      \verb{url}
+      \verb https://www.dropwizard.io/en/latest/getting-started.html
+      \endverb
+    \endentry
+    \entry{hibernate}{online}{}
+      \field{sortinit}{H}
+      \field{sortinithash}{6db6145dae8dc9e1271a8d556090b50a}
+      \field{labeltitlesource}{title}
+      \field{langid}{russian}
+      \field{title}{Hibernate Docs}
+      \field{urlday}{2}
+      \field{urlmonth}{4}
+      \field{urlyear}{2021}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://hibernate.org/orm/documentation/5.4/
+      \endverb
+      \verb{url}
+      \verb https://hibernate.org/orm/documentation/5.4/
+      \endverb
+    \endentry
+    \entry{dfs}{online}{}
+      \name{author}{1}{}{%
+        {{hash=ec08e6f01da5f3814f28a70c89c64656}{%
+           family={Knuth},
+           familyi={K\bibinitperiod},
+           given={Donald\bibnamedelima E.},
+           giveni={D\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \strng{namehash}{ec08e6f01da5f3814f28a70c89c64656}
+      \strng{fullhash}{ec08e6f01da5f3814f28a70c89c64656}
+      \strng{bibnamehash}{ec08e6f01da5f3814f28a70c89c64656}
+      \strng{authorbibnamehash}{ec08e6f01da5f3814f28a70c89c64656}
+      \strng{authornamehash}{ec08e6f01da5f3814f28a70c89c64656}
+      \strng{authorfullhash}{ec08e6f01da5f3814f28a70c89c64656}
+      \field{sortinit}{K}
+      \field{sortinithash}{d3edc18d54b9438a72c24c925bfb38f4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{langid}{russian}
+      \field{title}{The Art of Computer Programming Vol 1. 3rd ed}
+      \field{urlday}{17}
+      \field{urlmonth}{2}
+      \field{urlyear}{2021}
+      \field{year}{1997}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www-cs-faculty.stanford.edu/~knuth/taocp.html
+      \endverb
+      \verb{url}
+      \verb https://www-cs-faculty.stanford.edu/~knuth/taocp.html
+      \endverb
+    \endentry
+    \entry{lantiv}{online}{}
+      \field{sortinit}{L}
+      \field{sortinithash}{dad3efd0836470093a7b4a7bb756eb8c}
+      \field{labeltitlesource}{title}
+      \field{langid}{russian}
+      \field{title}{Lantiv Scheduling Studio}
+      \field{urlday}{11}
+      \field{urlmonth}{3}
+      \field{urlyear}{2021}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://scheduling-studio.lantiv.com/
+      \endverb
+      \verb{url}
+      \verb https://scheduling-studio.lantiv.com/
+      \endverb
+    \endentry
+    \entry{spring}{online}{}
+      \field{sortinit}{S}
+      \field{sortinithash}{c319cff79d99c853d775f88277d4e45f}
+      \field{labeltitlesource}{title}
+      \field{langid}{russian}
+      \field{title}{Spring Framework documentation}
+      \field{urlday}{17}
+      \field{urlmonth}{3}
+      \field{urlyear}{2021}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://spring.io/projects/spring-framework
+      \endverb
+      \verb{url}
+      \verb https://spring.io/projects/spring-framework
+      \endverb
+    \endentry
+    \entry{sim}{online}{}
+      \name{author}{1}{}{%
+        {{hash=037b301d06fe5ab9dbd37b7b375f7e8d}{%
+           family={Strobl},
+           familyi={S\bibinitperiod},
+           given={D.},
+           giveni={D\bibinitperiod},
+           suffix={M.A.R.;\bibnamedelima Barker},
+           suffixi={M\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+      }
+      \strng{namehash}{037b301d06fe5ab9dbd37b7b375f7e8d}
+      \strng{fullhash}{037b301d06fe5ab9dbd37b7b375f7e8d}
+      \strng{bibnamehash}{037b301d06fe5ab9dbd37b7b375f7e8d}
+      \strng{authorbibnamehash}{037b301d06fe5ab9dbd37b7b375f7e8d}
+      \strng{authornamehash}{037b301d06fe5ab9dbd37b7b375f7e8d}
+      \strng{authorfullhash}{037b301d06fe5ab9dbd37b7b375f7e8d}
+      \field{sortinit}{S}
+      \field{sortinithash}{c319cff79d99c853d775f88277d4e45f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{langid}{russian}
+      \field{title}{On simulated annealing phase transitions in phylogeny reconstruction}
+      \field{urlday}{19}
+      \field{urlmonth}{2}
+      \field{urlyear}{2021}
+      \field{year}{2016}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4912009/
+      \endverb
+      \verb{url}
+      \verb https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4912009/
+      \endverb
+    \endentry
+    \entry{vertx}{online}{}
+      \field{sortinit}{V}
+      \field{sortinithash}{02432525618c08e2b03cac47c19764af}
+      \field{labeltitlesource}{title}
+      \field{langid}{russian}
+      \field{title}{Vert.x Docs}
+      \field{urlday}{17}
+      \field{urlmonth}{3}
+      \field{urlyear}{2021}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://vertx.io/docs/
+      \endverb
+      \verb{url}
+      \verb https://vertx.io/docs/
+      \endverb
+    \endentry
+    \entry{avtor}{online}{}
+      \field{sortinit}{А}
+      \field{sortinithash}{bb519958f361ad3b75b2e84514e1e16a}
+      \field{labeltitlesource}{title}
+      \field{langid}{russian}
+      \field{title}{АВТОРасписание}
+      \field{urlday}{11}
+      \field{urlmonth}{3}
+      \field{urlyear}{2021}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb http://avtor.bravosoft.org/
+      \endverb
+      \verb{url}
+      \verb http://avtor.bravosoft.org/
+      \endverb
+    \endentry
+    \entry{galaktica}{online}{}
+      \field{sortinit}{Г}
+      \field{sortinithash}{c9e4758aa7cb8c39f466c3722a70f6ee}
+      \field{labeltitlesource}{title}
+      \field{langid}{russian}
+      \field{title}{Галактика Расписание учебных занятий}
+      \field{urlday}{11}
+      \field{urlmonth}{3}
+      \field{urlyear}{2021}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://galaktika-it.ru
+      \endverb
+      \verb{url}
+      \verb https://galaktika-it.ru
+      \endverb
+    \endentry
+    \entry{ruz}{online}{}
+      \field{sortinit}{Р}
+      \field{sortinithash}{0259df1703d0d2c761f62621ecb6c6be}
+      \field{labeltitlesource}{title}
+      \field{langid}{russian}
+      \field{title}{Расписание СПбПУ}
+      \field{urlday}{11}
+      \field{urlmonth}{3}
+      \field{urlyear}{2021}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb http://ruz.spbstu.ru
+      \endverb
+      \verb{url}
+      \verb http://ruz.spbstu.ru
+      \endverb
+    \endentry
+    \entry{minimax}{book}{}
+      \name{author}{1}{}{%
+        {{hash=2e5e983c8dcb1b4cb3e265ca977aa48a}{%
+           family={Freedman\bibnamedelima D.},
+           familyi={F\bibinitperiod\bibinitdelim D\bibinitperiod},
+           given={Purves\bibnamedelima R.},
+           giveni={P\bibinitperiod\bibinitdelim R\bibinitperiod},
+           suffix={Pisani\bibnamedelima R.},
+           suffixi={P\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+      }
+      \strng{namehash}{2e5e983c8dcb1b4cb3e265ca977aa48a}
+      \strng{fullhash}{2e5e983c8dcb1b4cb3e265ca977aa48a}
+      \strng{bibnamehash}{2e5e983c8dcb1b4cb3e265ca977aa48a}
+      \strng{authorbibnamehash}{2e5e983c8dcb1b4cb3e265ca977aa48a}
+      \strng{authornamehash}{2e5e983c8dcb1b4cb3e265ca977aa48a}
+      \strng{authorfullhash}{2e5e983c8dcb1b4cb3e265ca977aa48a}
+      \field{sortinit}{F}
+      \field{sortinithash}{fb0c0faa89eb6abae8213bf60e6799ea}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Statistics: Fourth International Student Edition}
+      \field{year}{2007}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

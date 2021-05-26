@@ -1,0 +1,184 @@
+\chapter{Файл стилей}\label{appendix-style}	
+
+\begin{lstlisting}
+	body {
+		font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif;
+		color: rgb(58, 58, 58);
+		background-color: #e9ecef;
+	}
+	
+	h4 {
+		margin-top: 50px;
+		margin-bottom: 20px;
+	}
+	
+	.page-wrapper {
+		box-sizing: border-box;
+		overflow-wrap: break-word;
+		text-align: left;
+		width: 920px;
+		background-color: white;
+		margin: auto;
+		margin-bottom: 50px;
+		padding: 20px 50px 20px 50px;
+		min-height: 600px;
+	}
+	
+	button {
+		display: block;
+		margin: 20px 0 20px;
+		border: 1px solid rgb(233, 236, 239);
+		border-radius: 5px;
+		color: rgb(33, 37, 41);
+		cursor: pointer;
+		font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif;
+		font-size: 18px;
+		height: 45px;
+		padding: 7px 15px 7px 15px;
+		text-align: center;
+		width: 400px;
+	}
+	
+	button:hover {
+		border-color: rgb(153, 156, 159);
+	}
+	
+	.item {
+		display: flex;
+		margin: 20px 0 20px;
+		border: 1px solid rgb(233, 236, 239);
+		border-radius: 5px;
+		color: rgb(33, 37, 41);
+		cursor: pointer;
+		padding: 7px 0 7px 0;
+		text-align: center;
+		width: 450px;
+	}
+	
+	.date__items {
+		display: block;
+		padding: 10px;
+		width: 400px;
+	}
+	
+	.submit {
+		background-color: #359261;
+		color: white;
+		margin: auto;
+		margin-top: 40px;
+		margin-bottom: 40px;
+	}
+	.back_button {
+		background-color: gray;
+		color: white;
+		margin: auto;
+		margin-top: 50px;
+		margin-bottom: 40px;
+	}
+	
+	#comment {
+		display: block;
+		margin: auto;
+		margin-top: 10px;
+		padding: 10px;
+		height: 100px;
+		width: 100%;
+		font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif;
+		color: rgb(58, 58, 58);
+		font-size: 16px;
+		box-sizing: border-box;
+		text-align: left;
+		vertical-align: top;
+		resize: vertical;
+		word-wrap: break-word;
+		box-shadow: none;
+	}
+	
+	.date__item {
+		width: 140px;
+	}
+	
+	.hidden_checkbox {
+		display: block;
+		position: absolute;
+		left: -9999px;
+	}
+	
+	.classroom__section {
+		width: initial;
+	}
+	
+	.choose_classroom {
+		display: flex;
+		height: 45px;
+		justify-content: space-between;
+		padding-right: 2px;
+	}
+	
+	.choose_classroom span {
+		display: block;
+		padding-top: 10px;
+	}
+	
+	.classroom_selection {
+		display: block;
+		width: 100%;
+	}
+	
+	.classroom_selection_text {
+		display: block;
+		text-align: center;
+		vertical-align: center;
+		height: 100%;
+		width: 100%;
+		border: 1px solid rgb(233, 236, 239);
+		border-top-left-radius: 5px;
+		border-top-right-radius: 5px;
+		border-bottom: 0;
+	}
+	
+	.classroom_param, .concrete_classroom {
+		border: 2px solid rgb(233, 236, 239);
+		border-bottom-left-radius: 5px;
+		border-bottom-right-radius: 5px;
+		padding: 20px;
+		width: initial;
+	}
+	
+	.hidden_checkbox:checked ~ .classroom_selection_text {
+		background-color: rgb(233, 236, 239);
+	}
+	
+	#room_number {
+		width: 100px;
+	}
+	
+	.concrete_classroom, .classroom_param {
+		left: -9999px;
+	}
+	
+	.concrete_classroom {
+		position: absolute;
+	}
+	
+	.room__section {
+		width: 100%;
+	}
+	
+	.del {
+		display: block;
+		padding: 10px;
+		width: 50px;
+	}
+	.discipline {
+		padding: 10px;
+	}
+	.discipline_name{
+		width: 400px;
+		text-align: left;
+	}
+	.discipline_num{
+		width: 50px;
+	}
+	
+\end{lstlisting}

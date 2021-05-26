@@ -1,0 +1,51 @@
+\chapter{Старница генерации предварительного расписания}\label{appendix-result}	
+
+\begin{lstlisting}
+	
+	<!DOCTYPE html>
+	<html dir="ltr" lang="ru" xml:lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+	<head>
+	<title>ИКНТ: настройки сессии</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="_csrf" th:content="${_csrf.token}"/>
+	<meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+	<link href="../../teacher_wish.css" rel="stylesheet"/>
+	<script type="module" src="../../js/session_settings.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="keywords" content="ИКНТ: настройки сессии"/>
+	<meta name="robots" content="noindex"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+	<body>
+	<div class="page-wrapper">
+	<h2>Группы для составления расписания</h2>
+	<section class="day_section">
+	<h4>Номера специальностей</h4>
+	<div id="specs">
+	<div class="item" id="spec0">
+	<input type="text" name="spec" class="spec__item date__item spec">
+	<div class="del" id="del_s_0"> &#10006;</div>
+	</div>
+	</div>
+	<button id="add_spec" type="button">
+	Добавить ещё одну специальность
+	</button>
+	</section>
+	<section class="level_section">
+	<h4>Курсы</h4>
+	<div class="level">
+	<input class="levelOption" type="checkbox" name="option1" checked=true value="1">1<Br>
+	<input class="levelOption" type="checkbox" name="option2" checked=true value="2">2<Br>
+	<input class="levelOption" type="checkbox" name="option3" checked=true value="3">3<br>
+	<input class="levelOption" type="checkbox" name="option4" checked=true value="4">4<br>
+	<input class="levelOption" type="checkbox" name="option5" checked=true value="5">5<br>
+	<input class="levelOption" type="checkbox" name="option6" checked=true value="6">6</p>
+	</div>
+	</section>
+	<button type="submit" id="submit_groups" class="submit">Сгенеировать расписание</button>
+	<button class="back_button" onclick="window.location.href = '/session';">Назад</button>
+	</div>
+	</body>
+	</html>
+	
+\end{lstlisting}

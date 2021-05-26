@@ -1,0 +1,141 @@
+\chapter{AppScript для генерации google-формы}\label{appendix-appscript}	
+
+\begin{lstlisting}
+	
+function refresfForm(){
+	/** id таблицы */
+	var sh = SpreadsheetApp.openById("...");
+	/** id формы */
+	var form = FormApp.getActiveForm();
+	clearForm(form);
+	form.setTitle('Предпочтения преподавателей к проведению сессии')
+	var pass = form.addTextItem().setTitle('Введите пароль').setRequired(true)
+	var textValidation = FormApp.createTextValidation()
+	.requireTextMatchesPattern('пароль')
+	.setHelpText("Неверный пароль!")
+	.build()
+	pass.setValidation(textValidation);
+	
+	form.addPageBreakItem().setTitle('Предпочтения преподавателей к проведению сессии')
+	var prior = form.addMultipleChoiceItem().setTitle('Я совместитель').setRequired(true)
+	var priorPage = form.addPageBreakItem().setTitle('Раздел только для совместителей')
+	.setHelpText('Далее можете выбрать интервал дат, в которые предпочтительно проводить аттестации. (Не менее 14 дней!)');
+	form.addDateItem().setTitle('Начало интервала дат, когда предпочтительна аттестация')
+	form.addDateItem().setTitle('Конец интервала дат, когда предпочтительна аттестация')
+	
+	var mainPage = form.addPageBreakItem().setTitle('Предпочтения к времени проведения аттестаций');
+	var teachers = form.addListItem().setTitle('Ваше имя').setRequired(true);
+	var helper = form.addListItem().setTitle('Выберете ассистента, если он есть');
+	prior.setChoices([
+	prior.createChoice('Да',priorPage),
+	prior.createChoice('Нет',mainPage)])
+	form.addSectionHeaderItem().setTitle('Выберете интервал дат, в которые Вы НЕ будете доступны для проведения аттестаций')
+	.setHelpText('В этом пункте необходимо указать промежуток времени, на который Вы предварительно согласовали, к примеру, поездку на конференцию или другую уважительную причину отсутствия. ЕСЛИ ТАКОГО ПОЛЯ НЕТ, ОСТАВЬТЕ СЛЕДУЮЩИЕ ДВА ВОПРОСА БЕЗ ОТВЕТА.')
+	form.addDateItem().setTitle('Первый день отсутствия');
+	form.addDateItem().setTitle('Последний день отсутствия');
+	
+	var dof = form.addCheckboxItem().setTitle('Дни недели, в которые Вы НЕ МОЖЕТЕ присутствовать на аттестациях');
+	dof.setChoices([dof.createChoice('Понедельник'),
+	dof.createChoice('Вторник'),
+	dof.createChoice('Среда'),
+	dof.createChoice('Четверг'),
+	dof.createChoice('Пятница'),
+	dof.createChoice('Суббота')]);
+	
+	var t1 = form.addListItem().setTitle('Самое раннее время, в которое Вы сможете начать проводить аттестации');
+	t1.setChoices([t1.createChoice(8),
+	t1.createChoice(9),
+	t1.createChoice(10),
+	t1.createChoice(11),
+	t1.createChoice(12),
+	t1.createChoice(13),
+	t1.createChoice(14),
+	t1.createChoice(15),
+	t1.createChoice(16),
+	t1.createChoice(17),
+	t1.createChoice(18)])
+	
+	var t2 = form.addListItem().setTitle('Самое позднее время, в которое может закончиться аттестация');
+	t2.setChoices([t2.createChoice(10),
+	t2.createChoice(11),
+	t2.createChoice(12),
+	t2.createChoice(13),
+	t2.createChoice(14),
+	t2.createChoice(15),
+	t2.createChoice(16),
+	t2.createChoice(17),
+	t2.createChoice(18),
+	t2.createChoice(19),
+	t2.createChoice(20)])
+	
+	var items = [];
+	var itemsHelper = [];
+	var course;
+	var group;
+	var greed;
+	var greed_room;
+	var cnt;
+	var pages = [];
+	
+	
+	var listlist = sh.getDataRange().getValues().sort();
+	
+	for (var i = 0; i < listlist.length; i++) {
+		if (i==0 || listlist[i-1][0]!=listlist[i][0]){
+			course = [];
+			group = [];
+			cnt = 0;
+			var name = listlist[i][0];
+			Logger.log(name);
+			var newPage = form.addPageBreakItem().setTitle(name);
+			pages.push(newPage);
+			items.push(teachers.createChoice(name, newPage));
+			itemsHelper.push(helper.createChoice(name));
+			if (!((i==0 || listlist[i-1][0]!=listlist[i][0]) && (listlist.length-1==i || listlist[i+1][0]!=listlist[i][0]))){
+				greed = form.addGridItem().setTitle('Сгруппируйте те аттестации, которые желательно проводить в один день (для этого у совместных аттестаций проставьте галочки в одном столбце).  Проводится в 1 день могут только 2 аттестации. При этом, если аттестация - экзамен, то Вам необходимо обязательно указать ассистирующего преподавателя, иначе предпочтение будет проигнорировано.').setHelpText('Для аттестаций, которые можно проводить по одной в день можно не выбирать ничего');
+			}
+			//greed_room = form.addGridItem().setTitle('Выберете тип аудитории, необходымый для проведения аттестации');
+			// form.addTextItem()
+			// .setTitle('Если необходимо проводить аттестации только в конкретных аудиторях, перечислите их номера ниже через запятую')
+			// .setHelpText('Пример: 241,237');
+		}
+		cnt++;
+		course.push(listlist[i][1]+' '+listlist[i][2])
+		group.push('Совместные аттестации '+cnt);
+		form.addSectionHeaderItem().setTitle(listlist[i][1]+' '+listlist[i][2])
+		form.addTextItem().setTitle('Ссылка на Teams для проведения дистанционной аттестации')
+		.setHelpText(listlist[i][1]+' '+listlist[i][2]).setRequired(true);
+		form.addTextItem().setTitle('Ссылка на курс на dl.spbstu.ru')
+		.setHelpText(listlist[i][1]+' '+listlist[i][2]).setRequired(true);
+		// if (i==listlist.length-1 || listlist[i][0]!= listlist[i+1][0]){
+			
+			if (!((i==0 || listlist[i-1][0]!=listlist[i][0]) && (listlist.length-1==i || listlist[i+1][0]!=listlist[i][0]))){
+				greed.setRows(course).setColumns(group);
+			}
+			//   greed_room.setRows(course).setColumns(['Любая','Любой компьютерный класс',
+			//   'Любая аудитория с проектором', 'Дистанционно'])
+			// }
+	}
+	teachers.setChoices(items);
+	helper.setChoices(itemsHelper);
+	var last = form.addPageBreakItem().setTitle('Oбратная связь');
+	pages.forEach(p => p.setGoToPage(last));
+	form.addParagraphTextItem().setTitle('Если приведённая выше форма не учитывает какие-то Ваши пожелания, напишите их тут, или оставьте это поле пустым')
+}
+
+function generateFormBlock(form, help){
+	form.addDateItem().setTitle('Для аттестации "' + help + '" нужно назначить определённую дату?').setHelpText(help);
+}
+
+function clearForm(form){
+	while(form.getItems().length!=0){        
+		try{      
+			form.deleteItem(0);
+		} catch(error)
+		{
+			Logger.log(error);
+		}
+	}
+}
+	
+\end{lstlisting}

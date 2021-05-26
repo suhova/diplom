@@ -1,0 +1,306 @@
+\chapter{Класс SessionDao}\label{appendix-dao}	
+
+\begin{lstlisting}
+	@Component
+	public class SessionDao {
+		private SessionDatesRepository sessionDatesRepository;
+		private final SessionTimeRepository sessionTimeRepository;
+		private final ExamFromRuzRepository examFromRuzRepository;
+		private final ExamRepository examRepository;
+		private final DateTimeClassRepository dateTimeClassRepository;
+		private final ResultLinkRepository resultLinkRepository;
+		private final GroupRepository groupRepository;
+		private final EventRepository eventRepository;
+		private final AttestationTypeRepository attestationTypeRepository;
+		private final CurriculumRepository curriculumRepository;
+		private final TeacherRepository teacherRepository;
+		private final ClassroomRepository classroomRepository;
+		private final ExternalExamsLinkRepository externalExamsLinkRepository;
+		
+		@Autowired
+		public SessionDao(SessionDatesRepository sessionDatesRepository,
+		SessionTimeRepository sessionTimeRepository,
+		AttestationTypeRepository attestationTypeRepository,
+		DateTimeClassRepository dateTimeClassRepository,
+		ExamFromRuzRepository examFromRuzRepository,
+		ExamRepository examRepository,
+		ResultLinkRepository resultLinkRepository,
+		GroupRepository groupRepository,
+		ExternalExamsLinkRepository externalExamsLinkRepository,
+		EventRepository eventRepository,
+		CurriculumRepository curriculumRepository,
+		TeacherRepository teacherRepository,
+		ClassroomRepository classroomRepository) {
+			this.sessionDatesRepository = sessionDatesRepository;
+			this.groupRepository = groupRepository;
+			this.dateTimeClassRepository = dateTimeClassRepository;
+			this.sessionTimeRepository = sessionTimeRepository;
+			this.examFromRuzRepository = examFromRuzRepository;
+			this.examRepository = examRepository;
+			this.externalExamsLinkRepository = externalExamsLinkRepository;
+			this.eventRepository = eventRepository;
+			this.resultLinkRepository = resultLinkRepository;
+			this.attestationTypeRepository = attestationTypeRepository;
+			this.curriculumRepository = curriculumRepository;
+			this.classroomRepository = classroomRepository;
+			this.teacherRepository = teacherRepository;
+		}
+		
+		@Transactional
+		public Set<ExamFromRuz> getAllExamFromRuz() {
+			Set<ExamFromRuz> set = new HashSet<>();
+			examFromRuzRepository.findAll().forEach(set::add);
+			return set;
+		}
+		
+		@Transactional
+		public SessionDao clearLinks() {
+			resultLinkRepository.deleteAll();
+			return this;
+		}
+		
+		@Transactional
+		public SessionDao clearExam() {
+			examRepository.deleteAll();
+			curriculumRepository.deleteAll();
+			return this;
+		}
+		
+		@Transactional
+		public List<DateTimeClass> getDateTimeClass() {
+			List<DateTimeClass> dtc = new ArrayList<>();
+			dateTimeClassRepository.findAll().forEach(dtc::add);
+			dtc.sort(DateTimeClass::compareTo);
+			return dtc;
+		}
+		
+		@Transactional
+		public SessionDao createDateTimeClass(List<DateTimeClass> dtc) {
+			dateTimeClassRepository.deleteAll();
+			dateTimeClassRepository.saveAll(dtc);
+			return this;
+		}
+		
+		@Transactional
+		public SessionDao createExamFromRuz(ExamFromRuz examFromRuz) {
+			ExamFromRuz ex = examFromRuzRepository.save(examFromRuz);
+			return this;
+		}
+		
+		@Transactional
+		public SessionDao createAttestationType(List<AttestationType> attestationTypes) {
+			attestationTypeRepository.deleteAll();
+			attestationTypeRepository.saveAll(attestationTypes);
+			return this;
+		}
+		
+		@Transactional
+		public SessionDao createEvent(StudyGroup group,
+		Set<String> teacher,
+		AttestationType type,
+		String course) {
+			Set<Teacher> set = teacher.stream().map(Teacher::new).collect(Collectors.toSet());
+			Event event = new Event(group, set, type, course);
+			teacherRepository.saveAll(set);
+			groupRepository.save(group);
+			attestationTypeRepository.save(type);
+			eventRepository.save(event);
+			return this;
+		}
+		
+		@Transactional
+		public SessionDao clearEvents() {
+			//teacherRepository.deleteAll();
+			eventRepository.deleteAll();
+			return this;
+		}
+		
+		@Transactional
+		public SessionDao clearExamsFromRuz() {
+			//  teacherExamRepository.deleteAll();
+			examFromRuzRepository.deleteAll();
+			return this;
+		}
+		
+		@Transactional
+		public Iterable<AttestationType> getAttestationType() {
+			return attestationTypeRepository.findAll();
+		}
+		
+		@Transactional
+		public List<Event> getEvents() {
+			List<Event> list = new ArrayList<>();
+			eventRepository.findAll().forEach(x -> {
+				if (x.group != null && x.teacher != null) {
+					list.add(x);
+				}
+			});
+			list.sort((o1, o2) -> {
+				int s1 = o1.teacher.size();
+				int s2 = o2.teacher.size();
+				if (s1 != s2) return Integer.compare(s1, s2);
+				Teacher t1 = o1.teacher.stream().findFirst().get();
+				Teacher t2 = o2.teacher.stream().findFirst().get();
+				int tp = Integer.compare(t1.prior, t2.prior);
+				int tn = t1.name.compareTo(t2.name);
+				int g = o1.group.compareTo(o2.group);
+				return tp != 0 ? tp : tn != 0 ? tn : g == 0 ? o1.course.compareTo(o2.course) : g;
+			});
+			return list;
+		}
+		
+		@Transactional
+		public SessionDao createGroups(List<StudyGroup> groups) {
+			groupRepository.deleteAll();
+			groupRepository.saveAll(groups);
+			return this;
+		}
+		
+		@Transactional
+		public Iterable<StudyGroup> getGroups() {
+			return groupRepository.findAll();
+		}
+		
+		@Transactional
+		public SessionDao createTimes(List<SessionTime> time) {
+			sessionTimeRepository.deleteAll();
+			sessionTimeRepository.saveAll(time);
+			return this;
+		}
+		
+		@Transactional
+		public SessionDao createCurriculum(List<Curriculum> curriculumList) {
+			String spec = curriculumList.get(0).specCode;
+			curriculumRepository.deleteAll(curriculumRepository.findBySpecCode(spec));
+			curriculumRepository.saveAll(curriculumList);
+			return this;
+		}
+		
+		@Transactional
+		public SessionDao createExam(String spec, List<Exam> examList) {
+			examRepository.deleteAll(examRepository.getExamBySpec(spec));
+			examRepository.saveAll(examList);
+			return this;
+		}
+		
+		@Transactional
+		public SessionDao createResultLink(String link) {
+			resultLinkRepository.save(new ResultLink(link));
+			return this;
+		}
+		
+		@Transactional
+		public Iterable<ResultLink> getResultLink() {
+			return resultLinkRepository.findAll();
+		}
+		
+		@Transactional
+		public Iterable<Curriculum> getCurriculumBySpec(String spec) {
+			return curriculumRepository.findBySpecCode(spec);
+		}
+		
+		@Transactional
+		public Teacher getTeacherByName(String name) {
+			List<Teacher> teachers = teacherRepository.getTeacherByName(name);
+			return teachers != null ? teachers.get(0) : null;
+		}
+		
+		@Transactional
+		public List<Teacher> getTeachers() {
+			List<Teacher> res = new ArrayList<>();
+			teacherRepository.findAll().forEach(res::add);
+			return res;
+		}
+		
+		@Transactional
+		public Iterable<Curriculum> getCurriculumBySpec(List<String> spec) {
+			return curriculumRepository.findBySpecCode(spec);
+		}
+		
+		@Transactional
+		public Iterable<Curriculum> getCurriculum() {
+			return curriculumRepository.findAll();
+		}
+		
+		@Transactional
+		public Iterable<ExamFromRuz> getExamFromRuz() {
+			return examFromRuzRepository.findAll();
+		}
+		
+		@Transactional
+		public Iterable<Exam> getExams() {
+			return examRepository.findAll();
+		}
+		
+		@Transactional
+		public SessionDao createTime(Integer t) {
+			if (sessionTimeRepository.countTimes(t) == 0) {
+				sessionTimeRepository.save(new SessionTime(t));
+			}
+			return this;
+		}
+		
+		@Transactional
+		public SessionDao createClassrooms(List<Classroom> classrooms) {
+			classroomRepository.deleteAll();
+			classroomRepository.saveAll(classrooms);
+			return this;
+		}
+		
+		@Transactional
+		public SessionDao createDates(List<LocalDate> days) {
+			sessionDatesRepository.deleteAll();
+			for (LocalDate d : days) {
+				sessionDatesRepository.save(new SessionDates(d));
+			}
+			return this;
+		}
+		
+		@Transactional
+		public List<LocalDate> getSessionDates() {
+			return sessionDatesRepository.sessionDates();
+		}
+		
+		@Transactional
+		public Integer getMinTime() {
+			return sessionTimeRepository.getMinTime();
+		}
+		
+		@Transactional
+		public List<Integer> getTime() {
+			List<Integer> list = new ArrayList<>();
+			sessionTimeRepository.findAll().forEach(x -> list.add(x.time));
+			return list;
+		}
+		
+		@Transactional
+		public Integer getMaxTime() {
+			return sessionTimeRepository.getMaxTime();
+		}
+		
+		@Transactional
+		public List<Classroom> getClassrooms() {
+			return classroomRepository.allClassroom();
+		}
+		
+		@Transactional
+		public SessionDao createExternalExamsLink(String externalId) {
+			externalExamsLinkRepository.deleteAll();
+			externalExamsLinkRepository.save(new ExternalExamsLink(externalId));
+			return this;
+		}
+		
+		@Transactional
+		public String getExternalExamsLink() {
+			List<ExternalExamsLink> list = new ArrayList<>();
+			externalExamsLinkRepository.findAll().forEach(list::add);
+			if (list.size() > 0) {
+				return list.get(0).link;
+			} else {
+				return "";
+			}
+		}
+	}
+	
+	
+\end{lstlisting}

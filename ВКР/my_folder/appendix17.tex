@@ -1,0 +1,38 @@
+\chapter{Сгенерированные ранее расписания}\label{appendix-link}	
+
+\begin{lstlisting}
+	
+	<!DOCTYPE html>
+	<html dir="ltr" lang="ru" xml:lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+	<head>
+	<title>ИКНТ: настройки сессии</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="_csrf" th:content="${_csrf.token}"/>
+	<meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+	<link href="../../teacher_wish.css" rel="stylesheet"/>
+	<script type="module" src="../../js/session_settings.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="keywords" content="ИКНТ: настройки сессии"/>
+	<meta name="robots" content="noindex"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+	<body>
+	<div class="page-wrapper">
+	<h2 style="margin-bottom: 0">Ссылки на расписания</h2>
+	<div style="display: flex;
+	justify-content: space-between;
+	flex-wrap: nowrap;
+	margin: 0;
+	padding: 0;
+	flex-direction: row;">
+	<div><button id="clear_links" class="back_button">Очистить список ссылок</button></div>
+	<div> <button class="back_button" onclick="window.location.href = '/session';">Назад</button></div>
+	</div>
+	<div th:each="link : ${rasp}">
+	<p><a th:href="${link.link}" target="_blank" th:text="${link.link}"></a></p>
+	</div>
+	</div>
+	</body>
+	</html>
+	
+\end{lstlisting}

@@ -1,0 +1,42 @@
+\chapter{Форма загрузки списка аудиторий}\label{appendix-room}	
+
+\begin{lstlisting}
+	<!DOCTYPE html>
+	<html dir="ltr" lang="ru" xml:lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+	<head>
+	<title>ИКНТ: настройки сессии</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="_csrf" th:content="${_csrf.token}"/>
+	<meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+	<link href="../../teacher_wish.css" rel="stylesheet"/>
+	<script type="module" src="../../js/session_settings.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="keywords" content="ИКНТ: настройки сессии"/>
+	<meta name="robots" content="noindex"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+	<body>
+	<div class="page-wrapper">
+	<h2>Настройки сессии</h2>
+	<h4>Изменить список аудиторий</h4>
+	Формат: номер аудитории, тип, количество мест <br>
+	Пример: 319,2,20 <br><br>
+	<div class="classroom_param">
+	<label for="classfile"></label>
+	<input type="file" id="classfile" name="classfile"/>
+	</div>
+	<select>
+	<option> Загруженный список аудиторий </option>
+	<option  th:each="classroom : ${classrooms}">
+	<p class="exam_course" th:value="${classroom}" th:text="${classroom}"></p>
+	</option>
+	</select>
+	
+	
+	<button type="submit" id="submit_class" class="submit">Отправить форму</button>
+	
+	<button class="back_button" onclick="window.location.href = '/session';">Назад</button>
+	</div>
+	</body>
+	</html>
+\end{lstlisting}

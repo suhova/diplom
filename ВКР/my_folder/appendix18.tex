@@ -1,0 +1,40 @@
+\chapter{Страница для обновления формы сбора сведений от ППС}\label{appendix-updt}	
+
+\begin{lstlisting}
+	
+	<!DOCTYPE html>
+	<html dir="ltr" lang="ru" xml:lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+	<head>
+	<title>ИКНТ: настройки сессии</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="_csrf" th:content="${_csrf.token}"/>
+	<meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+	<link href="../../teacher_wish.css" rel="stylesheet"/>
+	<script type="module" src="../../js/session_settings.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="keywords" content="ИКНТ: настройки сессии"/>
+	<meta name="robots" content="noindex"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+	<body>
+	<div class="page-wrapper">
+	<h2>Обновить таблицу с данными для форм сбора предпочтений</h2>
+	<section class="day_section">
+	<h4>Укажите специальности (номера групп до "/"), аттестации для которых, нужно добавить в форму сбора предпочтений ППС</h4>
+	<div id="specs_updt">
+	<div class="item" id="spec_updt0">
+	<input type="text" name="spec_updt" class="spec_updt__item date__item spec_updt">
+	<div class="del" id="del_s_updt_0"> &#10006;</div>
+	</div>
+	</div>
+	<button id="add_spec_updt" type="button">
+	Добавить ещё одну специальность
+	</button>
+	</section>
+	<button type="submit" id="submit_groups_updt" class="submit">Обновить</button>
+	<button class="back_button" onclick="window.location.href = '/session';">Назад</button>
+	</div>
+	</body>
+	</html>
+	
+\end{lstlisting}

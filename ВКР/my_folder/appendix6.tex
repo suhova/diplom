@@ -1,0 +1,542 @@
+\chapter{Класс GoogleFormService}\label{appendix-google}	
+
+\begin{lstlisting}
+	@Controller
+	public class GoogleFormService {
+		public SessionDao dao;
+		
+		@Autowired
+		public GoogleFormService(SessionDao dao) {
+			this.dao = dao;
+		}
+		
+		private static final String APPLICATION_NAME = "Scheduler";
+		private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
+		private static final String TOKENS_DIRECTORY_PATH = "tokens";
+		private static final List<String> SCOPES = Collections.singletonList(SheetsScopes.SPREADSHEETS_READONLY);
+		private static final String REFRESH_TOKEN_PATH = "/refresh_token.txt";
+		private static final String SPREADSHEET_ID_PATH = "/spreadsheet_id.txt";
+		private static final String TEACHER_SPREADSHEET_ID_PATH = "/teacher_spreadsheet_id.txt";
+		private static final String CREDENTIALS_FILE_PATH = "/credentials.json";
+		private static String SPREADSHEET_ID;
+		private static String TEACHER_SPREADSHEET_ID;
+		private static String REFRESH_TOKEN;
+		private static Set<String> links = new HashSet<>();
+		
+		static {
+			try {
+				TEACHER_SPREADSHEET_ID = new BufferedReader(new InputStreamReader(GoogleFormService.class.getResourceAsStream(TEACHER_SPREADSHEET_ID_PATH))).readLine();
+				REFRESH_TOKEN = new BufferedReader(new InputStreamReader(GoogleFormService.class.getResourceAsStream(REFRESH_TOKEN_PATH))).readLine();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		enum ColumnName {
+			PRIOR("Я совместитель"),
+			DATE1("Начало интервала дат, когда предпочтительна аттестация"),
+			DATE2("Конец интервала дат, когда предпочтительна аттестация"),
+			NAME("Ваше имя"),
+			HELPER("Ассистент"),
+			ABS1("Первый день отсутствия"),
+			ABS2("Последний день отсутствия"),
+			DOF("Дни недели, в которые Вы НЕ МОЖЕТЕ присутствовать на аттестациях"),
+			TIME1("Самое раннее время, в которое Вы сможете начать проводить аттестации"),
+			TIME2("Самое позднее время, в которое может закончиться аттестация"),
+			GROUP("Сгруппируйте те аттестации, которые желательно проводить в один день (для этого у совместных аттестаций проставьте галочки в одном столбце)"),
+			ROOM("Выберете тип аудитории, необходымый для проведения аттестации"),
+			NUMS("Если необходимо проводить аттестации только в конкретных аудиторях, перечислите их номера ниже через запятую"),
+			;
+			
+			ColumnName(String s) {
+			}
+		}
+		
+		private static Map<ColumnName, Integer> columns = new HashMap<>();
+		
+		static {
+			columns.put(ColumnName.PRIOR, 2);
+			columns.put(ColumnName.DATE1, 3);
+			columns.put(ColumnName.DATE2, 4);
+			columns.put(ColumnName.NAME, 5);
+			columns.put(ColumnName.HELPER, 6);
+			columns.put(ColumnName.ABS1, 7);
+			columns.put(ColumnName.ABS2, 8);
+			columns.put(ColumnName.DOF, 9);
+			columns.put(ColumnName.TIME1, 10);
+			columns.put(ColumnName.TIME2, 11);
+		}
+		
+		@RequestMapping(value = "/session/teachers/updatelink")
+		public String teachers_updatelink(Model model) {
+			model.addAttribute("link", "https://docs.google.com/spreadsheets/d/" + TEACHER_SPREADSHEET_ID + "/edit");
+			return "session/teachers/updatelink/index";
+		}
+		
+		@RequestMapping(value = "/session/teachers/update")
+		@ResponseBody
+		public String teachers_update(Model model,
+		@RequestParam(name = "spec") String[] spec) {
+			
+			List<String> specs;
+			if (spec != null) {
+				specs = new ArrayList<>(Arrays.asList(spec));
+			} else {
+				specs = new ArrayList<>();
+			}
+			System.out.println(specs);
+			List<Event> event = dao.getEvents();
+			try {
+				final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+				Sheets sheetsService = new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
+				.setApplicationName(APPLICATION_NAME)
+				.build();
+				
+				Spreadsheet spreadSheet = sheetsService.spreadsheets()
+				.get(TEACHER_SPREADSHEET_ID)
+				.execute();
+				
+				List<List<Object>> list = new ArrayList<>();
+				for (int i = 0; i < event.size(); i++) {
+					Event e = event.get(i);
+					if (specs.isEmpty()) {
+						e.teacher.forEach(t ->
+						list.add(List.of(
+						t.name,
+						e.course,
+						e.group.name
+						))
+						);
+					} else {
+						for (String specCode : specs) {
+							System.out.println(e.course+" "+e.type.type);
+							if (e.group.name.startsWith(specCode)) {
+								e.teacher.forEach(t ->
+								list.add(List.of(
+								t.name,
+								e.course+" "+e.type.type,
+								e.group.name
+								))
+								);
+								break;
+							}
+						}
+					}
+				}
+				ValueRange body = new ValueRange().setValues(list);
+				sheetsService.spreadsheets().values()
+				.clear(spreadSheet.getSpreadsheetId(), "A1:C", new ClearValuesRequest())
+				.execute();
+				sheetsService.spreadsheets().values()
+				.update(spreadSheet.getSpreadsheetId(), "A1:C", body)
+				.setValueInputOption("RAW")
+				.execute();
+				System.out.println(spreadSheet.getSpreadsheetUrl());
+				return spreadSheet.getSpreadsheetUrl();
+			} catch (Exception e) {
+				System.out.println(e);
+				return e.toString();
+			}
+		}
+		
+		public List<Solution> getExternalExams() {
+			List<Solution> res = new ArrayList<>();
+			String link = dao.getExternalExamsLink();
+			try {
+				final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+				ValueRange response = new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
+				.setApplicationName(APPLICATION_NAME)
+				.build()
+				.spreadsheets().values()
+				.get(link, "A2:G")
+				.execute();
+				List<List<Object>> values = response.getValues();
+				if (values == null || values.isEmpty()) {
+					System.out.println("No data found.");
+				} else {
+					for (int i = 0; i < values.size(); i++) {
+						List<Object> row = values.get(i);
+						Set<Teacher> t = new HashSet<>();
+						String str = row.get(1).toString();
+						String[] arr = str.substring(1, str.length() - 1).split(", ");
+						for (String n : arr) {
+							t.add(new Teacher(n));
+						}
+						List<AttestationType> attestationTypes = (List<AttestationType>) dao.getAttestationType();
+						AttestationType attestationType = null;
+						String att = row.get(3).toString().toLowerCase();
+						for (AttestationType at : attestationTypes) {
+							if (att.contains(at.type)) {
+								attestationType = at;
+								break;
+							}
+						}
+						if (attestationType == null) {
+							attestationType = attestationTypes.get(0);
+						}
+						Classroom classroom = null;
+						String classroomName = row.get(6).toString();
+						List<Classroom> classrooms = dao.getClassrooms();
+						for (Classroom cl : classrooms) {
+							if (classroomName.equals(cl.num)) {
+								classroom = cl;
+								break;
+							}
+						}
+						if (classroom == null) {
+							classroom = new Classroom(classroomName, 1, 100);
+						}
+						Event e = new Event(new StudyGroup(row.get(0).toString(), 10, 0), t, attestationType, row.get(2).toString());
+						LocalDate date;
+						try {
+							date = LocalDate.parse(row.get(4).toString());
+						} catch (Exception ex) {
+							date = LocalDate.parse(row.get(4).toString(), DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+						}
+						DateTimeClass dt = new DateTimeClass(
+						date,
+						Integer.parseInt(row.get(5).toString()),
+						classroom);
+						Solution s = new Solution(e, dt);
+						res.add(s);
+					}
+				}
+			} catch (Exception e) {
+				System.out.println(e);
+			} finally {
+				return res;
+			}
+		}
+		
+		public String generateLink(List<Solution> solutions) {
+			try {
+				final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+				Sheets sheetsService = new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
+				.setApplicationName(APPLICATION_NAME)
+				.build();
+				
+				Spreadsheet spreadSheet = new Spreadsheet().setProperties(
+				new SpreadsheetProperties().setTitle("Session Schedule"));
+				
+				Spreadsheet result = sheetsService
+				.spreadsheets()
+				.create(spreadSheet).execute();
+				
+				List<List<Object>> list = new ArrayList<>();
+				
+				list.add(Arrays.asList(
+				"Группа",
+				"Преподаватели",
+				"Дисциплина",
+				"Тип",
+				"Дата",
+				"Время",
+				"Аудитория"
+				));
+				for (int i = 0; i < solutions.size(); i++) {
+					Solution sol = solutions.get(i);
+					if (i == 0 || !solutions.get(i - 1).event.equals(sol.event)) {
+						list.add(Arrays.asList(
+						sol.event.group.name,
+						sol.event.teacher.toString(),
+						sol.event.course,
+						sol.event.type.type,
+						sol.dtc.date.toString(),
+						String.valueOf(sol.dtc.time),
+						sol.dtc.classroom.num
+						));
+					}
+				}
+				ValueRange body = new ValueRange().setValues(list);
+				sheetsService.spreadsheets().values()
+				.update(result.getSpreadsheetId(), "A1", body)
+				.setValueInputOption("RAW")
+				.execute();
+				System.out.println(result.getSpreadsheetUrl());
+				return result.getSpreadsheetUrl();
+			} catch (Exception e) {
+				System.out.println(e);
+				return null;
+			}
+		}
+		
+		public static void main(String[] args) {
+			try {
+				final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+				Sheets sheetsService = new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
+				.setApplicationName(APPLICATION_NAME)
+				.build();
+				
+				Spreadsheet spreadSheet = sheetsService.spreadsheets()
+				.get(TEACHER_SPREADSHEET_ID)
+				.execute();
+				
+				List<List<Object>> list = new ArrayList<>();
+				ValueRange body = new ValueRange().setValues(list);
+				sheetsService.spreadsheets().values()
+				.clear(spreadSheet.getSpreadsheetId(), "A1:C", new ClearValuesRequest())
+				.execute();
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+		}
+		
+		@RequestMapping(value = "/session/result")
+		public String result(Model model) {
+			return "session/result/index";
+		}
+		
+		@RequestMapping(value = "/session/teachers")
+		public String teachers(Model model) {
+			return "session/teachers/index";
+		}
+		
+		List<List<Solution>> sol = new ArrayList<>();
+		
+		@RequestMapping(value = "/session/result/create", method = RequestMethod.POST)
+		public @ResponseBody
+		String resultCreate(Model model,
+		@RequestParam(name = "spec") String[] spec,
+		@RequestParam(name = "levels") Integer[] level) {
+			List<String> specs;
+			List<Integer> levels;
+			if (spec != null) {
+				specs = new ArrayList<>(Arrays.asList(spec));
+			} else {
+				specs = new ArrayList<>();
+			}
+			if (level != null) {
+				levels = new ArrayList<>(Arrays.asList(level));
+			} else {
+				levels = new ArrayList<>();
+			}
+			List<Event> e = getEventsWithWishes(specs, levels);
+			for (Event ev : e) {
+				System.out.println(ev);
+			}
+			List<Classroom> classroomList = new ArrayList<>();
+			for (String l : links) {
+				classroomList.add(new Classroom(l, 0, 500));
+			}
+			List<DateTimeClass> dateTimeClassList = dao.getDateTimeClass();
+			dateTimeClassList.addAll(SessionService.createListDTC(dao.getSessionDates(), dao.getTime(), classroomList));
+			ScheduleAllSolutions scheduleAllSolutions =
+			new ScheduleAllSolutions(e,
+			dateTimeClassList,
+			getExternalExams(),
+			8, 1, new ArrayList<>());
+			sol = scheduleAllSolutions.findSolutions().getSolutions();
+			System.out.println(sol);
+			for (List<Solution> solutions : sol) {
+				String link = generateLink(solutions);
+				if (link != null) {
+					dao.createResultLink(link);
+				}
+			}
+			return "session/result/link/index";
+		}
+		
+		@RequestMapping(value = "session/result/link")
+		public String resultLink(Model model) {
+			model.addAttribute("rasp", dao.getResultLink());
+			return "session/result/link/index";
+		}
+		
+		public static Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT) throws IOException {
+			InputStream in = GoogleFormService.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
+			if (in == null) {
+				throw new FileNotFoundException("Resource not found: " + CREDENTIALS_FILE_PATH);
+			}
+			GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
+			String clientId = clientSecrets.getDetails().getClientId();
+			String clientSecret = clientSecrets.getDetails().getClientSecret();
+			GoogleCredential credential = new GoogleCredential.Builder()
+			.setTransport(HTTP_TRANSPORT)
+			.setJsonFactory(JSON_FACTORY)
+			.setClientSecrets(clientId, clientSecret)
+			.build();
+			credential.setAccessToken(getNewToken(REFRESH_TOKEN, clientId, clientSecret));
+			credential.setRefreshToken(REFRESH_TOKEN);
+			return credential;
+		}
+		
+		public static String getNewToken(String refreshToken, String clientId, String clientSecret) throws
+		IOException {
+			ArrayList<String> scopes = new ArrayList<>();
+			scopes.add(SheetsScopes.SPREADSHEETS);
+			TokenResponse tokenResponse = new GoogleRefreshTokenRequest(new NetHttpTransport(), new JacksonFactory(),
+			refreshToken, clientId, clientSecret).setScopes(scopes).setGrantType("refresh_token").execute();
+			return tokenResponse.getAccessToken();
+		}
+		
+		public List<Event> getEventsWithWishes(List<String> spec, List<Integer> levels) {
+			List<Event> events = dao.getEvents();
+			List<Event> result = new ArrayList<>();
+			try {
+				SPREADSHEET_ID = new BufferedReader(new InputStreamReader(GoogleFormService.class.getResourceAsStream(SPREADSHEET_ID_PATH))).readLine();
+				
+				final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+				ValueRange response = new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
+				.setApplicationName(APPLICATION_NAME)
+				.build()
+				.spreadsheets().values()
+				.get(SPREADSHEET_ID, "'Ответы на форму (1)'")
+				.execute();
+				List<List<Object>> values = response.getValues();
+				if (values == null || values.isEmpty()) {
+					System.out.println("No data found.");
+				} else {
+					List<Object> colNames = values.get(0);
+					for (Event event : events) {
+						if (event.isGroupSpecEnabled(spec) && event.isGroupLevelEnabled(levels)) {
+							List<Object> helpers = new ArrayList<>();
+							for (Teacher teacher : event.teacher) {
+								for (int i = 1; i < values.size(); i++) {
+									List<Object> row = values.get(i);
+									String name = (String) row.get(columns.get(ColumnName.NAME));
+									if (teacher.name.equals(name) && row.size() > columns.get(ColumnName.HELPER)) {
+										Object h = row.get(columns.get(ColumnName.HELPER));
+										if (!h.equals("")) {
+											helpers.add(h);
+										}
+									}
+								}
+							}
+							for (Object h : helpers) {
+								boolean f = true;
+								for (Teacher t : event.teacher) {
+									if (h.equals(t.name)) {
+										f = false;
+										break;
+									}
+								}
+								if (f) event.teacher.add(new Teacher(h.toString()));
+							}
+							for (Teacher teacher : event.teacher) {
+								for (int i = 1; i < values.size(); i++) {
+									List<Object> row = values.get(i);
+									String name = (String) row.get(columns.get(ColumnName.NAME));
+									if (teacher.name.equals(name)) {
+										Object date1 = row.size() > columns.get(ColumnName.DATE1) ? row.get(columns.get(ColumnName.DATE1)) : "";
+										Object date2 = row.size() > columns.get(ColumnName.DATE2) ? row.get(columns.get(ColumnName.DATE2)) : "";
+										Object abs1 = row.size() > columns.get(ColumnName.ABS1) ? row.get(columns.get(ColumnName.ABS1)) : "";
+										Object abs2 = row.size() > columns.get(ColumnName.ABS2) ? row.get(columns.get(ColumnName.ABS2)) : "";
+										Object time1 = row.size() > columns.get(ColumnName.TIME1) ? row.get(columns.get(ColumnName.TIME1)) : "";
+										Object time2 = row.size() > columns.get(ColumnName.TIME2) ? row.get(columns.get(ColumnName.TIME2)) : "";
+										Object dof = row.size() > columns.get(ColumnName.DOF) ? row.get(columns.get(ColumnName.DOF)) : "";
+										Object prior = row.size() > columns.get(ColumnName.PRIOR) ? row.get(columns.get(ColumnName.PRIOR)) : "";
+										teacher.time = generateTimeList(time1, time2);
+										teacher.date = generateDatesList(date1, date2, abs1, abs2, dof);
+										teacher.prior = prior.equals("Да") ? 2 : 1;
+										for (int j = 0; j < row.size(); j++) {
+											if (!row.get(j).toString().equals("")) {
+												if (colNames.get(j).toString().startsWith("Выберете тип аудитории, необходымый для проведения аттестации")) {
+													event.wishedClassroomType = Classroom.getTypeByTeacherWish(row.get(j).toString());
+												}
+												if (colNames.get(j).toString().startsWith("Если необходимо проводить аттестации только в конкретных аудиторях")) {
+													event.wishedClassroomNums = row.get(j).toString();
+												}
+												if (colNames.get(j).toString().startsWith("Ссылка на")) {
+													event.link = row.get(j).toString();
+													links.add(event.link);
+												}
+											}
+										}
+									}
+								}
+								if (teacher.date == null) {
+									teacher.date = dao.getSessionDates();
+								}
+								if (teacher.time == null) {
+									teacher.time = dao.getTime();
+								}
+							}
+							result.add(event);
+						}
+					}
+					int eventsInOneDay = 0;
+					for (int i = 1; i < values.size(); i++) {
+						List<Object> row = values.get(i);
+						List<Integer> groupRow = new ArrayList<>();
+						List<String> groupTitle = new ArrayList<>();
+						Map<Integer, Integer> map = new HashMap<>();
+						Set<Integer> set = new HashSet<>();
+						for (int j = 0; j < row.size(); j++) {
+							if (!row.get(j).toString().equals("") && colNames.get(j).toString().startsWith("Сгруппируйте те аттестации")) {
+								Integer x = Integer.parseInt(row.get(j).toString().substring("Совместные аттестации ".length()));
+								groupRow.add(x);
+								set.add(x);
+								groupTitle.add(colNames.get(j).toString());
+							}
+						}
+						int max = eventsInOneDay;
+						int setSize = set.size();
+						for (int j = 0; j < groupRow.size(); j++) {
+							for (Event event : events) {
+								if (event.eventGroup == -1 && groupTitle.get(j).contains(event.group.name)
+								&& groupTitle.get(j).contains(event.course)) {
+									int gr = groupRow.get(j);
+									if (!map.containsKey(gr)) {
+										map.put(gr, 1);
+										event.eventGroup = eventsInOneDay + gr;
+									} else {
+										map.put(gr, map.get(gr) + 1);
+										event.eventGroup = eventsInOneDay + gr + setSize * ((map.get(gr) - 1) / 2);
+									}
+									if (event.eventGroup > max) max = event.eventGroup;
+								}
+							}
+						}
+						eventsInOneDay = max;
+					}
+				}
+			} catch (
+			Exception e) {
+				System.out.println(e.toString());
+			}
+			return result;
+		}
+		
+		private List<LocalDate> generateDatesList(Object d1, Object d2, Object a1, Object a2, Object dof) {
+			LocalDate date1, date2, abs1, abs2;
+			date1 = d1 != "" ? LocalDate.parse((String) d1, DateTimeFormatter.ofPattern("dd.MM.yyyy")) : LocalDate.MIN;
+			date2 = d2 != "" ? LocalDate.parse((String) d2, DateTimeFormatter.ofPattern("dd.MM.yyyy")) : LocalDate.MAX;
+			abs1 = a1 != "" ? LocalDate.parse((String) a1, DateTimeFormatter.ofPattern("dd.MM.yyyy")) : LocalDate.MAX;
+			abs2 = a2 != "" ? LocalDate.parse((String) a2, DateTimeFormatter.ofPattern("dd.MM.yyyy")) : LocalDate.MIN;
+			List<Integer> dofs = new ArrayList<>();
+			String d = (String) dof;
+			String[] week = {"Понедельник", "Втрорник", "Среда", "Четверг", "Пятница", "Суббота"};
+			for (int i = 0; i < week.length; i++) {
+				if (d.contains(week[i])) {
+					dofs.add(i);
+				}
+			}
+			List<LocalDate> dates = dao.getSessionDates();
+			List<LocalDate> res = new ArrayList<>();
+			for (LocalDate date : dates) {
+				if (!(date.compareTo(abs1) >= 0 && date.compareTo(abs2) <= 0)
+				&& date.compareTo(date1) >= 0
+				&& date.compareTo(date2) <= 0
+				&& !dofs.contains(date.getDayOfWeek().getValue() - 1)) {
+					res.add(date);
+				}
+			}
+			return res;
+		}
+		
+		private List<Integer> generateTimeList(Object t1, Object t2) {
+			int time1, time2;
+			time1 = t1 != "" ? Integer.parseInt(t1.toString()) : 0;
+			time2 = t2 != "" ? Integer.parseInt(t2.toString()) : 24;
+			List<Integer> times = dao.getTime();
+			List<Integer> res = new ArrayList<>();
+			for (Integer time : times) {
+				if (time >= time1 && time <= time2) {
+					res.add(time);
+				}
+			}
+			return res;
+		}
+	}
+	
+\end{lstlisting}

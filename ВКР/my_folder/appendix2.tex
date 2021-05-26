@@ -1,0 +1,648 @@
+\chapter{Классы для храрнения входных данных}\label{appendix-classes}	
+
+\begin{lstlisting}
+
+@Data
+@Accessors(chain = true)
+@Entity
+@Audited
+public class AttestationType {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	public Long id;
+	@Column(nullable = false)
+	public String type;
+	@Column(nullable = false)
+	public int pauseBefore;
+	@Column(nullable = false)
+	public int pauseAfter;
+	@Column(nullable = false)
+	public int duration;
+	@Column(nullable = false)
+	public int countPerDay;
+	
+	@OneToMany(mappedBy = "type", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonManagedReference
+	private List<Event> event;
+	
+	public AttestationType(String type, int pauseBefore, int pauseAfter, int duration, int countPerDay) {
+		this.type = type;
+		this.pauseBefore = pauseBefore;
+		this.pauseAfter = pauseAfter;
+		this.duration = duration;
+		this.countPerDay = countPerDay;
+	}
+	
+	public AttestationType(){
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		AttestationType that = (AttestationType) o;
+		return Objects.equals(type, that.type);
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(type);
+	}
+	
+	@Override
+	public String toString() {
+		return "AttestationType{" +
+			"id="+ id +
+			", type='" + type + '\'' +
+			", pauseBefore=" + pauseBefore +
+			", pauseAfter=" + pauseAfter +
+			", duration=" + duration +
+			", countPerDay=" + countPerDay +
+			'}';
+	}
+}
+
+@Data
+@Accessors(chain = true)
+@Entity
+@Audited
+public class Curriculum {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	public Long id;
+	@Column(nullable = false)
+	public String specCode;
+	@Column(nullable = false)
+	public String course;
+	@Column(nullable = false)
+	public String semesters;
+	@Column(nullable = false)
+	public String types;
+	
+	public Curriculum(String specCode, String course, String semesters, String types) {
+		this.specCode = specCode;
+		this.course = course;
+		this.semesters = semesters;
+		this.types = types;
+	}
+	
+	public Curriculum() {
+	}
+	
+	@Override
+	public String toString() {
+		return "Curriculum{" +
+			"specCode='" + specCode + '\'' +
+			", cource='" + course + '\'' +
+			", semesters='" + semesters + '\'' +
+			", types='" + types + '\'' +
+			'}';
+	}
+}
+
+@Data
+@Accessors(chain = true)
+@Entity
+@Audited
+public class DateTimeClass implements Comparable<DateTimeClass> {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	public Long id;
+	@Column(nullable = false)
+	public LocalDate date;
+	
+	@Column(nullable = false)
+	public int time;
+	
+	@ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+	@PrimaryKeyJoinColumn
+	public Classroom classroom;
+	
+	public DateTimeClass(LocalDate date, int time, Classroom classroom) {
+		this.date = date;
+		this.time = time;
+		this.classroom = classroom;
+	}
+	
+	public DateTimeClass() {
+		
+	}
+	
+	@Override
+	public String toString() {
+		return "DateTimeClass{" +
+			"date=" + date.toString() +
+			", time=" + time +
+			", classroom=" + classroom.num +
+			'}';
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		DateTimeClass that = (DateTimeClass) o;
+		return  Objects.equals(date, that.date) && time == that.time && classroom.num.equals(that.classroom.num);
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(date, time, classroom);
+	}
+	@Override
+	public int compareTo(DateTimeClass dtc) {
+		int d = this.date.compareTo(dtc.date);
+		int cl = this.classroom.num.compareTo(dtc.classroom.num);
+		int t = Integer.compare(this.time, dtc.time);
+		return d != 0 ? d : (cl != 0 ? cl : t);
+	}
+}
+
+@Data
+@Accessors(chain = true)
+@Entity
+@Audited
+public class Event implements Comparable<Event> {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	public Long id;
+	
+	@ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+	@PrimaryKeyJoinColumn
+	public StudyGroup group;
+	
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@PrimaryKeyJoinColumn
+	public Set<Teacher> teacher;
+	
+	@ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+	@PrimaryKeyJoinColumn
+	public AttestationType type;
+	
+	@Column(nullable = true)
+	public String course;
+	@Column(nullable = true)
+	public Integer wishedClassroomType;
+	@Transient
+	public String wishedClassroomNums;
+	@Transient
+	public String link;
+	@Transient
+	public Integer eventGroup = -1; // группа аттестаций, которые желательно проводить в один день
+	
+	public Event(StudyGroup group, Set<Teacher> teacher, AttestationType type, String course, int wishedClassroomType) {
+		this.group = group;
+		this.teacher = teacher;
+		this.type = type;
+		this.course = course;
+		this.wishedClassroomType = wishedClassroomType;
+		this.wishedClassroomNums = "";
+	}
+	public Event(StudyGroup group, Set<Teacher> teacher, AttestationType type, String course) {
+		this.group = group;
+		this.teacher = teacher;
+		this.type = type;
+		this.course = course;
+		this.wishedClassroomType = 1;
+		this.wishedClassroomNums = "";
+	}
+	public Event(StudyGroup group, String course, AttestationType type) {
+		this.group = group;
+		this.teacher = new HashSet<>();
+		this.course = course;
+		this.type = type;
+		this.wishedClassroomType = 1;
+		this.wishedClassroomNums = "";
+	}
+	
+	public boolean isGroupSpecEnabled(List<String> spec){
+		if (spec.isEmpty()) return true;
+		for (String s: spec) {
+			if (this.group.name.startsWith(s)){
+				return true;
+			}
+		}
+		return false;
+	}
+	public boolean isGroupLevelEnabled(List<Integer> levels){
+		return levels.isEmpty() || levels.contains(group.level);
+	}
+	
+	public Event() {
+	}
+	
+	// чтобы при сортировке сначала был больший приоритет
+	@Override
+	public int compareTo(Event event) {
+		int prior = Integer.compare(Teacher.maxPrior(event.teacher), Teacher.maxPrior(this.teacher));
+		if (prior != 0) return prior;
+		int dates = Integer.compare(Teacher.minDatesLength(event.teacher), Teacher.minDatesLength(this.teacher));
+		if (dates != 0) return dates;
+		int size = Integer.compare(event.teacher.size(), this.teacher.size());
+		if (size != 0) return size;
+		int t = this.teacher.toString().compareTo(event.teacher.toString());
+		if (t != 0) return t;
+		int evGr = Integer.compare(this.eventGroup, event.eventGroup);
+		return evGr;
+	}
+	
+	@Override
+	public String toString() {
+		return "Event{" +
+			"group=" + group.toString() +
+			", teacher=" + teacher +
+			", type=" + type +
+			", course='" + course + '\'' +
+			", wishedClassroomType=" + wishedClassroomType +
+			", wishedClassroomNums=" + wishedClassroomNums +
+			", wishedClassroomNums=" + link +
+			", eventGroup= " + eventGroup +
+			'}';
+	}
+	
+	public StudyGroup getGroup() {
+		return group;
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Event event = (Event) o;
+		return Objects.equals(group.name, event.group.name) && Objects.equals(teacher, event.teacher) && Objects.equals(type.type, event.type.type) && Objects.equals(course, event.course);
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(group, teacher, type, course);
+	}
+}
+
+@Data
+@Accessors(chain = true)
+@Entity
+@Audited
+public class Exam {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	public Long id;
+	@Column(nullable = false)
+	public String groupName;
+	@Column(nullable = false)
+	public String specName;
+	@Column(nullable = false)
+	public String course;
+	@Column(nullable = false)
+	public String type;
+	@Column(nullable = false)
+	public String levels;
+	@Column(nullable = false)
+	public String teacherName;
+	
+	public Exam(String specName, String groupName, String course, String type, String level, String teacherName) {
+		this.specName = specName;
+		this.groupName = groupName;
+		this.course = course;
+		this.type = type;
+		this.levels = level;
+		this.teacherName = teacherName;
+	}
+	
+	public Exam() {
+	}
+	
+}
+
+@Data
+@Accessors(chain = true)
+@Entity
+@Audited
+public class ExamFromRuz {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	public Long id;
+	@Column(nullable = false)
+	public int level;
+	@Column(nullable = false)
+	public String groupName;
+	@Column(nullable = false)
+	public String course;
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@PrimaryKeyJoinColumn
+	public Set<Teacher> teacherExams;
+	
+	@Transient
+	public Set<String> teacherName;
+	
+	public ExamFromRuz() {
+		
+	}
+	
+	public Set<String> getTeacherName() {
+		if (teacherExams != null) {
+			return teacherExams.stream().map(x -> x.name).collect(Collectors.toSet());
+		} else {
+			return new HashSet<>();
+		}
+	}
+	
+	public ExamFromRuz(String groupName, String course, int level) {
+		this.groupName = groupName;
+		this.course = course;
+		this.level = level;
+	}
+	
+	public ExamFromRuz(Set<String> teacherName, String groupName, String course, int level) {
+		this.teacherName = teacherName;
+		Set<Teacher> set = new HashSet<>();
+		teacherName.forEach(x -> set.add(new Teacher(x)));
+		this.teacherExams = set;
+		this.groupName = groupName;
+		this.course = course;
+		this.level = level;
+	}
+	
+	public ExamFromRuz(String groupName, Set<Teacher> teachers, String course, int level) {
+		this.teacherName = teachers.stream().map(x -> x.name).collect(Collectors.toSet());
+		this.teacherExams = teachers;
+		this.groupName = groupName;
+		this.course = course;
+		this.level = level;
+	}
+	
+	@Override
+	public int hashCode() {
+		return groupName.hashCode() + course.hashCode();
+	}
+	
+	@Override
+	public String toString() {
+		return "Rasp{" +
+			"teacherName='" + teacherName + '\'' +
+			", groupName='" + groupName + '\'' +
+			", course='" + course + '\'' +
+			", level='" + level + '\'' +
+			'}';
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		ExamFromRuz examFromRuz = (ExamFromRuz) o;
+		return Objects.equals(groupName, examFromRuz.groupName) && Objects.equals(course, examFromRuz.course);
+	}
+}
+
+@Data
+@Accessors(chain = true)
+@Entity
+@Audited
+public class ExternalExamsLink{
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	public Long id;
+	
+	@Column(nullable = false)
+	public String link;
+	
+	public ExternalExamsLink(String link){
+		this.link = link;
+	}
+	
+	public ExternalExamsLink(){
+	}
+}
+
+@Data
+@Accessors(chain = true)
+@Entity
+@Audited
+public class ResultLink{
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	public Long id;
+	
+	@Column(nullable = false)
+	public String link;
+	
+	public ResultLink(String link){
+		this.link = link;
+	}
+	
+	public ResultLink(){
+	}
+}
+
+@Data
+@Accessors(chain = true)
+@Entity
+@Audited
+public class SessionDates {
+	
+	@Id
+	@Column(nullable = false)
+	public LocalDate day;
+	
+	public SessionDates(LocalDate day) {
+		this.day = day;
+	}
+	
+	public SessionDates() {
+	}
+	
+	@Override
+	public String toString() {
+		return day.toString();
+	}
+}
+
+@Data
+@Accessors(chain = true)
+@Entity
+@Audited
+public class SessionTime {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	public Long id;
+	
+	public SessionTime() {
+	}
+	
+	@Column(nullable = false)
+	public  Integer time;
+	
+	public SessionTime(Integer time) {
+		this.time = time;
+	}
+}
+
+@Data
+@Accessors(chain = true)
+@Entity
+@Audited
+public class StudyGroup implements Comparable<Object> {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	public Long id;
+	@Column(nullable = false)
+	public String name;
+	@Column(nullable = false)
+	public Integer size;
+	@Column(nullable = false)
+	public Integer level;
+	
+	@OneToMany(mappedBy = "group", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonManagedReference
+	private List<Event> event;
+	
+	public StudyGroup(String name, int size, int level) {
+		this.name = name;
+		this.size = size;
+		this.level = level;
+	}
+	
+	public StudyGroup() {
+	}
+	
+	@Override
+	public int compareTo(Object o) {
+		if (!(o instanceof StudyGroup) || this.name == null) return 0;
+		StudyGroup g = (StudyGroup) o;
+		if (g.name == null) return 0;
+		return this.name.compareTo(g.name);
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(name);
+	}
+	
+	@Override
+	public String toString() {
+		return "Group{" +
+			"id=" + id +
+			", name='" + name + '\'' +
+			", size=" + size +
+			", level=" + level +
+			'}';
+	}
+}
+
+@Data
+@Accessors(chain = true)
+@Entity
+@Audited
+public class Teacher {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	public Long id;
+	
+	@Column(nullable = false)
+	public String name;
+	
+	@OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonManagedReference
+	public List<TeacherExamDate> teacherDate;
+	
+	@Transient
+	public List<LocalDate> date;
+	
+	@OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonManagedReference
+	public List<TeacherExamTime> teacherTime;
+	
+	@Transient
+	public List<Integer> time;
+	
+	@Column(nullable = false)
+	public int prior;
+	
+	public Teacher(String name, List<LocalDate> date, List<Integer> time, int prior) {
+		this.name = name;
+		this.date = date;
+		this.time = time;
+		this.prior = prior;
+	}
+	public Teacher(String name, Event event) {
+		this.name = name;
+		this.prior = 1;
+		//this.event = event;
+	}
+	
+	public Teacher(String name) {
+		this.name = name;
+		this.prior = 1;
+	}
+	
+	public Teacher() {
+	}
+	
+	public static int maxPrior(Set<Teacher> set){
+		return set.stream().mapToInt(x -> x.prior).max().orElse(0);
+	}
+	public static int minDatesLength(Set<Teacher> set){
+		return set.stream().mapToInt(x -> x.date.size()).min().orElse(0);
+	}
+	
+	@Override
+	public String toString() {
+		return name;
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Teacher teacher = (Teacher) o;
+		return Objects.equals(name, teacher.name);
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(name);
+	}
+	
+	public int compareTo(Teacher teacher) {
+		return Integer.compare(prior, teacher.prior);
+	}
+}
+
+@Data
+@Accessors(chain = true)
+@Entity
+@Audited
+public class TeacherExamDate{
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	public Long id;
+	@Column(nullable = false)
+	public LocalDate date;
+	
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonBackReference
+	private Teacher teacher;
+	
+	public TeacherExamDate() {
+	}
+}
+
+@Data
+@Accessors(chain = true)
+@Entity
+@Audited
+public class TeacherExamTime{
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	public Long id;
+	@Column(nullable = false)
+	public Integer time;
+	
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonBackReference
+	private Teacher teacher;
+	
+	public TeacherExamTime() {
+	}
+}
+\end{lstlisting}

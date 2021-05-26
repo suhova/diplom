@@ -1,0 +1,41 @@
+\chapter{Форма выбора времени сессии}\label{appendix-time}	
+
+\begin{lstlisting}
+	<!DOCTYPE html>
+	<html dir="ltr" lang="ru" xml:lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+	<head>
+	<title>ИКНТ: настройки сессии</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="_csrf" th:content="${_csrf.token}"/>
+	<meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+	<link href="../../teacher_wish.css" rel="stylesheet"/>
+	<script type="module" src="../../js/session_settings.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="keywords" content="ИКНТ: настройки сессии"/>
+	<meta name="robots" content="noindex"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+	<body>
+	<div class="page-wrapper">
+	<h2>Настройки сессии</h2>
+	<section class="time_section">
+	<h4>Время проведения экзаменов</h4>
+	<div class="time">
+	<div>
+	Самый ранний экзамен может начаться в:
+	<input type="time" name="time1" id="time1" class="time__item" value="08:00">
+	</div>
+	<p>
+	<div>
+	Экзамены должны окончиться в:
+	<input type="time" name="time2" id="time2" class="time__item" value="18:00">
+	</div>
+	</div>
+	</section>
+	<button type="submit" id="submit_time" class="submit">Отправить форму</button>
+	
+	<button class="back_button" onclick="window.location.href = '/session';">Назад</button>
+	</div>
+	</body>
+	</html>
+\end{lstlisting}

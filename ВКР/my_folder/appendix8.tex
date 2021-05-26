@@ -1,0 +1,127 @@
+\chapter{Тестовый класс}\label{appendix-test}	
+\begin{lstlisting}
+public class SchedulerTest {
+	@Test
+	public void generateDtcTest(){
+		LocalDate d1 = LocalDate.parse("2021-01-01");
+		LocalDate d2 = LocalDate.parse("2021-01-02");
+		LocalDate d3 = LocalDate.parse("2021-01-05");
+		List<LocalDate> dateList = List.of(d1,d2,d3);
+		List<Integer> time = List.of(8,9);
+		Classroom c1 = new Classroom("101", 10, 10);
+		Classroom c2 = new Classroom("102", 10, 10);
+		List<Classroom> classrooms = List.of(c1, c2);
+		List<DateTimeClass> dtc = SessionService.createListDTC(dateList, time, classrooms);
+		List<DateTimeClass> exp = new ArrayList<>();
+		exp.add(new DateTimeClass(d1,8, c1));
+		exp.add(new DateTimeClass(d1,9, c1));
+		exp.add(new DateTimeClass(d1,8, c2));
+		exp.add(new DateTimeClass(d1,9, c2));
+		exp.add(new DateTimeClass(d2,8, c1));
+		exp.add(new DateTimeClass(d2,9, c1));
+		exp.add(new DateTimeClass(d2,8, c2));
+		exp.add(new DateTimeClass(d2,9, c2));
+		exp.add(new DateTimeClass(d3,8, c1));
+		exp.add(new DateTimeClass(d3,9, c1));
+		exp.add(new DateTimeClass(d3,8, c2));
+		exp.add(new DateTimeClass(d3,9, c2));
+		
+		Assert.assertArrayEquals(exp.toArray(), dtc.toArray());
+	}
+	
+	@Test
+	public void checkDuration(){
+		List<LocalDate> dateList = List.of(LocalDate.parse("2021-01-01"), LocalDate.parse("2021-01-02"), LocalDate.parse("2021-01-15"));
+		List<Integer> time = List.of(8,9,10,11,12,13);
+		List<Classroom> classrooms = List.of(new Classroom("101", 10, 10), new Classroom("102", 10, 10));
+		List<DateTimeClass> dtc = SessionService.createListDTC(dateList, time, classrooms);
+		Set<Teacher> teachers = new HashSet<>();
+		Teacher teacher = new Teacher("T1");
+		teacher.time = time;
+		teacher.date = dateList;
+		teachers.add(teacher);
+		List<Event> events = new ArrayList<>();
+		int duration = 4;
+		Event e1 = new Event(new StudyGroup("gr1", 10, 1), teachers, new AttestationType("Экз", 0, 2 , duration, 1),"Course1");
+		events.add(e1);
+		SchedulePriorAlgorithm alg = new SchedulePriorAlgorithm(events, dtc, new ArrayList<>(), 8, 1, new ArrayList<>());
+		
+		alg.findSolutions().getSolutions().forEach(System.out::println);
+		List<Solution> list = alg.findSolutions().getSolutions().get(0);
+		
+		Assert.assertEquals(list.size(), duration);
+	}
+	
+	@Test
+	public void checkPauseBetweenExams1(){
+		List<LocalDate> dateList = List.of(LocalDate.parse("2021-01-01"), LocalDate.parse("2021-01-02"), LocalDate.parse("2021-01-15"));
+		List<Integer> time = List.of(8,9,10,11,12,13);
+		List<Classroom> classrooms = List.of(new Classroom("101", 10, 10), new Classroom("102", 10, 10));
+		List<DateTimeClass> dtc = SessionService.createListDTC(dateList, time, classrooms);
+		Set<Teacher> teachers = new HashSet<>();
+		Teacher teacher = new Teacher("T1");
+		teacher.time = time;
+		teacher.date = dateList;
+		teachers.add(teacher);
+		List<Event> events = new ArrayList<>();
+		Event e1 = new Event(new StudyGroup("gr1", 10, 1), teachers, new AttestationType("Экз", 0, 2 , 4, 1),"Course1");
+		Event e2 = new Event(new StudyGroup("gr1", 10, 1), teachers, new AttestationType("Экз", 0, 2 , 4, 1),"Course2");
+		Event e3 = new Event(new StudyGroup("gr1", 10, 1), teachers, new AttestationType("Экз", 0, 2 , 4, 1),"Course3");
+		events.add(e1);
+		events.add(e2);
+		events.add(e3);
+		SchedulePriorAlgorithm alg = new SchedulePriorAlgorithm(events, dtc, new ArrayList<>(), 8, 1, new ArrayList<>());
+		List<List<Solution>> list = alg.findSolutions().getSolutions();
+		Assert.assertEquals(0, list.size());
+	}
+	
+	@Test
+	public void checkPauseBetweenExams2(){
+		List<LocalDate> dateList = List.of(LocalDate.parse("2021-01-01"), LocalDate.parse("2021-01-02"), LocalDate.parse("2021-01-15"));
+		List<Integer> time = List.of(8,9,10,11,12,13);
+		List<Classroom> classrooms = List.of(new Classroom("101", 10, 10), new Classroom("102", 10, 10));
+		List<DateTimeClass> dtc = SessionService.createListDTC(dateList, time, classrooms);
+		Set<Teacher> teachers = new HashSet<>();
+		Teacher teacher = new Teacher("T1");
+		teacher.time = time;
+		teacher.date = dateList;
+		teachers.add(teacher);
+		List<Event> events = new ArrayList<>();
+		Event e1 = new Event(new StudyGroup("gr1", 10, 1), teachers, new AttestationType("Экз", 0, 2 , 4, 1),"Course1");
+		Event e2 = new Event(new StudyGroup("gr1", 10, 1), teachers, new AttestationType("Экз", 0, 2 , 4, 1),"Course2");
+		Event e3 = new Event(new StudyGroup("gr2", 10, 1), teachers, new AttestationType("Экз", 0, 2 , 4, 1),"Course3");
+		events.add(e1);
+		events.add(e2);
+		events.add(e3);
+		SchedulePriorAlgorithm alg = new SchedulePriorAlgorithm(events, dtc, new ArrayList<>(), 8, 1, new ArrayList<>());
+		List<List<Solution>> list = alg.findSolutions().getSolutions();
+		System.out.println(list);
+		Assert.assertEquals(1, list.size());
+	}
+	
+	@Test
+	public void priorAlgTeachersTime(){
+		List<LocalDate> dateList = List.of(LocalDate.parse("2021-01-01"), LocalDate.parse("2021-01-02"), LocalDate.parse("2021-01-15"));
+		List<Integer> time = List.of(8,9,10,11,12,13,14,15,16,17);
+		Classroom c1 = new Classroom("101", 10, 10);
+		Classroom c2 = new Classroom("102", 10, 10);
+		List<Classroom> classrooms = List.of(c1, c2);
+		List<DateTimeClass> dtc = SessionService.createListDTC(dateList, time, classrooms);
+		Set<Teacher> teachers = new HashSet<>();
+		Teacher teacher = new Teacher("T1");
+		teacher.time = List.of(14,15,16,17);
+		teacher.date = dateList;
+		teachers.add(teacher);
+		List<Event> events = new ArrayList<>();
+		Event e1 = new Event(new StudyGroup("gr1", 10, 1), teachers, new AttestationType("Экз", 0, 2 , 4, 1),"Course1");
+		Event e2 = new Event(new StudyGroup("gr1", 10, 1), teachers, new AttestationType("Экз", 0, 2 , 4, 1),"Course2");
+		events.add(e1);
+		events.add(e2);
+		SchedulePriorAlgorithm alg = new SchedulePriorAlgorithm(events, dtc, new ArrayList<>(), 8, 1, new ArrayList<>());
+		List<Solution> list = alg.findSolutions().getSolutions().get(0);
+		for (Solution s: list) {
+			Assert.assertTrue(s.dtc.time>=14 && s.dtc.time<=17);
+		}
+	}
+}	
+\end{lstlisting}	

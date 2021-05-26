@@ -1,0 +1,51 @@
+\chapter{Форма загрузки учебных планов}\label{appendix-exam}	
+
+\begin{lstlisting}
+	
+	<!DOCTYPE html>
+	<html dir="ltr" lang="ru" xml:lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+	<head>
+	<title>ИКНТ: настройки сессии</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="_csrf" th:content="${_csrf.token}"/>
+	<meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+	<link href="../../teacher_wish.css" rel="stylesheet"/>
+	<script type="module" src="../../js/session_settings.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="keywords" content="ИКНТ: настройки сессии"/>
+	<meta name="robots" content="noindex"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+	<body>
+	<div class="page-wrapper">
+	<h2>Настройки сессии</h2>
+	<h4>Учебные планы</h4>
+	<div id="classroom_blocks">
+	Введите код, с которого начинаются названия групп (до "/") выбранной специальности:<br>
+	<div class="item" style="width: auto">
+	<input type="text" id="specCode" name="specCode">
+	</div>
+	</div>
+	Добавьте файл, содержащий список аттестаций для выбранной специальности.<br>
+	Формат строки: Название дисциплины,номера семестров,типы аттестации <br>
+	Пример: Программирование веб-приложений (JS),"6,7","Экзамен, Зачет" <br><br>
+	<div class="classroom_param">
+	<label for="examfile"></label>
+	<input type="file" id="examfile" name="examfile"/>
+	</div>
+	ИЛИ добавьте файл, содержащий список аттестаций для выбранной специальности по группам.<br>
+	Формат строки: Название дисциплины,группа,номера семестров,типы аттестации,ФИО преподавтеля <br>
+	Пример: Программирование веб-приложений (JS),"6,7","Экзамен, Зачет",Иванов Иван Иванович<br><br>
+	<div class="classroom_param">
+	<label for="examfileteacher"></label>
+	<input type="file" id="examfileteacher" name="examfileteacher"/>
+	</div>
+	</section>
+	<button type="submit" id="submit_exam" class="submit">Отправить форму</button>
+	<button type="submit" id="clean_exam" class="submit">Очистить список экзаменов</button>
+	<button class="back_button" onclick="window.location.href = '/session';">Назад</button>
+	</div>
+	</body>
+	</html>
+	
+\end{lstlisting}

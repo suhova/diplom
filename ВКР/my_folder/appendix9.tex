@@ -1,0 +1,49 @@
+\chapter{Форма загрузки типов аттестаций}\label{appendix-att}	
+
+\begin{lstlisting}
+	<!DOCTYPE html>
+	<html dir="ltr" lang="ru" xml:lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+	<head>
+	<title>ИКНТ: настройки сессии</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="_csrf" th:content="${_csrf.token}"/>
+	<meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+	<link href="../../teacher_wish.css" rel="stylesheet"/>
+	<script type="module" src="../../js/session_settings.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="keywords" content="ИКНТ: настройки сессии"/>
+	<meta name="robots" content="noindex"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+	<body>
+	<div class="page-wrapper">
+	<h2>Настройки сессии</h2>
+	<h4>Изменить типы аттестаций</h4>
+	type,pauseBefore,pauseAfter,duration,countPerDay
+	Формат:Тип аттестации, отдых до (в днях), отдых после, продолжительность (в часах), максимальное количество в день<br>
+	Пример: Э,2,1,6,1 <br><br>
+	<div class="classroom_param">
+	<label for="attfile"></label>
+	<input type="file" id="attfile" name="attfile"/>
+	</div>
+	<select>
+	<option> Загруженные типы аттестаций </option>
+	<option  th:each="attestationType : ${attestationTypes}">
+	<span class="exam_course">
+	Тип: <span style="display: inline-block" th:text="${attestationType.type}"></span>,
+	Отдых до: <span style="display: inline-block"  th:text="${attestationType.pauseBefore}"></span>,
+	Отдых после: <span style="display: inline-block"  th:text="${attestationType.pauseAfter}"></span>,
+	Длительность: <span style="display: inline-block"  th:text="${attestationType.duration}"></span>,
+	Макс. в день: <span style="display: inline-block"  th:text="${attestationType.countPerDay}"></span>
+	</span>
+	</option>
+	</select>
+	
+	
+	<button type="submit" id="submit_att" class="submit">Отправить форму</button>
+	
+	<button class="back_button" onclick="window.location.href = '/session';">Назад</button>
+	</div>
+	</body>
+	</html>
+\end{lstlisting}

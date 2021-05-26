@@ -1,0 +1,503 @@
+\chapter{JavaScript файл}\label{appendix-js}	
+
+\begin{lstlisting}
+	
+document.addEventListener("DOMContentLoaded", () => {
+	
+	const classroom = document.getElementsByClassName("hidden_checkbox");
+	const days = document.getElementById("calendar");
+	const specs = document.getElementById("specs");
+	const specs_updt = document.getElementById("specs_updt");
+	const clear_links = document.getElementById("clear_links");
+	const add_days = document.getElementById("add_new_date");
+	const add_spec = document.getElementById("add_spec");
+	const add_spec_updt = document.getElementById("add_spec_updt");
+	const submit_exam = document.getElementById("submit_exam");
+	const submit_class = document.getElementById("submit_class");
+	const submit_att = document.getElementById("submit_att");
+	const submit_time = document.getElementById("submit_time");
+	const submit_date = document.getElementById("submit_date");
+	const submit_groups = document.getElementById("submit_groups");
+	const submit_groups_updt = document.getElementById("submit_groups_updt");
+	const submit_teacher = document.getElementById("submit_teacher");
+	const submit_external = document.getElementById("submit_external");
+	const clean_exam = document.getElementById("clean_exam");
+	
+	let date_count = 0;
+	let spec_count = 0;
+	let spec_updt_count = 0;
+	let dels = [];
+	dels[0] = document.getElementById("del_0");
+	if (dels[0]) {
+		dels[0].onclick = () => {
+			document.getElementById('dates' + 0).style.display = "none";
+		};
+	}
+	let dels_spec = [];
+	dels_spec[0] = document.getElementById("del_s_0");
+	if (dels_spec[0]) {
+		dels_spec[0].onclick = () => {
+			document.getElementById('spec' + 0).style.display = "none";
+		};
+	}
+	let dels_spec_updt = [];
+	dels_spec[0] = document.getElementById("del_s_updt_0");
+	if (dels_spec_updt[0]) {
+		dels_spec_updt[0].onclick = () => {
+			document.getElementById('spec_updt' + 0).style.display = "none";
+		};
+	}
+	if (add_days) {
+		add_days.onclick = () => {
+			date_count++;
+			let el = document.createElement("div");
+			el.innerHTML = createNewDays(date_count);
+			days.appendChild(el);
+			days.onclick = function (e) {
+				if (e.target.className === "del") {
+					e.target.parentElement.remove();
+				}
+			};
+		};
+	}
+	
+	if (clear_links) {
+		clear_links.onclick = () => {
+			var request = new XMLHttpRequest();
+			request.open('POST', '/session/result/clear_links', true);
+			request.setRequestHeader(header, token);
+			request.addEventListener('readystatechange', function () {
+				if ((request.readyState === 4) && (request.status === 200)) {
+					console.log("checked");
+				}
+			});
+			request.send();
+			//window.open('/session/result/link', '_top');
+		};
+	}
+	if (clean_exam) {
+		clean_exam.onclick = () => {
+			var request = new XMLHttpRequest();
+			request.open('POST', '/session/clean_exam', true);
+			request.setRequestHeader(header, token);
+			request.addEventListener('readystatechange', function () {
+				if ((request.readyState === 4) && (request.status === 200)) {
+					console.log("checked");
+				}
+			});
+			request.send();
+		};
+	}
+	if (submit_class) {
+		submit_class.onclick = () => {
+			const classroomFile = document.getElementById("classfile");
+			submitClass(classroomFile.files[0]);
+		};
+	}
+	if (submit_att) {
+		submit_att.onclick = () => {
+			const attestationFile = document.getElementById("attfile");
+			submitAtt(attestationFile.files[0]);
+		};
+	}
+	if (submit_external) {
+		submit_external.onclick = () => {
+			let external_id = document.getElementById("external_id").value;
+			submitExternal(external_id);
+		};
+	}
+	if (submit_time) {
+		submit_time.onclick = () => {
+			const time1 = document.getElementById("time1");
+			const time2 = document.getElementById("time2");
+			submitTime(time1.value, time2.value);
+		};
+	}
+	if (add_spec) {
+		add_spec.onclick = () => {
+			spec_count++;
+			let el = document.createElement("div");
+			el.innerHTML = createNewSpec(spec_count);
+			specs.appendChild(el);
+			specs.onclick = function (e) {
+				if (e.target.className === "del") {
+					e.target.parentElement.remove();
+				}
+			};
+		};
+	}
+	if (add_spec_updt) {
+		add_spec_updt.onclick = () => {
+			spec_updt_count++;
+			let el = document.createElement("div");
+			el.innerHTML = createNewSpecUpdt(spec_updt_count);
+			specs_updt.appendChild(el);
+			specs_updt.onclick = function (e) {
+				if (e.target.className === "del") {
+					e.target.parentElement.remove();
+				}
+			};
+		};
+	}
+	if (submit_exam) {
+		submit_exam.onclick = () => {
+			let specCode = document.getElementById("specCode").value;
+			const examFile = document.getElementById("examfile").files[0];
+			console.log(examFile);
+			const examFileTeacher = document.getElementById("examfileteacher").files[0];
+			console.log(examFileTeacher);
+			if (specCode !== '' && examFile !== undefined) {
+				submitExam(examFile, specCode);
+			} else if (specCode !== '' && examFileTeacher !== undefined) {
+				submitExamTeacher(examFileTeacher, specCode);
+			}
+		};
+	}
+	if (submit_teacher) {
+		submit_teacher.onclick = () => {
+			const teacherFile = document.getElementById("teacherfile");
+			submitTeacher(teacherFile.files[0]);
+		};
+	}
+	if (submit_groups) {
+		submit_groups.onclick = () => {
+			const specitem = document.getElementsByClassName("spec__item");
+			let specsarr = [];
+			if (specitem.length === 0) {
+				specsarr = null;
+			} else {
+				for (let i = 0; i < specitem.length; i++) {
+					specsarr.push(specitem.item(i).value);
+				}
+			}
+			const lev = document.getElementsByClassName("levelOption");
+			let levelarr = [];
+			let i = 0;
+			while (i < 6) {
+				if (lev[i].checked) {
+					levelarr.push(lev[i].value);
+					
+				}
+				i++;
+			}
+			submitGroups(specsarr, levelarr);
+			
+		};
+	}
+	if (submit_groups_updt) {
+		submit_groups_updt.onclick = () => {
+			const specitem = document.getElementsByClassName("spec_updt__item");
+			let specsarr = [];
+			if (specitem.length === 0) {
+				specsarr = null;
+			} else {
+				for (let i = 0; i < specitem.length; i++) {
+					specsarr.push(specitem.item(i).value);
+				}
+			}
+			console.log(specsarr)
+			submitGroupsUpdt(specsarr);
+		};
+	}
+	if (submit_date) {
+		submit_date.onclick = () => {
+			const daysIntervals = document.getElementsByClassName("date__item");
+			let daysarr = [];
+			if (daysIntervals.length === 0) {
+				daysarr = null;
+			} else {
+				for (let i = 0; i < daysIntervals.length; i++) {
+					daysarr.push(daysIntervals.item(i).value);
+				}
+			}
+			submitDate(daysarr);
+		};
+	}
+}
+);
+function createNewSpec(spec_count) {
+	return '<div class="item" id="spec' +spec_count+ '">' +
+	'<input type="text" name="spec" class="spec__item date__item spec">' +
+	'<div class="del" id="del_s_' +spec_count+ '"> &#10006;</div>' +
+	'</div>'
+};
+function createNewSpecUpdt(spec_count_updt) {
+	return '<div class="item" id="spec_updt' +spec_count_updt+ '">' +
+	'<input type="text" name="spec_updt" class="spec_updt__item date__item spec_updt">' +
+	'<div class="del" id="del_s_updt_' +spec_count_updt+ '"> &#10006;</div>' +
+	'</div>'
+};
+function createNewDays(date_count) {
+	return '<div class="item" id="dates' + date_count + '">\n' +
+	'                    <div class="date__items">\n' +
+	'                        c \n' +
+	'                        <input type="date" name="date1" class="date__item">\n' +
+	'                        до \n' +
+	'                        <input type="date" name="date2" class="date__item">\n' +
+	'                    </div>\n' +
+	'                    <div class="del" id="del_' + date_count + '"> &#10006;</div>\n' +
+	'                </div>'
+};
+const token = getMeta("_csrf");
+const header = getMeta("_csrf_header");
+
+function getMeta(metaName) {
+	const metas = document.getElementsByTagName('meta');
+	
+	for (let i = 0; i < metas.length; i++) {
+		if (metas[i].getAttribute('name') === metaName) {
+			return metas[i].getAttribute('content');
+		}
+	}
+	
+	return '';
+}
+
+function createNewClassroom() {
+	return '<div class="item">\n' +
+	'                        Введите номер аудитории:\n' +
+	'                        <input type="number" name="classroom_number">\n' +
+	'                    </div>'
+};
+
+function readFile(input) {
+	let file = input;
+	
+	let reader = new FileReader();
+	
+	reader.readAsText(file);
+	
+	reader.onload = function () {
+		let res = reader.result;
+		console.log(res);
+		return res;
+	};
+	
+	reader.onerror = function () {
+		console.log(reader.error);
+	};
+	
+}
+function submitGroups(specarr, levelarr) {
+	var request = new XMLHttpRequest();
+	request.open('POST', '/session/result/create', true);
+	request.setRequestHeader(header, token);
+	request.addEventListener('readystatechange', function () {
+		if ((request.readyState === 4) && (request.status === 200)) {
+			console.log("checked");
+		}
+	});
+	var frm = new FormData();
+	frm.append('spec', specarr)
+	frm.append('levels', levelarr)
+	console.log(specarr);
+	console.log(levelarr);
+	request.send(frm)
+	window.open('/session', '_top');
+};
+function submitGroupsUpdt(specarr) {
+	var request = new XMLHttpRequest();
+	request.open('POST', '/session/teachers/update', true);
+	request.setRequestHeader(header, token);
+	request.addEventListener('readystatechange', function () {
+		if ((request.readyState === 4) && (request.status === 200)) {
+			console.log("checked");
+		}
+	});
+	var frm = new FormData();
+	frm.append('spec', specarr)
+	console.log(specarr);
+	request.send(frm)
+	window.open('/session/teachers/updatelink', '_top');
+};
+function submitSession(classroomFile, time1, time2, daysarr) {
+	var request = new XMLHttpRequest();
+	console.log(daysarr);
+	request.open('POST', '/update', true);
+	request.setRequestHeader(header, token);
+	request.addEventListener('readystatechange', function () {
+		if ((request.readyState === 4) && (request.status === 200)) {
+			console.log("checked");
+		}
+	});
+	var frm = new FormData();
+	//            let fileText = readFile(classroomFile);
+	//            console.log(fileText);
+	frm.append('time1', time1);
+	console.log(time1);
+	frm.append('time2', time2);
+	console.log(time2);
+	frm.append('days', daysarr);
+	console.log("SEND FRM");
+	let fileText;
+	let reader = new FileReader();
+	reader.readAsText(classroomFile);
+	reader.onload = function () {
+		fileText = reader.result;
+		console.log(fileText);
+		frm.append('classroomFile', fileText);
+		request.send(frm)
+	};
+	// window.open('/sended','_top');
+};
+
+function submitTime(time1, time2) {
+	var request = new XMLHttpRequest();
+	request.open('POST', '/update_time', true);
+	request.setRequestHeader(header, token);
+	request.addEventListener('readystatechange', function () {
+		if ((request.readyState === 4) && (request.status === 200)) {
+			console.log("checked");
+		}
+	});
+	var frm = new FormData();
+	frm.append('time1', time1);
+	console.log(time1);
+	frm.append('time2', time2);
+	console.log(time2);
+	request.send(frm);
+	window.open('/session', '_top');
+};
+
+function submitClass(classroomFile) {
+	var request = new XMLHttpRequest();
+	request.open('POST', '/update_class', true);
+	request.setRequestHeader(header, token);
+	request.addEventListener('readystatechange', function () {
+		if ((request.readyState === 4) && (request.status === 200)) {
+			console.log("checked");
+		}
+	});
+	var frm = new FormData();
+	let fileText;
+	let reader = new FileReader();
+	reader.readAsText(classroomFile);
+	reader.onload = function () {
+		fileText = reader.result;
+		console.log(fileText);
+		frm.append('classroomFile', fileText);
+		request.send(frm)
+	};
+	window.open('/session', '_top');
+};
+function submitAtt(attFile) {
+	var request = new XMLHttpRequest();
+	request.open('POST', '/update_att', true);
+	request.setRequestHeader(header, token);
+	request.addEventListener('readystatechange', function () {
+		if ((request.readyState === 4) && (request.status === 200)) {
+			console.log("checked");
+		}
+	});
+	var frm = new FormData();
+	let fileText;
+	let reader = new FileReader();
+	reader.readAsText(attFile);
+	reader.onload = function () {
+		fileText = reader.result;
+		console.log(fileText);
+		frm.append('attestationFile', fileText);
+		request.send(frm)
+	};
+	window.open('/session', '_top');
+};
+
+function submitTeacher(teacherFile) {
+	var request = new XMLHttpRequest();
+	request.open('POST', '/update_teacher', true);
+	request.setRequestHeader(header, token);
+	request.addEventListener('readystatechange', function () {
+		if ((request.readyState === 4) && (request.status === 200)) {
+			console.log("checked");
+		}
+	});
+	var frm = new FormData();
+	console.log("SEND FRM");
+	let fileText;
+	let reader = new FileReader();
+	reader.readAsText(teacherFile);
+	reader.onload = function () {
+		fileText = reader.result;
+		console.log(fileText);
+		frm.append('teacherFile', fileText);
+		request.send(frm)
+	};
+	window.open('/session', '_top');
+};
+
+function submitExam(examFile, specCode) {
+	var request = new XMLHttpRequest();
+	request.open('POST', '/update_exam', true);
+	request.setRequestHeader(header, token);
+	request.addEventListener('readystatechange', function () {
+		if ((request.readyState === 4) && (request.status === 200)) {
+			console.log("checked");
+		}
+	});
+	var frm = new FormData();
+	frm.append('specCode', specCode);
+	let fileText;
+	let reader = new FileReader();
+	reader.readAsText(examFile);
+	reader.onload = function () {
+		fileText = reader.result;
+		console.log(fileText);
+		frm.append('examFile', fileText);
+		request.send(frm)
+	};
+	window.open('/session', '_top');
+};
+function submitExamTeacher(examFileTeacher, specCode) {
+	var request = new XMLHttpRequest();
+	request.open('POST', '/update_exam_teacher', true);
+	request.setRequestHeader(header, token);
+	request.addEventListener('readystatechange', function () {
+		if ((request.readyState === 4) && (request.status === 200)) {
+			console.log("checked");
+		}
+	});
+	var frm = new FormData();
+	frm.append('spec', specCode);
+	let fileText;
+	let reader = new FileReader();
+	reader.readAsText(examFileTeacher);
+	reader.onload = function () {
+		fileText = reader.result;
+		console.log(fileText);
+		frm.append('examFile', fileText);
+		request.send(frm)
+	};
+	window.open('/session', '_top');
+};
+function submitExternal(external_id) {
+	var request = new XMLHttpRequest();
+	request.open('POST', '/update_external', true);
+	request.setRequestHeader(header, token);
+	request.addEventListener('readystatechange', function () {
+		if ((request.readyState === 4) && (request.status === 200)) {
+			console.log("checked");
+		}
+	});
+	var frm = new FormData();
+	frm.append('externalId', external_id);
+	request.send(frm)
+	window.open('/session', '_top');
+};
+
+function submitDate(daysarr) {
+	var request = new XMLHttpRequest();
+	console.log(daysarr);
+	request.open('POST', '/update_date', true);
+	request.setRequestHeader(header, token);
+	request.addEventListener('readystatechange', function () {
+		if ((request.readyState === 4) && (request.status === 200)) {
+			console.log("checked");
+		}
+	});
+	var frm = new FormData();
+	frm.append('days', daysarr);
+	request.send(frm)
+	window.open('/session', '_top');
+}
+	
+\end{lstlisting}
