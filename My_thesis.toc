@@ -1,0 +1,153 @@
+\changetocdepth {2}
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\babel@toc {russian}{}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Введение}{4}{chapter*.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\chapternumberline {1}Анализ предметной области и обзор систем составления расписания}{5}{chapter.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.1}Требования к системе составления расписания сессии}{5}{section.1.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.1.1}Учёт семестрового расписания СПбПу}{5}{subsection.1.1.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.1.2}Роли пользователей системы}{5}{subsection.1.1.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.1.3}Модель входных данных}{7}{subsection.1.1.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.2}Обзор российских систем составления расписания}{11}{section.1.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.2.1}1С: ХроноГраф Расписание}{11}{subsection.1.2.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.2.2}Avtor (АВТОРасписание)}{11}{subsection.1.2.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.2.3}Галактика Расписание учебных занятий}{12}{subsection.1.2.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.3}Обзор зарубежных систем составления расписания}{13}{section.1.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.3.1}Apereo UniTime}{13}{subsection.1.3.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.3.2}Lantiv Scheduling Studio}{13}{subsection.1.3.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.4}Выводы}{14}{section.1.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\chapternumberline {2}Алгоритмы составления расписания сессии}{15}{chapter.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.1}Постановка задачи составления расписания сессии}{15}{section.2.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.1.1}Обозначения}{15}{subsection.2.1.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.1.2}Ограничения}{18}{subsection.2.1.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.2}Режимы алгоритмов составления расписания}{21}{section.2.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.2.1}Инкрементальный режим}{21}{subsection.2.2.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.2.2}Пакетный режим}{22}{subsection.2.2.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.3}Обзор алгоритмов составления расписания сессии}{22}{section.2.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.3.1}Обход графа в глубину для поиска идеальных решений}{22}{subsection.2.3.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.3.2}Алгоритм обхода графа в глубину с учётом приоритетов преподавателей}{27}{subsection.2.3.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.3.3}Генетический алгоритм}{29}{subsection.2.3.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.3.4}Жадный алгоритм}{31}{subsection.2.3.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.4}Методы оптимизации поиска лучших решений}{31}{section.2.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.4.1}Метрики оценки качества расписания}{31}{subsection.2.4.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.4.2}Метод ветвей и границ}{33}{subsection.2.4.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.4.3}Алгоритм имитации отжига}{35}{subsection.2.4.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.5}Выводы}{37}{section.2.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\chapternumberline {3}Реализация системы составления предварительного расписания}{38}{chapter.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.1}Выбор языка программирования}{38}{section.3.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.1}Java}{38}{subsection.3.1.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.2}JavaScript}{39}{subsection.3.1.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.3}C\#}{39}{subsection.3.1.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.4}C++}{39}{subsection.3.1.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.5}Определение языка программирования}{40}{subsection.3.1.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.2}Выбор фреймворка для построения веб-приложения}{40}{section.3.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.2.1}Spring}{40}{subsection.3.2.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.2.2}Dropwizard}{41}{subsection.3.2.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.2.3}Vert.x}{41}{subsection.3.2.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.2.4}Определение фреймворка для построения веб-приложения}{41}{subsection.3.2.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.2.5}Хранение данных}{42}{subsection.3.2.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.2.6}Выводы}{42}{subsection.3.2.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.3}Архитектура системы}{42}{section.3.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.3.1}Веб-клиент и UI}{43}{subsection.3.3.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.3.2}Spring-сервер}{46}{subsection.3.3.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.3.3}Хранилище данных}{48}{subsection.3.3.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.4}Выводы}{48}{section.3.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\chapternumberline {4}Тестирование и апробация}{49}{chapter.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.1}Функциональное тестирование}{49}{section.4.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.2}Unit-тестирование}{50}{section.4.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.3}Апробация}{51}{section.4.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.4}Выводы}{56}{section.4.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Заключение}{57}{chapter*.15}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Список использованных источников}{58}{chapter*.16}%
+\defcounter {refsection}{0}\relax 
+\changetocdepth {0}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Приложение{} 1. Поиск расписаний с учётом приоритетов преподавателей}{59}{appendix*.17}%
+\defcounter {refsection}{0}\relax 
+\changetocdepth {0}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Приложение{} 2. Классы для храрнения входных данных}{69}{appendix*.18}%
+\defcounter {refsection}{0}\relax 
+\changetocdepth {0}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Приложение{} 3. Модуль взаимодействия с API ruz.spbstu.ru}{85}{appendix*.19}%
+\defcounter {refsection}{0}\relax 
+\changetocdepth {0}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Приложение{} 4. Классы-репозитории}{90}{appendix*.20}%
+\defcounter {refsection}{0}\relax 
+\changetocdepth {0}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Приложение{} 5. Класс SessionService}{93}{appendix*.21}%
+\defcounter {refsection}{0}\relax 
+\changetocdepth {0}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Приложение{} 6. Класс GoogleFormService}{101}{appendix*.22}%
+\defcounter {refsection}{0}\relax 
+\changetocdepth {0}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Приложение{} 7. Класс SessionDao}{116}{appendix*.23}%
+\defcounter {refsection}{0}\relax 
+\changetocdepth {0}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Приложение{} 8. Форма загрузки учебных планов}{124}{appendix*.24}%
+\defcounter {refsection}{0}\relax 
+\changetocdepth {0}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Приложение{} 9. Форма загрузки установленных аттестаций}{126}{appendix*.25}%
