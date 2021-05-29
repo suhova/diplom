@@ -1,0 +1,170 @@
+\chapter{Алгоритм поиска в ширину}\label{appendix-bfs}	
+
+\begin{lstlisting}
+public class DynamicScheduleAlgorithm {
+	List<Event> events;
+	List<DateTimeClass> dtc;
+	List<List<Integer>>[][] solutionsMatrix;
+	List<List<Integer>> solutions;
+	int eventSize;
+	int dtcSize;
+	int maxTimePerDay;
+	int maxSolutionSize;
+	
+	public DynamicScheduleAlgorithm(List<Event> events, List<DateTimeClass> dtc, int maxTimePerDay, int maxSolutionSize) {
+		this.events = events;
+		this.dtc = dtc;
+		Collections.sort(this.dtc);
+		this.eventSize = events.size();
+		this.dtcSize = dtc.size();
+		this.maxTimePerDay = maxTimePerDay;
+		this.maxSolutionSize = maxSolutionSize;
+		this.solutions = new ArrayList<>();
+		this.solutionsMatrix = new ArrayList[eventSize][dtcSize];
+		System.out.println("dtcSize " + dtcSize + " eventSize " + eventSize);
+	}
+	
+	public List<List<Integer>> findSolutions() {
+		//заполнение матрицы решений
+		for (int i = 0; i < dtcSize; i++) {
+			if (simpleCheck(0, i)) {
+				solutionsMatrix[0][i] = new ArrayList<>();
+				solutionsMatrix[0][i].add(Collections.singletonList(i));
+			}
+		}
+		for (int i = 1; i < eventSize; i++) {
+			int nullCount = 0;
+			if (i > 1) {
+				for (int j = 0; j < dtcSize; j++) {
+					solutionsMatrix[i - 2] = null;
+				}
+			}
+			System.gc();
+			for (int j = 0; j < dtcSize; j++) {
+				// если сама аудитория не подходит для проведения аттестации, нет смысла проверять её загруженность
+				if (simpleCheck(i, j)) {
+					for (int k = 0; k < dtcSize; k++) {
+						if (solutionsMatrix[i - 1][k] != null) {
+							for (List<Integer> path : solutionsMatrix[i - 1][k]) {
+								if (pathsCheck(i, j, path)) {
+									if (solutionsMatrix[i][j] == null) {
+										solutionsMatrix[i][j] = new ArrayList<>();
+									}
+									List<Integer> newPath = new ArrayList<>(path);
+									newPath.add(j);
+									solutionsMatrix[i][j].add(newPath);
+								}
+							}
+						}
+					}
+				}
+				/* Если во время попытки разместить какую-то аттестацию выясняется, что её не возможно поставить,
+				сразу возвращаем null, чтобы не обходить зря следующие аттестации
+				*/
+				if (solutionsMatrix[i][j] == null) {
+					nullCount++;
+				}
+				if (nullCount == dtcSize) {
+					System.out.println("NULL" + dtcSize);
+					return null;
+				}
+			}
+		}
+		// собираем все возможные решения расстановки всех событий в один массив
+		solutions = new ArrayList<>();
+		for (int i = 0; i < dtcSize; i++) {
+			if (solutionsMatrix[eventSize - 1][i] != null) {
+				if (solutions.size() < maxSolutionSize)
+				solutions.addAll(solutionsMatrix[eventSize - 1][i]);
+			}
+		}
+		return solutions;
+	}
+	
+	public List<Solution> getSolutions() {
+		List<List<Solution>> res = new ArrayList<>();
+		for (int i = 0; i < solutions.size(); i++) {
+			List<Solution> sh = new ArrayList<>();
+			for (int j = 0; j < events.size(); j++) {
+				sh.add(new Solution(events.get(j), dtc.get(solutions.get(i).get(j))));
+			}
+			res.add(sh);
+		}
+		return res.get(0);
+	}
+	
+	// проверка условий, которые завязаны на уже существующем расписании
+	private boolean pathsCheck(int i, int j, List<Integer> path) {
+		Event ev = events.get(i);
+		DateTimeClass dateTimeClass = dtc.get(j);
+		Set<Teacher> teachers = ev.teacher;
+		StudyGroup group = ev.group;
+		LocalDate pauseStart = dateTimeClass.date.minusDays(ev.type.pauseBefore);
+		LocalDate pauseEnd = dateTimeClass.date.plusDays(ev.type.pauseAfter);
+		int duration = ev.type.duration - 1;
+		int groupsEventsToday = 1;
+		for (int k = 0; k < path.size(); k++) {
+			DateTimeClass d = dtc.get(path.get(k));
+			Event e = events.get(k);
+			if (d.date == dateTimeClass.date) {
+				if (d.time >= dateTimeClass.time && d.time <= dateTimeClass.time + duration) {
+					for (Teacher t : teachers) {
+						for (Teacher t2 : e.teacher) {
+							if (t.name.equals(t2.name)) {
+								return false;
+							}
+						}
+					}
+				}
+				if (group.name.equals(e.group.name)) {
+					groupsEventsToday++;
+				}
+			}
+			if (
+			//если в этот день есть аттестации, которые по времени накладываются с текущей
+			(d.date.equals(dateTimeClass.date) && (d.time + e.type.duration > dateTimeClass.time) && (dateTimeClass.time + duration > d.time))
+			// если одна из предыдущих аттестаций попадает в окно отдыха до и после текущей аттестации
+			|| (d.date.compareTo(pauseStart) > 0) && (d.date.compareTo(pauseEnd) < 0)
+			// если у группы больше аттестаций этого типа, чем положено
+			|| (groupsEventsToday > ev.type.countPerDay)
+			) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	// проверка условий, которые не завязаны на уже существующем расписании
+	private boolean simpleCheck(int i, int j) {
+		Event ev = events.get(i);
+		DateTimeClass location = dtc.get(j);
+		StudyGroup group = ev.group;
+		Set<Teacher> teachers = ev.teacher;
+		int duration = ev.type.duration - 1;
+		boolean teacherWishes = teachers.stream().mapToInt(teacher -> {
+			if (
+			teacher.date.stream().anyMatch(dt -> dt.equals(location.date))
+			&& teacher.time.stream().anyMatch(t -> t.equals(location.time))
+			&& teacher.time.stream().anyMatch(t -> t.equals(location.time + duration))) return 0;
+			else return 1;
+		}).sum() == 0;
+		boolean classRoom;
+		if (ev.link != null && !ev.link.equals("")) {
+			classRoom = location.classroom.num.equals(ev.link);
+		} else if (ev.wishedClassroomNums != null && !ev.wishedClassroomNums.equals("")) {
+			classRoom = ev.wishedClassroomNums.contains(location.classroom.num);
+		} else {
+			classRoom = ev.wishedClassroomType <= location.classroom.type;
+		}
+		boolean res = classRoom //есть ли в аудитории нужное оборудование
+		&& teacherWishes // подходит ли дата и время преподавателю
+		&& group.size <= location.classroom.size //влезает ли группа в аудиторию
+		// не слишком ли сейчас поздно для начала проведения длительного события
+		&& i + duration < dtcSize
+		&& location.classroom.num.equals(dtc.get(i + duration).classroom.num)
+		&& location.time + duration == dtc.get(i + duration).time // в массиве времени нет разрывов
+		&& dtc.get(i).date.equals(dtc.get(i + duration).date);
+		return res;
+	}
+}
+\end{lstlisting}
