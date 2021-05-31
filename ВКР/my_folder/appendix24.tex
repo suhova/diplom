@@ -1,0 +1,278 @@
+\chapter{Замеры времени и памяти} \label{appendix-timetest}
+
+\begin{lstlisting}
+
+public class TimeTest {
+	private List<DateTimeClass> generateDTC(int datecount, int classcount) {
+		LocalDate d1 = LocalDate.parse("2021-01-01");
+		List<LocalDate> dateList = new ArrayList<>();
+		for (int i = 0; i < datecount; i++) {
+			dateList.add(d1.plusDays(i));
+		}
+		List<Integer> time = List.of(8, 9, 10, 11, 12, 13, 14, 15, 16, 17);
+		List<Classroom> classrooms = new ArrayList<>();
+		for (int i = 0; i < classcount; i++) {
+			classrooms.add(new Classroom("c" + i, 10, 10));
+		}
+		return SessionService.createListDTC(dateList, time, classrooms);
+	}
+	
+	private List<Event> generateEvents(int teacherCount, int teacherDateCount, int countGroups, int countEventsByGroup, int attDuration) {
+		List<Teacher> teachers = new ArrayList<>();
+		LocalDate d1 = LocalDate.parse("2021-01-01");
+		for (int i = 0; i < teacherCount; i++) {
+			Teacher teacher = new Teacher("t" + i);
+			List<LocalDate> dateList = new ArrayList<>();
+			for (int j = 0; j < teacherDateCount; j++) {
+				dateList.add(d1.plusDays(j));
+			}
+			teacher.time = List.of(8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18);
+			teacher.date = dateList;
+			for (int j = 0; j < countEventsByGroup * countGroups / teacherCount; j++) {
+				teachers.add(teacher);
+			}
+			Collections.shuffle(teachers);
+		}
+		List<StudyGroup> groups = new ArrayList<>();
+		for (int i = 0; i < countGroups; i++) {
+			groups.add(new StudyGroup("gr" + i, 1, 1));
+		}
+		AttestationType att = new AttestationType("Экз", 0, 0, attDuration, 3);
+		List<Event> events = new ArrayList<>();
+		for (int i = 0; i < countGroups; i++) {
+			for (int j = 0; j < countEventsByGroup; j++) {
+				events.add(new Event(groups.get(i), Set.of(teachers.get(countEventsByGroup * i + j)), att, "course" + i * countEventsByGroup + j));
+			}
+		}
+		return events;
+	}
+	
+	private long[] getTime(List<DateTimeClass> dtc, List<Event> events) {
+		int n = 10;
+		long time = 0;
+		long mem = 0;
+		long start = System.nanoTime();
+		for (int i = 0; i < n; i++) {
+			SchedulePriorAlgorithm algorithm = new SchedulePriorAlgorithm(events, dtc, new ArrayList<>(), 8, 1000);
+			algorithm.findSolutions();
+			long finish = System.nanoTime();
+			time += finish - start;
+			System.gc();
+			mem += (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory());
+		}
+		return new long[]{(time / n) / 1000000, mem/n};
+	}
+	private long[] getParallelTime(List<DateTimeClass> dtc, List<Event> events) {
+		int n = 10;
+		long time = 0;
+		long mem = 0;
+		long start = System.nanoTime();
+		for (int i = 0; i < n; i++) {
+			ParallelPriorAlgorithm algorithm = new ParallelPriorAlgorithm();
+			algorithm.schedule(events, dtc, new ArrayList<>(), 8, 1000, 2);
+			long finish = System.nanoTime();
+			time += finish - start;
+			System.gc();
+			mem += (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory());
+		}
+		return new long[]{(time / n) / 1000000, mem/n};
+	}
+	
+	private long[] getTimeDynamic(List<DateTimeClass> dtc, List<Event> events) {
+		int n = 10;
+		long time = 0;
+		long mem = 0;
+		long start = System.nanoTime();
+		for (int i = 0; i < n; i++) {
+			DynamicScheduleAlgorithm algorithm = new DynamicScheduleAlgorithm(events, dtc, 8, 1);
+			algorithm.findSolutions();
+			algorithm.getSolutions();
+			long finish = System.nanoTime();
+			time += finish - start;
+			System.gc();
+			mem += (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory());
+			
+		}
+		return new long[]{(time / n) / 1000000, mem/n};
+	}
+	
+	private List<Event> resize(List<Event> events) {
+		List<Event> res = new ArrayList<>();
+		res.addAll(events);
+		for (int i = 0; i < events.size(); i++) {
+			Set<Teacher> set = new HashSet<>();
+			events.get(i).teacher.forEach(x -> {
+				Teacher t = new Teacher(x.name + "c");
+				t.time = x.time;
+				t.date = x.date;
+				set.add(t);
+			});
+			res.add(new Event(new StudyGroup(events.get(i).group.name + "c", 10, 1),
+			set, events.get(i).type, events.get(i).course + "c"));
+		}
+		return res;
+	}
+	
+	@Test
+	public void time1() {
+		long[][] res = new long[20][4];
+		List<Event> events = generateEvents(5, 50, 5, 3, 2);
+		List<List<Event>> e = new ArrayList<>();
+		List<Event> events1 = resize(events);
+		List<Event> events2 = resize(events1);
+		List<Event> events3 = resize(events2);
+		e.add(events);
+		e.add(events1);
+		e.add(events2);
+		e.add(events3);
+		List<List<DateTimeClass>> d = new ArrayList<>();
+		d.add(generateDTC(10, 5));
+		d.add(generateDTC(20, 10));
+		d.add(generateDTC(30, 15));
+		d.add(generateDTC(50, 25));
+		d.add(generateDTC(50, 50));
+		for (int i = 0; i < d.size(); i++) {
+			for (int j = 0; j < e.size(); j++) {
+				long[] t = getTime(d.get(i), e.get(j));
+				res[i][j] = t[0];
+				res[i+5][j] = t[1];
+			}
+		}
+		System.gc();
+		for (int i = 0; i < d.size(); i++) {
+			for (int j = 0; j < e.size(); j++) {
+				long[] t = getParallelTime(d.get(i), e.get(j));
+				res[i+10][j] = t[0];
+				res[i+15][j] = t[1];
+			}
+		}
+		System.out.println(googleRes(res));
+	}
+	
+	@Test
+	public void time2() {
+		long[][] res = new long[20][4];
+		List<Event> events = generateEvents(1, 15, 1, 1, 2);
+		List<List<Event>> e = new ArrayList<>();
+		List<Event> events1 = resize(events);
+		List<Event> events2 = resize(events1);
+		List<Event> events3 = resize(events2);
+		e.add(events);
+		e.add(events1);
+		e.add(events2);
+		e.add(events3);
+		
+		List<List<DateTimeClass>> d = new ArrayList<>();
+		d.add(generateDTC(3, 3));
+		d.add(generateDTC(4, 4));
+		d.add(generateDTC(5, 5));
+		d.add(generateDTC(6, 6));
+		d.add(generateDTC(7, 7));
+		for (int i = 0; i < d.size(); i++) {
+			for (int j = 0; j < e.size(); j++) {
+				long[] t = getTimeDynamic(d.get(i), e.get(j));
+				res[i+10][j] = t[0];
+				res[i+15][j] = t[1];
+			}
+		}
+		System.gc();
+		for (int i = 0; i < d.size(); i++) {
+			for (int j = 0; j < e.size(); j++) {
+				long[] t = getTime(d.get(i), e.get(j));
+				res[i][j] = t[0];
+				res[i+5][j] = t[1];
+			}
+		}
+		System.out.println(googleRes(res));
+	}
+	
+	private static final String APPLICATION_NAME = "Scheduler";
+	private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
+	private static final String REFRESH_TOKEN_PATH = "/refresh_token.txt";
+	private static final String CREDENTIALS_FILE_PATH = "/credentials.json";
+	private static String REFRESH_TOKEN;
+	
+	static {
+		try {
+			REFRESH_TOKEN = new BufferedReader(new InputStreamReader(GoogleFormService.class.getResourceAsStream(REFRESH_TOKEN_PATH))).readLine();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static String googleRes(long[][] res) {
+		try {
+			final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+			Sheets sheetsService = new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
+			.setApplicationName(APPLICATION_NAME)
+			.build();
+			
+			Spreadsheet spreadSheet = sheetsService.spreadsheets()
+			.get("11hYJlt4qiWWEKrj8AciEeMSbxH8ZSy8wgyEQWfrpNTk")
+			.execute();
+			List<List<Object>> list = new ArrayList<>();
+			
+			
+			for (int i = 0; i < 20; i++) {
+				List<Object> l = new ArrayList<>();
+				for (int j = 0; j < 4; j++) {
+					l.add(String.valueOf(res[i][j]));
+				}
+				list.add(l);
+			}
+			
+			ValueRange body = new ValueRange().setValues(list);
+			sheetsService.spreadsheets().values()
+			.clear(spreadSheet.getSpreadsheetId(), "A1:H", new ClearValuesRequest())
+			.execute();
+			sheetsService.spreadsheets().values()
+			.update(spreadSheet.getSpreadsheetId(), "A1:H", body)
+			.setValueInputOption("RAW")
+			.execute();
+			return spreadSheet.getSpreadsheetUrl();
+			
+		} catch (Exception e) {
+			System.out.println(e);
+			return null;
+		}
+	}
+	
+	public static void main(String[] args) {
+		long[][] res = new long[5][4];
+		for (int i = 0; i < 5; i++) {
+			for (int j = 0; j < 4; j++) {
+				res[i][j] = i * j;
+			}
+		}
+		googleRes(res);
+	}
+	
+	public static Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT) throws IOException {
+		InputStream in = GoogleFormService.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
+		if (in == null) {
+			throw new FileNotFoundException("Resource not found: " + CREDENTIALS_FILE_PATH);
+		}
+		GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
+		String clientId = clientSecrets.getDetails().getClientId();
+		String clientSecret = clientSecrets.getDetails().getClientSecret();
+		GoogleCredential credential = new GoogleCredential.Builder()
+		.setTransport(HTTP_TRANSPORT)
+		.setJsonFactory(JSON_FACTORY)
+		.setClientSecrets(clientId, clientSecret)
+		.build();
+		credential.setAccessToken(getNewToken(REFRESH_TOKEN, clientId, clientSecret));
+		credential.setRefreshToken(REFRESH_TOKEN);
+		return credential;
+	}
+	
+	public static String getNewToken(String refreshToken, String clientId, String clientSecret) throws
+	IOException {
+		ArrayList<String> scopes = new ArrayList<>();
+		scopes.add(SheetsScopes.SPREADSHEETS);
+		TokenResponse tokenResponse = new GoogleRefreshTokenRequest(new NetHttpTransport(), new JacksonFactory(),
+		refreshToken, clientId, clientSecret).setScopes(scopes).setGrantType("refresh_token").execute();
+		return tokenResponse.getAccessToken();
+	}
+}
+
+\end{lstlisting}
