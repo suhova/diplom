@@ -3515,10 +3515,6 @@
     <bcf:datasource type="file" datatype="bibtex">my_folder/my_biblio.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="1">gosstat</bcf:citekey>
-    <bcf:citekey order="2">uci</bcf:citekey>
-    <bcf:citekey order="3">Book</bcf:citekey>
-    <bcf:citekey order="4">Article</bcf:citekey>
   </bcf:section>
   <!-- SECTION 1 -->
   <bcf:bibdata section="1">
@@ -3532,14 +3528,16 @@
     <bcf:citekey order="5">unitime</bcf:citekey>
     <bcf:citekey order="6">lantiv</bcf:citekey>
     <bcf:citekey order="7">dfs</bcf:citekey>
-    <bcf:citekey order="8">minimax</bcf:citekey>
-    <bcf:citekey order="9">branch</bcf:citekey>
-    <bcf:citekey order="10">sim</bcf:citekey>
-    <bcf:citekey order="11">spring</bcf:citekey>
-    <bcf:citekey order="12">dropwizard</bcf:citekey>
-    <bcf:citekey order="13">vertx</bcf:citekey>
-    <bcf:citekey order="14">hibernate</bcf:citekey>
-    <bcf:citekey order="15">ruz</bcf:citekey>
+    <bcf:citekey order="8">gen</bcf:citekey>
+    <bcf:citekey order="9">zhad</bcf:citekey>
+    <bcf:citekey order="10">minimax</bcf:citekey>
+    <bcf:citekey order="11">branch</bcf:citekey>
+    <bcf:citekey order="12">sim</bcf:citekey>
+    <bcf:citekey order="13">spring</bcf:citekey>
+    <bcf:citekey order="14">dropwizard</bcf:citekey>
+    <bcf:citekey order="15">vertx</bcf:citekey>
+    <bcf:citekey order="16">hibernate</bcf:citekey>
+    <bcf:citekey order="17">ruz</bcf:citekey>
   </bcf:section>
   <!-- SECTION 0 (cont.) -->
   <bcf:section number="0">
@@ -3590,15 +3588,6 @@
     </bcf:sort>
   </bcf:sortingtemplate>
   <!-- DATALISTS -->
-  <bcf:datalist section="0"
-                name="nty/global/D9CB741476305F454667E117D9E4F7BA/global/global"
-                type="entry"
-                sortingtemplatename="nty"
-                sortingnamekeytemplatename="global"
-                labelprefix="3."
-                uniquenametemplatename="global"
-                labelalphanametemplatename="global">
-  </bcf:datalist>
   <bcf:datalist section="1"
                 name="nty/global//global/global"
                 type="entry"

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.12.6)  9 JUN 2021 18:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.12.6)  10 JUN 2021 11:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -3538,8 +3538,396 @@ LaTeX Font Warning: Font shape `T2A/lmr/m/n' undefined
 (Font)              using `T2A/cmr/m/n' instead on input line 28.
 
 <<t2a.cmap>>
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.30 <
+      <<<<<< HEAD
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+LaTeX Warning: Label `ch4:sec3' multiply defined.
+
+
+LaTeX Warning: Label `ch4:sec3@cref' multiply defined.
+
+
+LaTeX Warning: Label `table:att' multiply defined.
+
+
+LaTeX Warning: Label `table:att@cref' multiply defined.
+
+
+LaTeX Warning: Label `table:plan' multiply defined.
+
+
+LaTeX Warning: Label `table:plan@cref' multiply defined.
+
+
+LaTeX Warning: Label `table:wishes' multiply defined.
+
+
+LaTeX Warning: Label `table:wishes@cref' multiply defined.
+
+
+LaTeX Warning: Label `table:sched' multiply defined.
+
+
+LaTeX Warning: Label `table:sched@cref' multiply defined.
+
+
+LaTeX Warning: Label `ch4:conclusion' multiply defined.
+
+
+LaTeX Warning: Label `ch4:conclusion@cref' multiply defined.
+
+
+LaTeX Warning: Label `ch-conclusion' multiply defined.
+
+
+LaTeX Warning: Label `ch-conclusion@cref' multiply defined.
+
+
+LaTeX Warning: Label `references' multiply defined.
+
+
+LaTeX Warning: Label `references@cref' multiply defined.
+
+
+LaTeX Warning: Label `appendix-source' multiply defined.
+
+
+LaTeX Warning: Label `appendix-source@cref' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-source' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-source@cref' multiply defined.
+
+
+LaTeX Warning: Label `appendix-classes' multiply defined.
+
+
+LaTeX Warning: Label `appendix-classes@cref' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-classes' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-classes@cref' multiply defined.
+
+
+LaTeX Warning: Label `appendix-api' multiply defined.
+
+
+LaTeX Warning: Label `appendix-api@cref' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-api' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-api@cref' multiply defined.
+
+
+LaTeX Warning: Label `appendix-repo' multiply defined.
+
+
+LaTeX Warning: Label `appendix-repo@cref' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-repo' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-repo@cref' multiply defined.
+
+
+LaTeX Warning: Label `appendix-session' multiply defined.
+
+
+LaTeX Warning: Label `appendix-session@cref' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-session' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-session@cref' multiply defined.
+
+
+LaTeX Warning: Label `appendix-google' multiply defined.
+
+
+LaTeX Warning: Label `appendix-google@cref' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-google' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-google@cref' multiply defined.
+
+
+LaTeX Warning: Label `appendix-dao' multiply defined.
+
+
+LaTeX Warning: Label `appendix-dao@cref' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-dao' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-dao@cref' multiply defined.
+
+
+LaTeX Warning: Label `appendix-test' multiply defined.
+
+
+LaTeX Warning: Label `appendix-test@cref' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-test' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-test@cref' multiply defined.
+
+
+LaTeX Warning: Label `appendix-att' multiply defined.
+
+
+LaTeX Warning: Label `appendix-att@cref' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-att' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-att@cref' multiply defined.
+
+
+LaTeX Warning: Label `appendix-room' multiply defined.
+
+
+LaTeX Warning: Label `appendix-room@cref' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-room' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-room@cref' multiply defined.
+
+
+LaTeX Warning: Label `appendix-curr' multiply defined.
+
+
+LaTeX Warning: Label `appendix-curr@cref' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-curr' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-curr@cref' multiply defined.
+
+
+LaTeX Warning: Label `appendix-date' multiply defined.
+
+
+LaTeX Warning: Label `appendix-date@cref' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-date' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-date@cref' multiply defined.
+
+
+LaTeX Warning: Label `appendix-time' multiply defined.
+
+
+LaTeX Warning: Label `appendix-time@cref' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-time' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-time@cref' multiply defined.
+
+
+LaTeX Warning: Label `appendix-exam' multiply defined.
+
+
+LaTeX Warning: Label `appendix-exam@cref' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-exam' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-exam@cref' multiply defined.
+
+
+LaTeX Warning: Label `appendix-ext' multiply defined.
+
+
+LaTeX Warning: Label `appendix-ext@cref' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-ext' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-ext@cref' multiply defined.
+
+
+LaTeX Warning: Label `appendix-result' multiply defined.
+
+
+LaTeX Warning: Label `appendix-result@cref' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-result' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-result@cref' multiply defined.
+
+
+LaTeX Warning: Label `appendix-link' multiply defined.
+
+
+LaTeX Warning: Label `appendix-link@cref' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-link' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-link@cref' multiply defined.
+
+
+LaTeX Warning: Label `appendix-updt' multiply defined.
+
+
+LaTeX Warning: Label `appendix-updt@cref' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-updt' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-updt@cref' multiply defined.
+
+
+LaTeX Warning: Label `appendix-mainpage' multiply defined.
+
+
+LaTeX Warning: Label `appendix-mainpage@cref' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-mainpage' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-mainpage@cref' multiply defined.
+
+
+LaTeX Warning: Label `appendix-style' multiply defined.
+
+
+LaTeX Warning: Label `appendix-style@cref' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-style' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-style@cref' multiply defined.
+
+
+LaTeX Warning: Label `appendix-js' multiply defined.
+
+
+LaTeX Warning: Label `appendix-js@cref' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-js' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-js@cref' multiply defined.
+
+
+LaTeX Warning: Label `appendix-appscript' multiply defined.
+
+
+LaTeX Warning: Label `appendix-appscript@cref' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-appscript' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-appscript@cref' multiply defined.
+
+
+LaTeX Warning: Label `appendix-parallel' multiply defined.
+
+
+LaTeX Warning: Label `appendix-parallel@cref' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-parallel' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-parallel@cref' multiply defined.
+
+
+LaTeX Warning: Label `appendix-timetest' multiply defined.
+
+
+LaTeX Warning: Label `appendix-timetest@cref' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-timetest' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-timetest@cref' multiply defined.
+
+
+LaTeX Warning: Label `appendix-bfs' multiply defined.
+
+
+LaTeX Warning: Label `appendix-bfs@cref' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-bfs' multiply defined.
+
+
+LaTeX Warning: Label `myappendices::appendix-bfs@cref' multiply defined.
+
+
+Overfull \hbox (18.94638pt too wide) in paragraph at lines 30--644
+[]\T2A/lmr/m/n/14.4 <<<<<<< HEAD         ======= >>>>>>> d5ed8c1fef3fd9fe97191f
+6846bab8e0adbd2117
+ []
+
+
+Overfull \hbox (199.99207pt too wide) in paragraph at lines 30--644
+\T2A/lmr/m/n/14.4 <<<<<<< HEAD                                                 
+                                                                               
+                                               =======
+ []
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.658 <
+       <<<<<< HEAD
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
 \c@mypages@totc=\count715
 \c@TotPages@totc=\count716
+
+LaTeX Warning: Label `TotPages' multiply defined.
+
 \c@myfigures@totc=\count717
 \c@mytotalfigures@totc=\count718
 \c@mytables@totc=\count719
@@ -3551,8 +3939,7 @@ LaTeX Font Warning: Font shape `T2A/lmr/m/n' undefined
 LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 34.
 LaTeX Font Info:    Trying to load font information for OML+ntxmi on input line
  34.
-
-(e:/Programm Files/texlive/2019/texmf-dist/tex/latex/newtx/omlntxmi.fd
+ (e:/Programm Files/texlive/2019/texmf-dist/tex/latex/newtx/omlntxmi.fd
 File: omlntxmi.fd 2015/08/25 Fontinst v1.933 font definitions for OML/ntxmi.
 )
 LaTeX Font Info:    ... okay on input line 34.
@@ -3803,6 +4190,18 @@ line 34.
 Package nag Info: Command \topcaption not defined, skipping amendment on input 
 line 34.
 (./template_settings/common/renames.tex) (./my_folder/title.tex
+Overfull \hbox (2.10788pt too wide) has occurred while \output is active
+ []
+ []
+
+
+Overfull \hbox (2.10788pt too wide) has occurred while \output is active
+ []
+ []
+
+[1.1
+
+{e:/Programm Files/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 *geometry* verbose mode - [ newgeometry ] result:
 * driver: pdftex
 * paper: a4paper
@@ -3858,53 +4257,10 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
 
 
-Overfull \hbox (2.10788pt too wide) has occurred while \output is active
- []
- []
-
-[1.1
-
-
-{e:/Programm Files/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}])
- (./my_folder/task.tex (./my_folder/task_settings.tex)
-LaTeX Font Info:    Font shape `T2A/Tempora-TLF/m/n' will be
-(Font)              scaled to size 10.25826pt on input line 44.
-LaTeX Font Info:    Font shape `T2A/Tempora-TLF/m/n' will be
-(Font)              scaled to size 10.95pt on input line 44.
-LaTeX Font Info:    Font shape `OT1/Tempora-TLF/m/n' will be
-(Font)              scaled to size 10.95pt on input line 44.
-LaTeX Font Info:    Font shape `OT1/Tempora-TLF/m/n' will be
-(Font)              scaled to size 8.0pt on input line 44.
-LaTeX Font Info:    Font shape `OT1/Tempora-TLF/m/n' will be
-(Font)              scaled to size 6.1pt on input line 44.
-LaTeX Font Info:    Font shape `OT1/Tempora-TLF/b/n' will be
-(Font)              scaled to size 10.95pt on input line 44.
-LaTeX Font Info:    Font shape `OT1/Tempora-TLF/b/n' will be
-(Font)              scaled to size 8.0pt on input line 44.
-LaTeX Font Info:    Font shape `OT1/Tempora-TLF/b/n' will be
-(Font)              scaled to size 6.1pt on input line 44.
-LaTeX Font Info:    Font shape `T2A/Tempora-TLF/m/n' will be
-(Font)              scaled to size 8.0pt on input line 44.
-
-
-LaTeX Warning: Citation 'gosstat' on page 2 undefined on input line 45.
-
-
-LaTeX Warning: Citation 'uci' on page 2 undefined on input line 45.
-
-
-LaTeX Warning: Citation 'Book' on page 2 undefined on input line 45.
-
-
-LaTeX Warning: Citation 'Article' on page 2 undefined on input line 45.
-
-
-LaTeX Warning: Empty bibliography on input line 46.
-
-
-Overfull \hbox (2.10788pt too wide) has occurred while \output is active
- []
- []
+Class memoir Warning: The material used in the footer is too large
+(12.64719pt) for the given foot skip (0.0pt), it is recommended to
+either increase the foot skip or redesign the footer
+(in both cases you will find help in the memoir manual). on input line 101.
 
 
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
@@ -3912,6 +4268,18 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
 
 [2.2
+
+]) (./my_folder/task.tex (./my_folder/task_settings.tex)
+Overfull \hbox (2.10788pt too wide) has occurred while \output is active
+ []
+ []
+
+
+Overfull \hbox (2.10788pt too wide) has occurred while \output is active
+ []
+ []
+
+[3.3
 
 ] (./my_folder/task_settings_restore.tex
 \blx@maxsegment@1=\count732
@@ -3928,7 +4296,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[3.3])) (./my_folder/summary.tex
+[4.4])) (./my_folder/summary.tex
 \@c=\count734
 \@last=\count735
 \@pnul=\count736
@@ -3938,14 +4306,6 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
 \@c=\count740
 \@last=\count741
 \@pnul=\count742
-LaTeX Font Info:    Font shape `T2A/Tempora-TLF/bx/n' in size <10.95> not avail
-able
-(Font)              Font shape `T2A/Tempora-TLF/b/n' tried instead on input lin
-e 29.
-LaTeX Font Info:    Font shape `T2A/Tempora-TLF/b/n' will be
-(Font)              scaled to size 10.95pt on input line 29.
-LaTeX Font Info:    Font shape `T2A/Tempora-TLF/m/it' will be
-(Font)              scaled to size 10.95pt on input line 29.
 
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
@@ -3956,7 +4316,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[4.4
+[5.5
 
 
 ]) (./my_folder/contents.tex
@@ -3969,7 +4329,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[5.5] (./My_thesis.toc
+[6.6] (./My_thesis.toc
 Package cleveref Info: loaded `russian' language definitions on input line 3.
 
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
@@ -3977,17 +4337,11 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
 
 
-Class memoir Warning: The material used in the footer is too large
-(12.64719pt) for the given foot skip (0.0pt), it is recommended to
-either increase the foot skip or redesign the footer
-(in both cases you will find help in the memoir manual). on input line 73.
-
-
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[6.6
+[7.7
 
 ]
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
@@ -3999,7 +4353,74 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[7.7])
+[8.8]
+Package cleveref Info: loaded `russian' language definitions on input line 231.
+
+Package cleveref Info: loaded `russian' language definitions on input line 232.
+
+Package cleveref Info: loaded `russian' language definitions on input line 233.
+
+Package cleveref Info: loaded `russian' language definitions on input line 234.
+
+Package cleveref Info: loaded `russian' language definitions on input line 235.
+
+Package cleveref Info: loaded `russian' language definitions on input line 236.
+
+Package cleveref Info: loaded `russian' language definitions on input line 237.
+
+Package cleveref Info: loaded `russian' language definitions on input line 238.
+
+Package cleveref Info: loaded `russian' language definitions on input line 239.
+
+Package cleveref Info: loaded `russian' language definitions on input line 240.
+
+Package cleveref Info: loaded `russian' language definitions on input line 241.
+
+Package cleveref Info: loaded `russian' language definitions on input line 242.
+
+Package cleveref Info: loaded `russian' language definitions on input line 243.
+
+Package cleveref Info: loaded `russian' language definitions on input line 244.
+
+Package cleveref Info: loaded `russian' language definitions on input line 245.
+
+Package cleveref Info: loaded `russian' language definitions on input line 246.
+
+Package cleveref Info: loaded `russian' language definitions on input line 247.
+
+Package cleveref Info: loaded `russian' language definitions on input line 248.
+
+Package cleveref Info: loaded `russian' language definitions on input line 249.
+
+Package cleveref Info: loaded `russian' language definitions on input line 250.
+
+Package cleveref Info: loaded `russian' language definitions on input line 251.
+
+Package cleveref Info: loaded `russian' language definitions on input line 252.
+
+Package cleveref Info: loaded `russian' language definitions on input line 253.
+
+Package cleveref Info: loaded `russian' language definitions on input line 254.
+
+Package cleveref Info: loaded `russian' language definitions on input line 255.
+
+Package cleveref Info: loaded `russian' language definitions on input line 256.
+
+Package cleveref Info: loaded `russian' language definitions on input line 257.
+
+Package cleveref Info: loaded `russian' language definitions on input line 258.
+
+
+Overfull \hbox (2.10788pt too wide) has occurred while \output is active
+ []
+ []
+
+
+Overfull \hbox (2.10788pt too wide) has occurred while \output is active
+ []
+ []
+
+[9.9])
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -4009,7 +4430,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[8.8]) (./my_folder/introduction.tex) (./my_folder/chapter1.tex
+[10.10]) (./my_folder/introduction.tex) (./my_folder/chapter1.tex
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -4019,7 +4440,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[9.9
+[11.11
 
 ]
 LaTeX Font Info:    Font shape `T2A/Tempora-TLF/bx/it' in size <14.05249> not a
@@ -4029,10 +4450,6 @@ ne 9.
 LaTeX Font Info:    Font shape `T2A/Tempora-TLF/b/it' will be
 (Font)              scaled to size 14.05249pt on input line 9.
 
-
-LaTeX Warning: Citation 'ruz' on page 10 undefined on input line 11.
-
-
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -4042,10 +4459,10 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[10.10
+[12.12
 
 ]
-<my_folder/images/usecase1.png, id=356, 646.415pt x 538.01pt>
+<my_folder/images/usecase1.png, id=463, 646.415pt x 538.01pt>
 File: my_folder/images/usecase1.png Graphic file (type png)
 <use my_folder/images/usecase1.png>
 Package pdftex.def Info: my_folder/images/usecase1.png  used on input line 26.
@@ -4063,7 +4480,7 @@ Overfull \hbox (35.13123pt too wide) in paragraph at lines 23--30
 []$[]$ 
  []
 
-<my_folder/images//usecase2.png, id=359, 702.625pt x 584.1825pt>
+<my_folder/images//usecase2.png, id=466, 702.625pt x 584.1825pt>
 File: my_folder/images//usecase2.png Graphic file (type png)
 <use my_folder/images//usecase2.png>
 Package pdftex.def Info: my_folder/images//usecase2.png  used on input line 37.
@@ -4089,11 +4506,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[11.11 <./my_folder/images/usecase1.png>]
-
-LaTeX Warning: Citation '1—Å' on page 12 undefined on input line 48.
-
-
+[13.13 <./my_folder/images/usecase1.png>]
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -4103,11 +4516,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[12.12 <./my_folder/images//usecase2.png>]
-
-LaTeX Warning: Citation 'avtor' on page 13 undefined on input line 59.
-
-
+[14.14 <./my_folder/images//usecase2.png>]
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -4117,14 +4526,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[13.13]
-
-LaTeX Warning: Citation 'galaktica' on page 14 undefined on input line 75.
-
-
-LaTeX Warning: Citation 'unitime' on page 14 undefined on input line 94.
-
-
+[15.15]
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -4134,10 +4536,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[14.14]
-
-LaTeX Warning: Citation 'lantiv' on page 15 undefined on input line 106.
-
+[16.16]
 LaTeX Font Info:    Font shape `OT1/Tempora-TLF/m/n' will be
 (Font)              scaled to size 12.0pt on input line 124.
 LaTeX Font Info:    Font shape `OT1/Tempora-TLF/m/n' will be
@@ -4270,26 +4669,6 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[15.15]
-Overfull \hbox (2.10788pt too wide) has occurred while \output is active
- []
- []
-
-
-Overfull \hbox (2.10788pt too wide) has occurred while \output is active
- []
- []
-
-[16.16]
-Overfull \hbox (2.10788pt too wide) has occurred while \output is active
- []
- []
-
-
-Overfull \hbox (2.10788pt too wide) has occurred while \output is active
- []
- []
-
 [17.17]
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
@@ -4301,9 +4680,6 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
 
 [18.18]
-LaTeX Font Info:    Font shape `T2A/Tempora-TLF/m/n' will be
-(Font)              scaled to size 7.72891pt on input line 128.
-
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -4324,6 +4700,11 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
 
 [20.20]
+LaTeX Font Info:    Font shape `T2A/Tempora-TLF/m/n' will be
+(Font)              scaled to size 10.25826pt on input line 128.
+LaTeX Font Info:    Font shape `T2A/Tempora-TLF/m/n' will be
+(Font)              scaled to size 7.72891pt on input line 128.
+
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -4354,10 +4735,6 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
 
 [23.23]
-
-LaTeX Warning: Citation 'dfs' on page 24 undefined on input line 262.
-
-
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -4368,6 +4745,26 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
 
 [24.24]
+Overfull \hbox (2.10788pt too wide) has occurred while \output is active
+ []
+ []
+
+
+Overfull \hbox (2.10788pt too wide) has occurred while \output is active
+ []
+ []
+
+[25.25]
+Overfull \hbox (2.10788pt too wide) has occurred while \output is active
+ []
+ []
+
+
+Overfull \hbox (2.10788pt too wide) has occurred while \output is active
+ []
+ []
+
+[26.26]
 LaTeX Font Info:    Font shape `T2A/Tempora-TLF/m/it' will be
 (Font)              scaled to size 14.05249pt on input line 313.
 Package microtype Info: Loading generic protrusion settings for font family
@@ -4401,26 +4798,6 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[25.25]
-Overfull \hbox (2.10788pt too wide) has occurred while \output is active
- []
- []
-
-
-Overfull \hbox (2.10788pt too wide) has occurred while \output is active
- []
- []
-
-[26.26]
-Overfull \hbox (2.10788pt too wide) has occurred while \output is active
- []
- []
-
-
-Overfull \hbox (2.10788pt too wide) has occurred while \output is active
- []
- []
-
 [27.27]
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
@@ -4432,20 +4809,6 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
 
 [28.28]
-
-Package nag Warning: \label in float, but not after \caption on input line 431.
-
-
-
-Package nag Warning: \label in float, but not after \caption on input line 431.
-
-
-
-Overfull \hbox (21.07874pt too wide) in paragraph at lines 431--431
-[] [] 
- []
-
-
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -4467,15 +4830,15 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
 
 [30.30]
 
-Package nag Warning: \label in float, but not after \caption on input line 466.
+Package nag Warning: \label in float, but not after \caption on input line 431.
 
 
 
-Package nag Warning: \label in float, but not after \caption on input line 466.
+Package nag Warning: \label in float, but not after \caption on input line 431.
 
 
 
-Overfull \hbox (21.07874pt too wide) in paragraph at lines 466--466
+Overfull \hbox (21.07874pt too wide) in paragraph at lines 431--431
 [] [] 
  []
 
@@ -4500,6 +4863,20 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
 
 [32.32]
+
+Package nag Warning: \label in float, but not after \caption on input line 466.
+
+
+
+Package nag Warning: \label in float, but not after \caption on input line 466.
+
+
+
+Overfull \hbox (21.07874pt too wide) in paragraph at lines 466--466
+[] [] 
+ []
+
+
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -4510,13 +4887,6 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
 
 [33.33]
-
-LaTeX Warning: Citation 'minimax' on page 34 undefined on input line 540.
-
-
-LaTeX Warning: Citation 'branch' on page 34 undefined on input line 548.
-
-
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -4527,6 +4897,26 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
 
 [34.34]
+Overfull \hbox (2.10788pt too wide) has occurred while \output is active
+ []
+ []
+
+
+Overfull \hbox (2.10788pt too wide) has occurred while \output is active
+ []
+ []
+
+[35.35]
+Overfull \hbox (2.10788pt too wide) has occurred while \output is active
+ []
+ []
+
+
+Overfull \hbox (2.10788pt too wide) has occurred while \output is active
+ []
+ []
+
+[36.36]
 
 Package nag Warning: \label in float, but not after \caption on input line 603.
 
@@ -4550,7 +4940,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[35.35]
+[37.37]
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -4560,15 +4950,12 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[36.36]
+[38.38]
 Overfull \hbox (21.07874pt too wide) in paragraph at lines 627--627
 [] [] 
  []
 
 
-LaTeX Warning: Citation 'sim' on page 37 undefined on input line 638.
-
-
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -4578,7 +4965,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[37.37]
+[39.39]
 Overfull \hbox (21.07874pt too wide) in paragraph at lines 685--685
 [] [] 
  []
@@ -4593,27 +4980,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[38.38]) (./my_folder/chapter3.tex
-Overfull \hbox (2.10788pt too wide) has occurred while \output is active
- []
- []
-
-
-Overfull \hbox (2.10788pt too wide) has occurred while \output is active
- []
- []
-
-[39.39]
-Overfull \hbox (2.10788pt too wide) has occurred while \output is active
- []
- []
-
-
-Overfull \hbox (2.10788pt too wide) has occurred while \output is active
- []
- []
-
-[40.40]
+[40.40]) (./my_folder/chapter3.tex
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -4624,10 +4991,6 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
 
 [41.41]
-
-LaTeX Warning: Citation 'spring' on page 42 undefined on input line 39.
-
-
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -4638,22 +5001,6 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
 
 [42.42]
-
-LaTeX Warning: Citation 'dropwizard' on page 43 undefined on input line 42.
-
-
-Underfull \hbox (badness 2310) in paragraph at lines 42--43
-[]\T2A/Tempora-TLF/m/n/14.05249 (+20) Dropwizard - ˝ÚÓ ÙÂÈÏ^^?‚ÓÍ ‰Îˇ ÒÓ^^?Á‰
-‡^^?ÌËˇ ‚Â·-^^?ÒÂ^^?‚Ë^^?ÒÓ‚ RESTful
- []
-
-
-LaTeX Warning: Citation 'vertx' on page 43 undefined on input line 45.
-
-
-LaTeX Warning: Citation 'hibernate' on page 43 undefined on input line 51.
-
-
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -4664,7 +5011,27 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
 
 [43.43]
-<my_folder/images/arch.png, id=737, 545.03625pt x 361.35pt>
+Overfull \hbox (2.10788pt too wide) has occurred while \output is active
+ []
+ []
+
+
+Overfull \hbox (2.10788pt too wide) has occurred while \output is active
+ []
+ []
+
+[44.44]
+Overfull \hbox (2.10788pt too wide) has occurred while \output is active
+ []
+ []
+
+
+Overfull \hbox (2.10788pt too wide) has occurred while \output is active
+ []
+ []
+
+[45.45]
+<my_folder/images/arch.png, id=874, 545.03625pt x 361.35pt>
 File: my_folder/images/arch.png Graphic file (type png)
 <use my_folder/images/arch.png>
 Package pdftex.def Info: my_folder/images/arch.png  used on input line 64.
@@ -4690,8 +5057,8 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[44.44]
-<my_folder/images/index.png, id=744, 947.54pt x 624.3325pt>
+[46.46]
+<my_folder/images/index.png, id=882, 947.54pt x 624.3325pt>
 File: my_folder/images/index.png Graphic file (type png)
 <use my_folder/images/index.png>
 Package pdftex.def Info: my_folder/images/index.png  used on input line 80.
@@ -4717,8 +5084,8 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[45.45 <./my_folder/images/arch.png>]
-<my_folder/images/dates.png, id=752, 1047.915pt x 801.99625pt>
+[47.47 <./my_folder/images/arch.png>]
+<my_folder/images/dates.png, id=890, 1047.915pt x 801.99625pt>
 File: my_folder/images/dates.png Graphic file (type png)
 <use my_folder/images/dates.png>
 Package pdftex.def Info: my_folder/images/dates.png  used on input line 93.
@@ -4744,8 +5111,8 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[46.46 <./my_folder/images/index.png> <./my_folder/images/dates.png>]
-<my_folder/images/time.png, id=763, 918.43124pt x 381.425pt>
+[48.48 <./my_folder/images/index.png> <./my_folder/images/dates.png>]
+<my_folder/images/time.png, id=900, 918.43124pt x 381.425pt>
 File: my_folder/images/time.png Graphic file (type png)
 <use my_folder/images/time.png>
 Package pdftex.def Info: my_folder/images/time.png  used on input line 106.
@@ -4761,7 +5128,7 @@ Overfull \hbox (35.13123pt too wide) in paragraph at lines 103--110
 []$[]$ 
  []
 
-<my_folder/images/plans.png, id=765, 847.165pt x 508.90125pt>
+<my_folder/images/plans.png, id=902, 847.165pt x 508.90125pt>
 File: my_folder/images/plans.png Graphic file (type png)
 <use my_folder/images/plans.png>
 Package pdftex.def Info: my_folder/images/plans.png  used on input line 117.
@@ -4786,8 +5153,8 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[47.47 <./my_folder/images/time.png> <./my_folder/images/plans.png>]
-<my_folder/images/generate.png, id=775, 941.5175pt x 765.86125pt>
+[49.49 <./my_folder/images/time.png> <./my_folder/images/plans.png>]
+<my_folder/images/generate.png, id=913, 941.5175pt x 765.86125pt>
 File: my_folder/images/generate.png Graphic file (type png)
 <use my_folder/images/generate.png>
 Package pdftex.def Info: my_folder/images/generate.png  used on input line 130.
@@ -4814,8 +5181,8 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[48.48 <./my_folder/images/generate.png>]
-<my_folder/images/form2.png, id=787, 492.84125pt x 538.01pt>
+[50.50 <./my_folder/images/generate.png>]
+<my_folder/images/form2.png, id=926, 492.84125pt x 538.01pt>
 File: my_folder/images/form2.png Graphic file (type png)
 <use my_folder/images/form2.png>
 Package pdftex.def Info: my_folder/images/form2.png  used on input line 150.
@@ -4841,8 +5208,8 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[49.49 <./my_folder/images/form2.png>]
-<my_folder/images/bd.jpg, id=797, 1076.02pt x 708.6475pt>
+[51.51 <./my_folder/images/form2.png>]
+<my_folder/images/bd.jpg, id=935, 1076.02pt x 708.6475pt>
 File: my_folder/images/bd.jpg Graphic file (type jpg)
 <use my_folder/images/bd.jpg>
 Package pdftex.def Info: my_folder/images/bd.jpg  used on input line 173.
@@ -4868,27 +5235,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[50.50 <./my_folder/images/bd.jpg>]
-Overfull \hbox (2.10788pt too wide) has occurred while \output is active
- []
- []
-
-
-Overfull \hbox (2.10788pt too wide) has occurred while \output is active
- []
- []
-
-[51.51]
-Overfull \hbox (2.10788pt too wide) has occurred while \output is active
- []
- []
-
-
-Overfull \hbox (2.10788pt too wide) has occurred while \output is active
- []
- []
-
-[52.52]) (./my_folder/chapter4.tex
+[52.52 <./my_folder/images/bd.jpg>]
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -4899,10 +5246,6 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
 
 [53.53]
-
-LaTeX Warning: Citation 'ruz' on page 54 undefined on input line 15.
-
-
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -4912,7 +5255,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[54.54]
+[54.54]) (./my_folder/chapter4.tex
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -4933,146 +5276,6 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
 
 [56.56]
-Overfull \hbox (1.37526pt too wide) in paragraph at lines 72--72
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/00001| 
- []
-
-
-Overfull \hbox (1.37526pt too wide) in paragraph at lines 73--73
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/00002| 
- []
-
-
-Overfull \hbox (1.37526pt too wide) in paragraph at lines 74--74
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/00001| 
- []
-
-
-Overfull \hbox (1.37526pt too wide) in paragraph at lines 75--75
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/00002| 
- []
-
-
-Overfull \hbox (1.37526pt too wide) in paragraph at lines 76--76
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/90001| 
- []
-
-
-Overfull \hbox (1.37526pt too wide) in paragraph at lines 77--77
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/90002| 
- []
-
-
-Overfull \hbox (1.37526pt too wide) in paragraph at lines 78--78
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/90001| 
- []
-
-
-Overfull \hbox (1.37526pt too wide) in paragraph at lines 79--79
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/90002| 
- []
-
-
-Overfull \hbox (1.37526pt too wide) in paragraph at lines 80--80
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/90002| 
- []
-
-
-Overfull \hbox (1.82336pt too wide) in paragraph at lines 80--80
-[]|\T2A/Tempora-TLF/m/n/12 (-20) «˜Œ| 
- []
-
-
-Overfull \hbox (1.37526pt too wide) in paragraph at lines 81--81
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/90001| 
- []
-
-
-Overfull \hbox (1.82336pt too wide) in paragraph at lines 81--81
-[]|\T2A/Tempora-TLF/m/n/12 (-20) «˜Œ| 
- []
-
-
-Overfull \hbox (1.37526pt too wide) in paragraph at lines 82--82
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/90001| 
- []
-
-
-Overfull \hbox (1.37526pt too wide) in paragraph at lines 83--83
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/90002| 
- []
-
-
-Overfull \hbox (1.37526pt too wide) in paragraph at lines 84--84
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/70301| 
- []
-
-
-Overfull \hbox (1.37526pt too wide) in paragraph at lines 85--85
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/70301| 
- []
-
-
-Overfull \hbox (1.37526pt too wide) in paragraph at lines 86--86
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/70301| 
- []
-
-
-Overfull \hbox (1.37526pt too wide) in paragraph at lines 87--87
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/70301| 
- []
-
-
-Overfull \hbox (1.37526pt too wide) in paragraph at lines 88--88
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/70301| 
- []
-
-
-Overfull \hbox (1.37526pt too wide) in paragraph at lines 89--89
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/70301| 
- []
-
-
-Overfull \hbox (1.37526pt too wide) in paragraph at lines 90--90
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/70301| 
- []
-
-
-Overfull \hbox (1.82336pt too wide) in paragraph at lines 90--90
-[]|\T2A/Tempora-TLF/m/n/12 (-20) «˜Œ| 
- []
-
-
-Overfull \hbox (1.37526pt too wide) in paragraph at lines 91--91
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/80301| 
- []
-
-
-Overfull \hbox (1.37526pt too wide) in paragraph at lines 92--92
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/80301| 
- []
-
-
-Overfull \hbox (1.37526pt too wide) in paragraph at lines 93--93
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/80301| 
- []
-
-
-Overfull \hbox (1.37526pt too wide) in paragraph at lines 94--94
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/80301| 
- []
-
-
-Overfull \hbox (1.37526pt too wide) in paragraph at lines 95--95
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/80301| 
- []
-
-
-Overfull \hbox (1.37526pt too wide) in paragraph at lines 96--96
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/80301| 
- []
-
-
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -5093,599 +5296,6 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
 
 [58.58]
-Overfull \hbox (5.27248pt too wide) in paragraph at lines 108--108
-[]|\T2A/Tempora-TLF/m/n/12 (-20) —Ó‚Ï.| 
- []
-
-
-Overfull \hbox (13.86751pt too wide) in paragraph at lines 108--108
-[]|\T2A/Tempora-TLF/m/n/12 (-20) ƒ‡Ú‡
- []
-
-
-Overfull \hbox (13.86751pt too wide) in paragraph at lines 108--108
-[]|\T2A/Tempora-TLF/m/n/12 (-20) ƒ‡Ú‡
- []
-
-
-Overfull \hbox (2.22513pt too wide) in paragraph at lines 108--108
-\T2A/Tempora-TLF/m/n/12 (-20) ‰Ó| 
- []
-
-
-Overfull \hbox (4.06583pt too wide) in paragraph at lines 108--108
-[]|\T2A/Tempora-TLF/m/n/12 (-20) ¿ÒÒËÒÚ.| 
- []
-
-
-Overfull \hbox (42.27968pt too wide) in paragraph at lines 108--108
-[]|\T2A/Tempora-TLF/m/n/12 (-20) ŒÚÒÛÚÒ‚ËÂ
- []
-
-
-Overfull \hbox (47.4776pt too wide) in paragraph at lines 108--108
-[]|\T2A/Tempora-TLF/m/n/12 (-20) ŒÚÒÛÚÒÚ‚ËÂ
- []
-
-
-Overfull \hbox (2.22513pt too wide) in paragraph at lines 108--108
-\T2A/Tempora-TLF/m/n/12 (-20) ‰Ó| 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 108--108
-[]|\T2A/Tempora-TLF/m/n/12 (+20) ƒÌË
- []
-
-
-Overfull \hbox (6.62335pt too wide) in paragraph at lines 108--108
-[]|\T2A/Tempora-TLF/m/n/12 (-20) ˜‡Ò
- []
-
-
-Overfull \hbox (6.62335pt too wide) in paragraph at lines 108--108
-[]|\T2A/Tempora-TLF/m/n/12 (-20) ˜‡Ò
- []
-
-
-Overfull \hbox (3.52272pt too wide) in paragraph at lines 109--109
-[]|\T2A/Tempora-TLF/m/n/12 (-20) ‘»Œ13| 
- []
-
-
-Overfull \hbox (2.08401pt too wide) in paragraph at lines 109--109
-[]|\T2A/Tempora-TLF/m/n/12 (-20) 18| 
- []
-
-
-Overfull \hbox (3.08667pt too wide) in paragraph at lines 110--110
-[]|\T2A/Tempora-TLF/m/n/12 (-20) —Û··ÓÚ‡| 
- []
-
-
-Overfull \hbox (2.08401pt too wide) in paragraph at lines 110--110
-[]|\T2A/Tempora-TLF/m/n/12 (-20) 10| 
- []
-
-
-Overfull \hbox (2.08401pt too wide) in paragraph at lines 110--110
-[]|\T2A/Tempora-TLF/m/n/12 (-20) 20| 
- []
-
-
-Overfull \hbox (3.52272pt too wide) in paragraph at lines 111--111
-[]|\T2A/Tempora-TLF/m/n/12 (-20) ‘»Œ10| 
- []
-
-
-Overfull \hbox (2.08401pt too wide) in paragraph at lines 111--111
-[]|\T2A/Tempora-TLF/m/n/12 (-20) 10| 
- []
-
-
-Overfull \hbox (2.08401pt too wide) in paragraph at lines 111--111
-[]|\T2A/Tempora-TLF/m/n/12 (-20) 18| 
- []
-
-
-Overfull \hbox (3.52272pt too wide) in paragraph at lines 112--112
-[]|\T2A/Tempora-TLF/m/n/12 (-20) ‘»Œ13| 
- []
-
-
-Overfull \hbox (5.89081pt too wide) in paragraph at lines 112--112
-[]|\T2A/Tempora-TLF/m/n/12 (-20) œˇÚÌËˆ‡,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 112--112
-\T2A/Tempora-TLF/m/n/12 (+20) —Û·^^?·Ó^^?
- []
-
-
-Overfull \hbox (2.08401pt too wide) in paragraph at lines 112--112
-[]|\T2A/Tempora-TLF/m/n/12 (-20) 20| 
- []
-
-
-Overfull \hbox (3.52272pt too wide) in paragraph at lines 113--113
-[]|\T2A/Tempora-TLF/m/n/12 (-20) ‘»Œ12| 
- []
-
-
-Overfull \hbox (2.08401pt too wide) in paragraph at lines 113--113
-[]|\T2A/Tempora-TLF/m/n/12 (-20) 10| 
- []
-
-
-Overfull \hbox (2.08401pt too wide) in paragraph at lines 113--113
-[]|\T2A/Tempora-TLF/m/n/12 (-20) 20| 
- []
-
-
-Overfull \hbox (3.52272pt too wide) in paragraph at lines 114--114
-[]|\T2A/Tempora-TLF/m/n/12 (-20) ‘»Œ11| 
- []
-
-
-Overfull \hbox (5.89081pt too wide) in paragraph at lines 114--114
-[]|\T2A/Tempora-TLF/m/n/12 (-20) œˇÚÌËˆ‡,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 114--114
-\T2A/Tempora-TLF/m/n/12 (+20) —Û·^^?·Ó^^?
- []
-
-
-Overfull \hbox (2.08401pt too wide) in paragraph at lines 114--114
-[]|\T2A/Tempora-TLF/m/n/12 (-20) 10| 
- []
-
-
-Overfull \hbox (2.08401pt too wide) in paragraph at lines 114--114
-[]|\T2A/Tempora-TLF/m/n/12 (-20) 17| 
- []
-
-
-Overfull \hbox (3.08667pt too wide) in paragraph at lines 115--115
-[]|\T2A/Tempora-TLF/m/n/12 (-20) —Û··ÓÚ‡| 
- []
-
-
-Overfull \hbox (2.08401pt too wide) in paragraph at lines 115--115
-[]|\T2A/Tempora-TLF/m/n/12 (-20) 10| 
- []
-
-
-Overfull \hbox (2.08401pt too wide) in paragraph at lines 115--115
-[]|\T2A/Tempora-TLF/m/n/12 (-20) 20| 
- []
-
-
-Overfull \hbox (2.08401pt too wide) in paragraph at lines 116--116
-[]|\T2A/Tempora-TLF/m/n/12 (-20) 11| 
- []
-
-
-Overfull \hbox (2.08401pt too wide) in paragraph at lines 116--116
-[]|\T2A/Tempora-TLF/m/n/12 (-20) 17| 
- []
-
-
-Overfull \hbox (2.25696pt too wide) in paragraph at lines 117--117
-[]|\T2A/Tempora-TLF/m/n/12 (-20) ◊ÂÚ‚Â„,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 117--117
-\T2A/Tempora-TLF/m/n/12 (+20) —Û·^^?·Ó^^?
- []
-
-
-Overfull \hbox (2.08401pt too wide) in paragraph at lines 117--117
-[]|\T2A/Tempora-TLF/m/n/12 (-20) 10| 
- []
-
-
-Overfull \hbox (2.08401pt too wide) in paragraph at lines 117--117
-[]|\T2A/Tempora-TLF/m/n/12 (-20) 20| 
- []
-
-
-Overfull \hbox (6.66263pt too wide) in paragraph at lines 106--119
- [][] 
- []
-
-
-Overfull \hbox (4.90546pt too wide) in paragraph at lines 129--129
-[]|\T2A/Tempora-TLF/m/n/12 (-20) “ËÔ| 
- []
-
-
-Overfull \hbox (3.8588pt too wide) in paragraph at lines 129--129
-[]|\T2A/Tempora-TLF/m/n/12 (-20) ◊‡Ò| 
- []
-
-
-Overfull \hbox (6.13383pt too wide) in paragraph at lines 129--129
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Teams| 
- []
-
-
-Overfull \hbox (6.21695pt too wide) in paragraph at lines 130--130
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/70301| 
- []
-
-
-Overfull \hbox (0.64056pt too wide) in paragraph at lines 130--130
-[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ8]| 
- []
-
-
-Overfull \hbox (6.49956pt too wide) in paragraph at lines 130--130
-[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-17| 
- []
-
-
-Overfull \hbox (6.21695pt too wide) in paragraph at lines 131--131
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/70301| 
- []
-
-
-Overfull \hbox (6.52057pt too wide) in paragraph at lines 131--131
-[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ10]| 
- []
-
-
-Overfull \hbox (6.49956pt too wide) in paragraph at lines 131--131
-[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-17| 
- []
-
-
-Overfull \hbox (6.21695pt too wide) in paragraph at lines 132--132
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/70301| 
- []
-
-
-Overfull \hbox (6.52057pt too wide) in paragraph at lines 132--132
-[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ10]| 
- []
-
-
-Overfull \hbox (6.49956pt too wide) in paragraph at lines 132--132
-[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-18| 
- []
-
-
-Overfull \hbox (6.21695pt too wide) in paragraph at lines 133--133
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/00001| 
- []
-
-
-Overfull \hbox (0.64056pt too wide) in paragraph at lines 133--133
-[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ2]| 
- []
-
-
-Overfull \hbox (6.49956pt too wide) in paragraph at lines 133--133
-[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-21| 
- []
-
-
-Overfull \hbox (6.21695pt too wide) in paragraph at lines 134--134
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/90001| 
- []
-
-
-Overfull \hbox (0.64056pt too wide) in paragraph at lines 134--134
-[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ6]| 
- []
-
-
-Overfull \hbox (6.49956pt too wide) in paragraph at lines 134--134
-[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-21| 
- []
-
-
-Overfull \hbox (6.21695pt too wide) in paragraph at lines 135--135
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/90002| 
- []
-
-
-Overfull \hbox (0.64056pt too wide) in paragraph at lines 135--135
-[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ6]| 
- []
-
-
-Overfull \hbox (6.49956pt too wide) in paragraph at lines 135--135
-[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-21| 
- []
-
-
-Overfull \hbox (6.21695pt too wide) in paragraph at lines 136--136
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/80301| 
- []
-
-
-Overfull \hbox (6.52057pt too wide) in paragraph at lines 136--136
-[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ13]| 
- []
-
-
-Overfull \hbox (6.49956pt too wide) in paragraph at lines 136--136
-[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-21| 
- []
-
-
-Overfull \hbox (6.21695pt too wide) in paragraph at lines 137--137
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/70301| 
- []
-
-
-Overfull \hbox (0.64056pt too wide) in paragraph at lines 137--137
-[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ9]| 
- []
-
-
-Overfull \hbox (6.49956pt too wide) in paragraph at lines 137--137
-[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-21| 
- []
-
-
-Overfull \hbox (6.21695pt too wide) in paragraph at lines 138--138
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/90002| 
- []
-
-
-Overfull \hbox (0.64056pt too wide) in paragraph at lines 138--138
-[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ7]| 
- []
-
-
-Overfull \hbox (6.49956pt too wide) in paragraph at lines 138--138
-[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-21| 
- []
-
-
-Overfull \hbox (6.21695pt too wide) in paragraph at lines 139--139
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/90001| 
- []
-
-
-Overfull \hbox (0.64056pt too wide) in paragraph at lines 139--139
-[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ7]| 
- []
-
-
-Overfull \hbox (6.49956pt too wide) in paragraph at lines 139--139
-[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-21| 
- []
-
-
-Overfull \hbox (6.21695pt too wide) in paragraph at lines 140--140
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/00002| 
- []
-
-
-Overfull \hbox (0.64056pt too wide) in paragraph at lines 140--140
-[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ2]| 
- []
-
-
-Overfull \hbox (6.49956pt too wide) in paragraph at lines 140--140
-[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-22| 
- []
-
-
-Overfull \hbox (6.21695pt too wide) in paragraph at lines 141--141
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/80301| 
- []
-
-
-Overfull \hbox (6.52057pt too wide) in paragraph at lines 141--141
-[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ12]| 
- []
-
-
-Overfull \hbox (6.49956pt too wide) in paragraph at lines 141--141
-[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-22| 
- []
-
-
-Overfull \hbox (6.21695pt too wide) in paragraph at lines 142--142
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/70301| 
- []
-
-
-Overfull \hbox (0.64056pt too wide) in paragraph at lines 142--142
-[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ9]| 
- []
-
-
-Overfull \hbox (6.49956pt too wide) in paragraph at lines 142--142
-[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-23| 
- []
-
-
-Overfull \hbox (6.21695pt too wide) in paragraph at lines 143--143
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/80301| 
- []
-
-
-Overfull \hbox (6.52057pt too wide) in paragraph at lines 143--143
-[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ11]| 
- []
-
-
-Overfull \hbox (6.49956pt too wide) in paragraph at lines 143--143
-[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-23| 
- []
-
-
-Overfull \hbox (6.21695pt too wide) in paragraph at lines 144--144
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/70301| 
- []
-
-
-Overfull \hbox (0.64056pt too wide) in paragraph at lines 144--144
-[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ2]| 
- []
-
-
-Overfull \hbox (6.49956pt too wide) in paragraph at lines 144--144
-[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-24| 
- []
-
-
-Overfull \hbox (6.21695pt too wide) in paragraph at lines 145--145
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/80301| 
- []
-
-
-Overfull \hbox (0.64056pt too wide) in paragraph at lines 145--145
-[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ7]| 
- []
-
-
-Overfull \hbox (6.49956pt too wide) in paragraph at lines 145--145
-[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-24| 
- []
-
-
-Overfull \hbox (6.21695pt too wide) in paragraph at lines 146--146
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/90001| 
- []
-
-
-Overfull \hbox (0.64056pt too wide) in paragraph at lines 146--146
-[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ3]| 
- []
-
-
-Overfull \hbox (6.49956pt too wide) in paragraph at lines 146--146
-[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-25| 
- []
-
-
-Overfull \hbox (6.21695pt too wide) in paragraph at lines 147--147
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/90002| 
- []
-
-
-Overfull \hbox (0.64056pt too wide) in paragraph at lines 147--147
-[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ3]| 
- []
-
-
-Overfull \hbox (6.49956pt too wide) in paragraph at lines 147--147
-[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-25| 
- []
-
-
-Overfull \hbox (6.21695pt too wide) in paragraph at lines 148--148
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/00001| 
- []
-
-
-Overfull \hbox (4.0445pt too wide) in paragraph at lines 148--148
-[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ13,
- []
-
-
-Overfull \hbox (6.49956pt too wide) in paragraph at lines 148--148
-[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-25| 
- []
-
-
-Overfull \hbox (6.21695pt too wide) in paragraph at lines 149--149
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/00002| 
- []
-
-
-Overfull \hbox (4.0445pt too wide) in paragraph at lines 149--149
-[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ13,
- []
-
-
-Overfull \hbox (6.49956pt too wide) in paragraph at lines 149--149
-[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-25| 
- []
-
-
-Overfull \hbox (6.21695pt too wide) in paragraph at lines 150--150
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/80301| 
- []
-
-
-Overfull \hbox (4.0445pt too wide) in paragraph at lines 150--150
-[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ13,
- []
-
-
-Overfull \hbox (6.49956pt too wide) in paragraph at lines 150--150
-[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-25| 
- []
-
-
-Overfull \hbox (6.21695pt too wide) in paragraph at lines 151--151
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/70301| 
- []
-
-
-Overfull \hbox (0.64056pt too wide) in paragraph at lines 151--151
-[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ7]| 
- []
-
-
-Underfull \hbox (badness 3679) in paragraph at lines 151--151
-[]|\T2A/Tempora-TLF/m/n/12 (+20) œÓÂÍÚËÓ‚‡ÌËÂ ËÌ^^?ÙÓ^^?Ï‡^^?ˆË^^?ÓÌ^^?Ì˚ı
- []
-
-
-Overfull \hbox (6.49956pt too wide) in paragraph at lines 151--151
-[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-25| 
- []
-
-
-Overfull \hbox (6.21695pt too wide) in paragraph at lines 152--152
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/90002| 
- []
-
-
-Overfull \hbox (0.64056pt too wide) in paragraph at lines 152--152
-[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ6]| 
- []
-
-
-Overfull \hbox (6.49956pt too wide) in paragraph at lines 152--152
-[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-28| 
- []
-
-
-Overfull \hbox (6.21695pt too wide) in paragraph at lines 153--153
-[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/90001| 
- []
-
-
-Overfull \hbox (0.64056pt too wide) in paragraph at lines 153--153
-[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ6]| 
- []
-
-
-Overfull \hbox (6.49956pt too wide) in paragraph at lines 153--153
-[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-28| 
- []
-
-
-Overfull \hbox (4.97234pt too wide) in paragraph at lines 127--155
- [][] 
- []
-
-
-LaTeX Warning: Float too large for page by 37.66202pt on input line 155.
-
-
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -5705,7 +5315,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[60.60]) (./my_folder/conclusion.tex
+[60.60]
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -5715,7 +5325,147 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[61.61]) (./my_folder/references.tex
+[61.61]
+Overfull \hbox (1.37526pt too wide) in paragraph at lines 132--132
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/00001| 
+ []
+
+
+Overfull \hbox (1.37526pt too wide) in paragraph at lines 133--133
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/00002| 
+ []
+
+
+Overfull \hbox (1.37526pt too wide) in paragraph at lines 134--134
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/00001| 
+ []
+
+
+Overfull \hbox (1.37526pt too wide) in paragraph at lines 135--135
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/00002| 
+ []
+
+
+Overfull \hbox (1.37526pt too wide) in paragraph at lines 136--136
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/90001| 
+ []
+
+
+Overfull \hbox (1.37526pt too wide) in paragraph at lines 137--137
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/90002| 
+ []
+
+
+Overfull \hbox (1.37526pt too wide) in paragraph at lines 138--138
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/90001| 
+ []
+
+
+Overfull \hbox (1.37526pt too wide) in paragraph at lines 139--139
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/90002| 
+ []
+
+
+Overfull \hbox (1.37526pt too wide) in paragraph at lines 140--140
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/90002| 
+ []
+
+
+Overfull \hbox (1.82336pt too wide) in paragraph at lines 140--140
+[]|\T2A/Tempora-TLF/m/n/12 (-20) «˜Œ| 
+ []
+
+
+Overfull \hbox (1.37526pt too wide) in paragraph at lines 141--141
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/90001| 
+ []
+
+
+Overfull \hbox (1.82336pt too wide) in paragraph at lines 141--141
+[]|\T2A/Tempora-TLF/m/n/12 (-20) «˜Œ| 
+ []
+
+
+Overfull \hbox (1.37526pt too wide) in paragraph at lines 142--142
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/90001| 
+ []
+
+
+Overfull \hbox (1.37526pt too wide) in paragraph at lines 143--143
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/90002| 
+ []
+
+
+Overfull \hbox (1.37526pt too wide) in paragraph at lines 144--144
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/70301| 
+ []
+
+
+Overfull \hbox (1.37526pt too wide) in paragraph at lines 145--145
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/70301| 
+ []
+
+
+Overfull \hbox (1.37526pt too wide) in paragraph at lines 146--146
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/70301| 
+ []
+
+
+Overfull \hbox (1.37526pt too wide) in paragraph at lines 147--147
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/70301| 
+ []
+
+
+Overfull \hbox (1.37526pt too wide) in paragraph at lines 148--148
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/70301| 
+ []
+
+
+Overfull \hbox (1.37526pt too wide) in paragraph at lines 149--149
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/70301| 
+ []
+
+
+Overfull \hbox (1.37526pt too wide) in paragraph at lines 150--150
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/70301| 
+ []
+
+
+Overfull \hbox (1.82336pt too wide) in paragraph at lines 150--150
+[]|\T2A/Tempora-TLF/m/n/12 (-20) «˜Œ| 
+ []
+
+
+Overfull \hbox (1.37526pt too wide) in paragraph at lines 151--151
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/80301| 
+ []
+
+
+Overfull \hbox (1.37526pt too wide) in paragraph at lines 152--152
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/80301| 
+ []
+
+
+Overfull \hbox (1.37526pt too wide) in paragraph at lines 153--153
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/80301| 
+ []
+
+
+Overfull \hbox (1.37526pt too wide) in paragraph at lines 154--154
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/80301| 
+ []
+
+
+Overfull \hbox (1.37526pt too wide) in paragraph at lines 155--155
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/80301| 
+ []
+
+
+Overfull \hbox (1.37526pt too wide) in paragraph at lines 156--156
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/80301| 
+ []
+
+
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -5726,19 +5476,6 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
 
 [62.62]
-
-LaTeX Warning: Empty bibliography on input line 16.
-
-)
-
-Package xassoccnt Warning: Warning: An accidental(?) addition of associated
-(xassoccnt)                counter(s) without DeclareAssociatedCounters was
-(xassoccnt)                detected for
-(xassoccnt)                the driver counter "chapter" and following driven
-(xassoccnt)                counters:
-(xassoccnt)                --- myappendices ---
-
-
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -5748,7 +5485,600 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[63.63] (./my_folder/appendix1.tex
+[63.63]
+Overfull \hbox (5.27248pt too wide) in paragraph at lines 168--168
+[]|\T2A/Tempora-TLF/m/n/12 (-20) —Ó‚Ï.| 
+ []
+
+
+Overfull \hbox (13.86751pt too wide) in paragraph at lines 168--168
+[]|\T2A/Tempora-TLF/m/n/12 (-20) ƒ‡Ú‡
+ []
+
+
+Overfull \hbox (13.86751pt too wide) in paragraph at lines 168--168
+[]|\T2A/Tempora-TLF/m/n/12 (-20) ƒ‡Ú‡
+ []
+
+
+Overfull \hbox (2.22513pt too wide) in paragraph at lines 168--168
+\T2A/Tempora-TLF/m/n/12 (-20) ‰Ó| 
+ []
+
+
+Overfull \hbox (4.06583pt too wide) in paragraph at lines 168--168
+[]|\T2A/Tempora-TLF/m/n/12 (-20) ¿ÒÒËÒÚ.| 
+ []
+
+
+Overfull \hbox (42.27968pt too wide) in paragraph at lines 168--168
+[]|\T2A/Tempora-TLF/m/n/12 (-20) ŒÚÒÛÚÒ‚ËÂ
+ []
+
+
+Overfull \hbox (47.4776pt too wide) in paragraph at lines 168--168
+[]|\T2A/Tempora-TLF/m/n/12 (-20) ŒÚÒÛÚÒÚ‚ËÂ
+ []
+
+
+Overfull \hbox (2.22513pt too wide) in paragraph at lines 168--168
+\T2A/Tempora-TLF/m/n/12 (-20) ‰Ó| 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 168--168
+[]|\T2A/Tempora-TLF/m/n/12 (+20) ƒÌË
+ []
+
+
+Overfull \hbox (6.62335pt too wide) in paragraph at lines 168--168
+[]|\T2A/Tempora-TLF/m/n/12 (-20) ˜‡Ò
+ []
+
+
+Overfull \hbox (6.62335pt too wide) in paragraph at lines 168--168
+[]|\T2A/Tempora-TLF/m/n/12 (-20) ˜‡Ò
+ []
+
+
+Overfull \hbox (3.52272pt too wide) in paragraph at lines 169--169
+[]|\T2A/Tempora-TLF/m/n/12 (-20) ‘»Œ13| 
+ []
+
+
+Overfull \hbox (2.08401pt too wide) in paragraph at lines 169--169
+[]|\T2A/Tempora-TLF/m/n/12 (-20) 18| 
+ []
+
+
+Overfull \hbox (3.08667pt too wide) in paragraph at lines 170--170
+[]|\T2A/Tempora-TLF/m/n/12 (-20) —Û··ÓÚ‡| 
+ []
+
+
+Overfull \hbox (2.08401pt too wide) in paragraph at lines 170--170
+[]|\T2A/Tempora-TLF/m/n/12 (-20) 10| 
+ []
+
+
+Overfull \hbox (2.08401pt too wide) in paragraph at lines 170--170
+[]|\T2A/Tempora-TLF/m/n/12 (-20) 20| 
+ []
+
+
+Overfull \hbox (3.52272pt too wide) in paragraph at lines 171--171
+[]|\T2A/Tempora-TLF/m/n/12 (-20) ‘»Œ10| 
+ []
+
+
+Overfull \hbox (2.08401pt too wide) in paragraph at lines 171--171
+[]|\T2A/Tempora-TLF/m/n/12 (-20) 10| 
+ []
+
+
+Overfull \hbox (2.08401pt too wide) in paragraph at lines 171--171
+[]|\T2A/Tempora-TLF/m/n/12 (-20) 18| 
+ []
+
+
+Overfull \hbox (3.52272pt too wide) in paragraph at lines 172--172
+[]|\T2A/Tempora-TLF/m/n/12 (-20) ‘»Œ13| 
+ []
+
+
+Overfull \hbox (5.89081pt too wide) in paragraph at lines 172--172
+[]|\T2A/Tempora-TLF/m/n/12 (-20) œˇÚÌËˆ‡,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 172--172
+\T2A/Tempora-TLF/m/n/12 (+20) —Û·^^?·Ó^^?
+ []
+
+
+Overfull \hbox (2.08401pt too wide) in paragraph at lines 172--172
+[]|\T2A/Tempora-TLF/m/n/12 (-20) 20| 
+ []
+
+
+Overfull \hbox (3.52272pt too wide) in paragraph at lines 173--173
+[]|\T2A/Tempora-TLF/m/n/12 (-20) ‘»Œ12| 
+ []
+
+
+Overfull \hbox (2.08401pt too wide) in paragraph at lines 173--173
+[]|\T2A/Tempora-TLF/m/n/12 (-20) 10| 
+ []
+
+
+Overfull \hbox (2.08401pt too wide) in paragraph at lines 173--173
+[]|\T2A/Tempora-TLF/m/n/12 (-20) 20| 
+ []
+
+
+Overfull \hbox (3.52272pt too wide) in paragraph at lines 174--174
+[]|\T2A/Tempora-TLF/m/n/12 (-20) ‘»Œ11| 
+ []
+
+
+Overfull \hbox (5.89081pt too wide) in paragraph at lines 174--174
+[]|\T2A/Tempora-TLF/m/n/12 (-20) œˇÚÌËˆ‡,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 174--174
+\T2A/Tempora-TLF/m/n/12 (+20) —Û·^^?·Ó^^?
+ []
+
+
+Overfull \hbox (2.08401pt too wide) in paragraph at lines 174--174
+[]|\T2A/Tempora-TLF/m/n/12 (-20) 10| 
+ []
+
+
+Overfull \hbox (2.08401pt too wide) in paragraph at lines 174--174
+[]|\T2A/Tempora-TLF/m/n/12 (-20) 17| 
+ []
+
+
+Overfull \hbox (3.08667pt too wide) in paragraph at lines 175--175
+[]|\T2A/Tempora-TLF/m/n/12 (-20) —Û··ÓÚ‡| 
+ []
+
+
+Overfull \hbox (2.08401pt too wide) in paragraph at lines 175--175
+[]|\T2A/Tempora-TLF/m/n/12 (-20) 10| 
+ []
+
+
+Overfull \hbox (2.08401pt too wide) in paragraph at lines 175--175
+[]|\T2A/Tempora-TLF/m/n/12 (-20) 20| 
+ []
+
+
+Overfull \hbox (2.08401pt too wide) in paragraph at lines 176--176
+[]|\T2A/Tempora-TLF/m/n/12 (-20) 11| 
+ []
+
+
+Overfull \hbox (2.08401pt too wide) in paragraph at lines 176--176
+[]|\T2A/Tempora-TLF/m/n/12 (-20) 17| 
+ []
+
+
+Overfull \hbox (2.25696pt too wide) in paragraph at lines 177--177
+[]|\T2A/Tempora-TLF/m/n/12 (-20) ◊ÂÚ‚Â„,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 177--177
+\T2A/Tempora-TLF/m/n/12 (+20) —Û·^^?·Ó^^?
+ []
+
+
+Overfull \hbox (2.08401pt too wide) in paragraph at lines 177--177
+[]|\T2A/Tempora-TLF/m/n/12 (-20) 10| 
+ []
+
+
+Overfull \hbox (2.08401pt too wide) in paragraph at lines 177--177
+[]|\T2A/Tempora-TLF/m/n/12 (-20) 20| 
+ []
+
+
+Overfull \hbox (6.66263pt too wide) in paragraph at lines 166--179
+ [][] 
+ []
+
+
+Overfull \hbox (4.90546pt too wide) in paragraph at lines 189--189
+[]|\T2A/Tempora-TLF/m/n/12 (-20) “ËÔ| 
+ []
+
+
+Overfull \hbox (3.8588pt too wide) in paragraph at lines 189--189
+[]|\T2A/Tempora-TLF/m/n/12 (-20) ◊‡Ò| 
+ []
+
+
+Overfull \hbox (6.13383pt too wide) in paragraph at lines 189--189
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Teams| 
+ []
+
+
+Overfull \hbox (6.21695pt too wide) in paragraph at lines 190--190
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/70301| 
+ []
+
+
+Overfull \hbox (0.64056pt too wide) in paragraph at lines 190--190
+[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ8]| 
+ []
+
+
+Overfull \hbox (6.49956pt too wide) in paragraph at lines 190--190
+[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-17| 
+ []
+
+
+Overfull \hbox (6.21695pt too wide) in paragraph at lines 191--191
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/70301| 
+ []
+
+
+Overfull \hbox (6.52057pt too wide) in paragraph at lines 191--191
+[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ10]| 
+ []
+
+
+Overfull \hbox (6.49956pt too wide) in paragraph at lines 191--191
+[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-17| 
+ []
+
+
+Overfull \hbox (6.21695pt too wide) in paragraph at lines 192--192
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/70301| 
+ []
+
+
+Overfull \hbox (6.52057pt too wide) in paragraph at lines 192--192
+[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ10]| 
+ []
+
+
+Overfull \hbox (6.49956pt too wide) in paragraph at lines 192--192
+[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-18| 
+ []
+
+
+Overfull \hbox (6.21695pt too wide) in paragraph at lines 193--193
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/00001| 
+ []
+
+
+Overfull \hbox (0.64056pt too wide) in paragraph at lines 193--193
+[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ2]| 
+ []
+
+
+Overfull \hbox (6.49956pt too wide) in paragraph at lines 193--193
+[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-21| 
+ []
+
+
+Overfull \hbox (6.21695pt too wide) in paragraph at lines 194--194
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/90001| 
+ []
+
+
+Overfull \hbox (0.64056pt too wide) in paragraph at lines 194--194
+[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ6]| 
+ []
+
+
+Overfull \hbox (6.49956pt too wide) in paragraph at lines 194--194
+[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-21| 
+ []
+
+
+Overfull \hbox (6.21695pt too wide) in paragraph at lines 195--195
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/90002| 
+ []
+
+
+Overfull \hbox (0.64056pt too wide) in paragraph at lines 195--195
+[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ6]| 
+ []
+
+
+Overfull \hbox (6.49956pt too wide) in paragraph at lines 195--195
+[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-21| 
+ []
+
+
+Overfull \hbox (6.21695pt too wide) in paragraph at lines 196--196
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/80301| 
+ []
+
+
+Overfull \hbox (6.52057pt too wide) in paragraph at lines 196--196
+[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ13]| 
+ []
+
+
+Overfull \hbox (6.49956pt too wide) in paragraph at lines 196--196
+[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-21| 
+ []
+
+
+Overfull \hbox (6.21695pt too wide) in paragraph at lines 197--197
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/70301| 
+ []
+
+
+Overfull \hbox (0.64056pt too wide) in paragraph at lines 197--197
+[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ9]| 
+ []
+
+
+Overfull \hbox (6.49956pt too wide) in paragraph at lines 197--197
+[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-21| 
+ []
+
+
+Overfull \hbox (6.21695pt too wide) in paragraph at lines 198--198
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/90002| 
+ []
+
+
+Overfull \hbox (0.64056pt too wide) in paragraph at lines 198--198
+[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ7]| 
+ []
+
+
+Overfull \hbox (6.49956pt too wide) in paragraph at lines 198--198
+[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-21| 
+ []
+
+
+Overfull \hbox (6.21695pt too wide) in paragraph at lines 199--199
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/90001| 
+ []
+
+
+Overfull \hbox (0.64056pt too wide) in paragraph at lines 199--199
+[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ7]| 
+ []
+
+
+Overfull \hbox (6.49956pt too wide) in paragraph at lines 199--199
+[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-21| 
+ []
+
+
+Overfull \hbox (6.21695pt too wide) in paragraph at lines 200--200
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/00002| 
+ []
+
+
+Overfull \hbox (0.64056pt too wide) in paragraph at lines 200--200
+[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ2]| 
+ []
+
+
+Overfull \hbox (6.49956pt too wide) in paragraph at lines 200--200
+[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-22| 
+ []
+
+
+Overfull \hbox (6.21695pt too wide) in paragraph at lines 201--201
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/80301| 
+ []
+
+
+Overfull \hbox (6.52057pt too wide) in paragraph at lines 201--201
+[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ12]| 
+ []
+
+
+Overfull \hbox (6.49956pt too wide) in paragraph at lines 201--201
+[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-22| 
+ []
+
+
+Overfull \hbox (6.21695pt too wide) in paragraph at lines 202--202
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/70301| 
+ []
+
+
+Overfull \hbox (0.64056pt too wide) in paragraph at lines 202--202
+[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ9]| 
+ []
+
+
+Overfull \hbox (6.49956pt too wide) in paragraph at lines 202--202
+[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-23| 
+ []
+
+
+Overfull \hbox (6.21695pt too wide) in paragraph at lines 203--203
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/80301| 
+ []
+
+
+Overfull \hbox (6.52057pt too wide) in paragraph at lines 203--203
+[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ11]| 
+ []
+
+
+Overfull \hbox (6.49956pt too wide) in paragraph at lines 203--203
+[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-23| 
+ []
+
+
+Overfull \hbox (6.21695pt too wide) in paragraph at lines 204--204
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/70301| 
+ []
+
+
+Overfull \hbox (0.64056pt too wide) in paragraph at lines 204--204
+[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ2]| 
+ []
+
+
+Overfull \hbox (6.49956pt too wide) in paragraph at lines 204--204
+[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-24| 
+ []
+
+
+Overfull \hbox (6.21695pt too wide) in paragraph at lines 205--205
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/80301| 
+ []
+
+
+Overfull \hbox (0.64056pt too wide) in paragraph at lines 205--205
+[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ7]| 
+ []
+
+
+Overfull \hbox (6.49956pt too wide) in paragraph at lines 205--205
+[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-24| 
+ []
+
+
+Overfull \hbox (6.21695pt too wide) in paragraph at lines 206--206
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/90001| 
+ []
+
+
+Overfull \hbox (0.64056pt too wide) in paragraph at lines 206--206
+[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ3]| 
+ []
+
+
+Overfull \hbox (6.49956pt too wide) in paragraph at lines 206--206
+[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-25| 
+ []
+
+
+Overfull \hbox (6.21695pt too wide) in paragraph at lines 207--207
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/90002| 
+ []
+
+
+Overfull \hbox (0.64056pt too wide) in paragraph at lines 207--207
+[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ3]| 
+ []
+
+
+Overfull \hbox (6.49956pt too wide) in paragraph at lines 207--207
+[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-25| 
+ []
+
+
+Overfull \hbox (6.21695pt too wide) in paragraph at lines 208--208
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/00001| 
+ []
+
+
+Overfull \hbox (4.0445pt too wide) in paragraph at lines 208--208
+[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ13,
+ []
+
+
+Overfull \hbox (6.49956pt too wide) in paragraph at lines 208--208
+[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-25| 
+ []
+
+
+Overfull \hbox (6.21695pt too wide) in paragraph at lines 209--209
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/00002| 
+ []
+
+
+Overfull \hbox (4.0445pt too wide) in paragraph at lines 209--209
+[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ13,
+ []
+
+
+Overfull \hbox (6.49956pt too wide) in paragraph at lines 209--209
+[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-25| 
+ []
+
+
+Overfull \hbox (6.21695pt too wide) in paragraph at lines 210--210
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/80301| 
+ []
+
+
+Overfull \hbox (4.0445pt too wide) in paragraph at lines 210--210
+[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ13,
+ []
+
+
+Overfull \hbox (6.49956pt too wide) in paragraph at lines 210--210
+[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-25| 
+ []
+
+
+Overfull \hbox (6.21695pt too wide) in paragraph at lines 211--211
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/70301| 
+ []
+
+
+Overfull \hbox (0.64056pt too wide) in paragraph at lines 211--211
+[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ7]| 
+ []
+
+
+Underfull \hbox (badness 3679) in paragraph at lines 211--211
+[]|\T2A/Tempora-TLF/m/n/12 (+20) œÓÂÍÚËÓ‚‡ÌËÂ ËÌ^^?ÙÓ^^?Ï‡^^?ˆË^^?ÓÌ^^?Ì˚ı
+ []
+
+
+Overfull \hbox (6.49956pt too wide) in paragraph at lines 211--211
+[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-25| 
+ []
+
+
+Overfull \hbox (6.21695pt too wide) in paragraph at lines 212--212
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/90002| 
+ []
+
+
+Overfull \hbox (0.64056pt too wide) in paragraph at lines 212--212
+[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ6]| 
+ []
+
+
+Overfull \hbox (6.49956pt too wide) in paragraph at lines 212--212
+[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-28| 
+ []
+
+
+Overfull \hbox (6.21695pt too wide) in paragraph at lines 213--213
+[]|\T2A/Tempora-TLF/m/n/12 (-20) Á3530903/90001| 
+ []
+
+
+Overfull \hbox (0.64056pt too wide) in paragraph at lines 213--213
+[]|\T2A/Tempora-TLF/m/n/12 (-20) [‘»Œ6]| 
+ []
+
+
+Overfull \hbox (6.49956pt too wide) in paragraph at lines 213--213
+[]|\T2A/Tempora-TLF/m/n/12 (-20) 2021-06-28| 
+ []
+
+
+Overfull \hbox (4.97234pt too wide) in paragraph at lines 187--215
+ [][] 
+ []
+
+
+LaTeX Warning: Float too large for page by 38.66202pt on input line 215.
+
+
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -5768,7 +6098,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[65.65]
+[65.65]) (./my_folder/conclusion.tex
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -5778,7 +6108,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[66.66]
+[66.66]) (./my_folder/references.tex
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -5789,16 +6119,54 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
 
 [67.67]
-Overfull \hbox (2.10788pt too wide) has occurred while \output is active
- []
- []
+Package cleveref Info: loaded `russian' language definitions on input line 16.
+Package cleveref Info: loaded `russian' language definitions on input line 16.
+Package cleveref Info: loaded `russian' language definitions on input line 16.
+Package cleveref Info: loaded `russian' language definitions on input line 16.
+Package cleveref Info: loaded `russian' language definitions on input line 16.
+Package cleveref Info: loaded `russian' language definitions on input line 16.
+Package cleveref Info: loaded `russian' language definitions on input line 16.
+Package cleveref Info: loaded `russian' language definitions on input line 16.
+Package cleveref Info: loaded `russian' language definitions on input line 16.
+Package cleveref Info: loaded `russian' language definitions on input line 16.
+Package cleveref Info: loaded `russian' language definitions on input line 16.
+Package cleveref Info: loaded `russian' language definitions on input line 16.
+Package cleveref Info: loaded `russian' language definitions on input line 16.
+Package cleveref Info: loaded `russian' language definitions on input line 16.
+Package cleveref Info: loaded `russian' language definitions on input line 16.
+Package cleveref Info: loaded `russian' language definitions on input line 16.
+Package cleveref Info: loaded `russian' language definitions on input line 16.
+Package cleveref Info: loaded `russian' language definitions on input line 16.
+Package cleveref Info: loaded `russian' language definitions on input line 16.
+Package cleveref Info: loaded `russian' language definitions on input line 16.
+Package cleveref Info: loaded `russian' language definitions on input line 16.
+Package cleveref Info: loaded `russian' language definitions on input line 16.
+Package cleveref Info: loaded `russian' language definitions on input line 16.
+Package cleveref Info: loaded `russian' language definitions on input line 16.
+Package cleveref Info: loaded `russian' language definitions on input line 16.
+Package cleveref Info: loaded `russian' language definitions on input line 16.
+Package cleveref Info: loaded `russian' language definitions on input line 16.
+Package cleveref Info: loaded `russian' language definitions on input line 16.
+)
+
+Package xassoccnt Warning: Warning: An accidental(?) addition of associated
+(xassoccnt)                counter(s) without DeclareAssociatedCounters was
+(xassoccnt)                detected for
+(xassoccnt)                the driver counter "chapter" and following driven
+(xassoccnt)                counters:
+(xassoccnt)                --- myappendices ---
 
 
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[68.68]
+
+Overfull \hbox (2.10788pt too wide) has occurred while \output is active
+ []
+ []
+
+[68.68] (./my_folder/appendix1.tex
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -5838,7 +6206,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[72.72]) (./my_folder/appendix2.tex
+[72.72]
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -5888,7 +6256,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[77.77]
+[77.77]) (./my_folder/appendix2.tex
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -5998,7 +6366,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[88.88]) (./my_folder/appendix3.tex
+[88.88]
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -6048,7 +6416,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[93.93]) (./my_folder/appendix4.tex
+[93.93]) (./my_folder/appendix3.tex
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -6078,7 +6446,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[96.96]) (./my_folder/appendix5.tex
+[96.96]
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -6098,7 +6466,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[98.98]
+[98.98]) (./my_folder/appendix4.tex
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -6128,7 +6496,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[101.101]
+[101.101]) (./my_folder/appendix5.tex
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -6158,7 +6526,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[104.104]) (./my_folder/appendix6.tex
+[104.104]
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -6208,7 +6576,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[109.109]
+[109.109]) (./my_folder/appendix6.tex
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -6308,7 +6676,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[119.119]) (./my_folder/appendix7.tex
+[119.119]
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -6358,7 +6726,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[124.124]
+[124.124]) (./my_folder/appendix7.tex
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -6388,7 +6756,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[127.127]) (./my_folder/appendix8.tex
+[127.127]
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -6428,7 +6796,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[131.131]) (./my_folder/appendix9.tex
+[131.131]
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -6438,7 +6806,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[132.132]
+[132.132]) (./my_folder/appendix8.tex
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -6448,7 +6816,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[133.133]) (./my_folder/appendix10.tex
+[133.133]
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -6468,7 +6836,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[135.135]) (./my_folder/appendix11.tex
+[135.135]
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -6478,7 +6846,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[136.136]
+[136.136]) (./my_folder/appendix9.tex
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -6488,7 +6856,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[137.137]) (./my_folder/appendix12.tex
+[137.137]
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -6498,7 +6866,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[138.138]
+[138.138]) (./my_folder/appendix10.tex
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -6508,7 +6876,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[139.139]) (./my_folder/appendix13.tex
+[139.139]
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -6518,7 +6886,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[140.140]
+[140.140]) (./my_folder/appendix11.tex
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -6528,7 +6896,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[141.141]) (./my_folder/appendix14.tex
+[141.141]
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -6538,7 +6906,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[142.142]
+[142.142]) (./my_folder/appendix12.tex
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -6548,7 +6916,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[143.143]) (./my_folder/appendix15.tex
+[143.143]
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -6558,7 +6926,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[144.144]
+[144.144]) (./my_folder/appendix13.tex
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -6568,7 +6936,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[145.145]) (./my_folder/appendix16.tex
+[145.145]
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -6578,7 +6946,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[146.146]
+[146.146]) (./my_folder/appendix14.tex
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -6588,7 +6956,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[147.147]) (./my_folder/appendix17.tex
+[147.147]
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -6598,7 +6966,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[148.148]
+[148.148]) (./my_folder/appendix15.tex
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -6608,7 +6976,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[149.149]) (./my_folder/appendix18.tex
+[149.149]
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -6618,7 +6986,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[150.150]
+[150.150]) (./my_folder/appendix16.tex
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -6628,7 +6996,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[151.151]) (./my_folder/appendix19.tex
+[151.151]
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -6638,7 +7006,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[152.152]
+[152.152]) (./my_folder/appendix17.tex
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -6648,7 +7016,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[153.153]) (./my_folder/appendix20.tex
+[153.153]
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -6658,7 +7026,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[154.154]
+[154.154]) (./my_folder/appendix18.tex
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -6678,7 +7046,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[156.156]
+[156.156]) (./my_folder/appendix19.tex
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -6698,7 +7066,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[158.158]) (./my_folder/appendix21.tex
+[158.158]) (./my_folder/appendix20.tex
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -6748,7 +7116,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[163.163]
+[163.163]) (./my_folder/appendix21.tex
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -6828,7 +7196,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[171.171]) (./my_folder/appendix22.tex
+[171.171]
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -6878,7 +7246,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[176.176]) (./my_folder/appendix23.tex
+[176.176]) (./my_folder/appendix22.tex
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -6928,7 +7296,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[181.181]
+[181.181]) (./my_folder/appendix23.tex
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -6988,7 +7356,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[187.187]) (./my_folder/appendix24.tex
+[187.187]
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -7038,7 +7406,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[192.192]
+[192.192]) (./my_folder/appendix24.tex
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -7068,7 +7436,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[195.195]) (./my_folder/appendix25.tex
+[195.195]
 Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
@@ -7118,7 +7486,57 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[200.200])
+[200.200]) (./my_folder/appendix25.tex
+Overfull \hbox (2.10788pt too wide) has occurred while \output is active
+ []
+ []
+
+
+Overfull \hbox (2.10788pt too wide) has occurred while \output is active
+ []
+ []
+
+[201.201]
+Overfull \hbox (2.10788pt too wide) has occurred while \output is active
+ []
+ []
+
+
+Overfull \hbox (2.10788pt too wide) has occurred while \output is active
+ []
+ []
+
+[202.202]
+Overfull \hbox (2.10788pt too wide) has occurred while \output is active
+ []
+ []
+
+
+Overfull \hbox (2.10788pt too wide) has occurred while \output is active
+ []
+ []
+
+[203.203]
+Overfull \hbox (2.10788pt too wide) has occurred while \output is active
+ []
+ []
+
+
+Overfull \hbox (2.10788pt too wide) has occurred while \output is active
+ []
+ []
+
+[204.204]
+Overfull \hbox (2.10788pt too wide) has occurred while \output is active
+ []
+ []
+
+
+Overfull \hbox (2.10788pt too wide) has occurred while \output is active
+ []
+ []
+
+[205.205])
 
 Class memoir Warning: The material used in the footer is too large
 (12.64719pt) for the given foot skip (0.0pt), it is recommended to
@@ -7146,7 +7564,7 @@ Overfull \hbox (2.10788pt too wide) has occurred while \output is active
  []
  []
 
-[201.201]
+[206.206]
 \tf@toc=\write9
 \openout9 = `My_thesis.toc'.
 
@@ -7154,17 +7572,82 @@ Package atveryend Info: Empty hook `BeforeClearDocument' on input line 105.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 105.
  (./My_thesis.aux
 Package cleveref Info: loaded `russian' language definitions on input line 28.
+Package cleveref Info: loaded `russian' language definitions on input line 270.
+
+Package cleveref Info: loaded `russian' language definitions on input line 271.
+
+Package cleveref Info: loaded `russian' language definitions on input line 272.
+
+Package cleveref Info: loaded `russian' language definitions on input line 273.
+
+Package cleveref Info: loaded `russian' language definitions on input line 274.
+
+Package cleveref Info: loaded `russian' language definitions on input line 275.
+
+Package cleveref Info: loaded `russian' language definitions on input line 276.
+
+Package cleveref Info: loaded `russian' language definitions on input line 277.
+
+Package cleveref Info: loaded `russian' language definitions on input line 278.
+
+Package cleveref Info: loaded `russian' language definitions on input line 279.
+
+Package cleveref Info: loaded `russian' language definitions on input line 280.
+
+Package cleveref Info: loaded `russian' language definitions on input line 281.
+
+Package cleveref Info: loaded `russian' language definitions on input line 282.
+
+Package cleveref Info: loaded `russian' language definitions on input line 283.
+
+Package cleveref Info: loaded `russian' language definitions on input line 284.
+
+Package cleveref Info: loaded `russian' language definitions on input line 285.
+
+Package cleveref Info: loaded `russian' language definitions on input line 286.
+
+Package cleveref Info: loaded `russian' language definitions on input line 287.
+
+Package cleveref Info: loaded `russian' language definitions on input line 288.
+
+Package cleveref Info: loaded `russian' language definitions on input line 289.
+
+Package cleveref Info: loaded `russian' language definitions on input line 290.
+
+Package cleveref Info: loaded `russian' language definitions on input line 291.
+
+Package cleveref Info: loaded `russian' language definitions on input line 292.
+
+Package cleveref Info: loaded `russian' language definitions on input line 293.
+
+Package cleveref Info: loaded `russian' language definitions on input line 294.
+
+Package cleveref Info: loaded `russian' language definitions on input line 295.
+
+Package cleveref Info: loaded `russian' language definitions on input line 296.
+
+Package cleveref Info: loaded `russian' language definitions on input line 297.
+
 )
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 105.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 105.
-Package rerunfilecheck Info: File `My_thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 22A077A201DB56C78EF8A89C3CC2C81F;12381.
 
+
+Package rerunfilecheck Warning: File `My_thesis.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `My_thesis.out':
+(rerunfilecheck)             Before: D31C30C3EBBDCD071F8F027D046360D2;22633
+(rerunfilecheck)             After:  D0AFB248900803A46A4E2160AD969312;12381.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 
 LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: There were multiply-defined labels.
 
 
 Package biblatex Warning: Please (re)run Biber on the file:
@@ -7176,34 +7659,47 @@ Package logreq Info: Writing requests to 'My_thesis.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 60907 strings out of 492164
- 1039316 string characters out of 6121950
- 2001540 words of memory out of 5000000
- 58978 multiletter control sequences out of 15000+600000
- 687156 words of font info for 324 fonts, out of 8000000 for 9000
+ 60848 strings out of 492164
+ 1038252 string characters out of 6121950
+ 2004891 words of memory out of 5000000
+ 58932 multiletter control sequences out of 15000+600000
+ 654395 words of font info for 266 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 60i,30n,100p,2132b,3016s stack positions out of 5000i,500n,10000p,200000b,80000s
-{e:/Programm Files/texlive/2019/texmf-dist/fonts/enc/dvips/cm-super/cm-super-
-t2a.enc} <c:/Users/parhomenkov/.texlive2019/texmf-var/fonts/pk/ljfour/public/bb
-m/bbmsl12.720pk>{e:/Programm Files/texlive/2019/texmf-dist/fonts/enc/dvips/temp
-ora/tmp_q3dzgc.enc}{e:/Programm Files/texlive/2019/texmf-dist/fonts/enc/dvips/t
-empora/t2a-tempora.enc}<e:/Programm Files/texlive/2019/texmf-dist/fonts/type1/p
-ublic/newtx/NewTXMI.pfb><e:/Programm Files/texlive/2019/texmf-dist/fonts/type1/
-public/newtx/NewTXMI7.pfb><e:/Programm Files/texlive/2019/texmf-dist/fonts/type
-1/public/tempora/Tempora-Bold.pfb><e:/Programm Files/texlive/2019/texmf-dist/fo
-nts/type1/public/tempora/Tempora-BoldItalic.pfb><e:/Programm Files/texlive/2019
-/texmf-dist/fonts/type1/public/tempora/Tempora-Italic.pfb><e:/Programm Files/te
-xlive/2019/texmf-dist/fonts/type1/public/tempora/Tempora-Regular.pfb><e:/Progra
-mm Files/texlive/2019/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb><e:/P
-rogramm Files/texlive/2019/texmf-dist/fonts/type1/public/newtx/txexs.pfb><e:/Pr
-ogramm Files/texlive/2019/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb><e:/Pr
-ogramm Files/texlive/2019/texmf-dist/fonts/type1/public/txfonts/txsya.pfb><e:/P
-rogramm Files/texlive/2019/texmf-dist/fonts/type1/public/txfonts/txsyb.pfb><e:/
-Programm Files/texlive/2019/texmf-dist/fonts/type1/public/newtx/txsys.pfb>
-Output written on My_thesis.pdf (201 pages, 2020915 bytes).
+ 60i,30n,100p,2132b,4280s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{appendix*.20} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{appendix*.19} has been referenced but does not exis
+t, replaced by a fixed one
+
+pdfTeX warning (dest): name{chapter*.18} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{chapter*.17} has been referenced but does not exist
+, replaced by a fixed one
+
+{e:/Programm Files/texlive/2019/texmf-dist/fonts/enc/dvips/tempora/t2a-tempora.
+enc}{e:/Programm Files/texlive/2019/texmf-dist/fonts/enc/dvips/cm-super/cm-supe
+r-t2a.enc} <c:/Users/parhomenkov/.texlive2019/texmf-var/fonts/pk/ljfour/public/
+bbm/bbmsl12.720pk>{e:/Programm Files/texlive/2019/texmf-dist/fonts/enc/dvips/te
+mpora/tmp_q3dzgc.enc}<e:/Programm Files/texlive/2019/texmf-dist/fonts/type1/pub
+lic/newtx/NewTXMI.pfb><e:/Programm Files/texlive/2019/texmf-dist/fonts/type1/pu
+blic/newtx/NewTXMI7.pfb><e:/Programm Files/texlive/2019/texmf-dist/fonts/type1/
+public/tempora/Tempora-Bold.pfb><e:/Programm Files/texlive/2019/texmf-dist/font
+s/type1/public/tempora/Tempora-BoldItalic.pfb><e:/Programm Files/texlive/2019/t
+exmf-dist/fonts/type1/public/tempora/Tempora-Italic.pfb><e:/Programm Files/texl
+ive/2019/texmf-dist/fonts/type1/public/tempora/Tempora-Regular.pfb><e:/Programm
+ Files/texlive/2019/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb><e:/Pro
+gramm Files/texlive/2019/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb><e
+:/Programm Files/texlive/2019/texmf-dist/fonts/type1/public/newtx/txexs.pfb><e:
+/Programm Files/texlive/2019/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb><e:
+/Programm Files/texlive/2019/texmf-dist/fonts/type1/public/txfonts/txsya.pfb><e
+:/Programm Files/texlive/2019/texmf-dist/fonts/type1/public/txfonts/txsyb.pfb><
+e:/Programm Files/texlive/2019/texmf-dist/fonts/type1/public/newtx/txsys.pfb>
+Output written on My_thesis.pdf (206 pages, 2054036 bytes).
 PDF statistics:
- 7199 PDF objects out of 7423 (max. 8388607)
- 6880 compressed objects within 69 object streams
- 5108 named destinations out of 5155 (max. 500000)
- 35659 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 7385 PDF objects out of 7423 (max. 8388607)
+ 7058 compressed objects within 71 object streams
+ 5128 named destinations out of 5155 (max. 500000)
+ 26147 words of extra memory for PDF output out of 29859 (max. 10000000)
 

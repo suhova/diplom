@@ -17,7 +17,7 @@
 \endgroup
 
 
-\refsection{0}
+\refsection{1}
   \datalist[entry]{nty/global//global/global}
     \entry{1с}{online}{}
       \field{sortinit}{1}
@@ -53,7 +53,7 @@
       \verb https://www.unitime.org/
       \endverb
     \endentry
-    \entry{branch}{book}{}
+    \entry{zhad}{book}{}
       \name{author}{1}{}{%
         {{hash=e4a9b5f658eabd2e5b25903d5521445a}{%
            family={Doig},
@@ -72,8 +72,8 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{langid}{russian}
-      \field{title}{An automatic method of solving discrete programming problems}
-      \field{year}{1960}
+      \field{title}{Совершенный алгоритм. Жадные алгоритмы и динамическое программирование}
+      \field{year}{2020}
     \endentry
     \entry{dropwizard}{online}{}
       \field{sortinit}{D}
@@ -209,6 +209,28 @@
       \verb https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4912009/
       \endverb
     \endentry
+    \entry{branch}{book}{}
+      \name{author}{1}{}{%
+        {{hash=2975653fbeaab00ac889f86b36217e84}{%
+           family={T.},
+           familyi={T\bibinitperiod},
+           given={Рафгарден},
+           giveni={Р\bibinitperiod}}}%
+      }
+      \strng{namehash}{2975653fbeaab00ac889f86b36217e84}
+      \strng{fullhash}{2975653fbeaab00ac889f86b36217e84}
+      \strng{bibnamehash}{2975653fbeaab00ac889f86b36217e84}
+      \strng{authorbibnamehash}{2975653fbeaab00ac889f86b36217e84}
+      \strng{authornamehash}{2975653fbeaab00ac889f86b36217e84}
+      \strng{authorfullhash}{2975653fbeaab00ac889f86b36217e84}
+      \field{sortinit}{T}
+      \field{sortinithash}{51f9faf24c60c62ca764a77f78cf5666}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{langid}{russian}
+      \field{title}{An automatic method of solving discrete programming problems}
+      \field{year}{1960}
+    \endentry
     \entry{vertx}{online}{}
       \field{sortinit}{V}
       \field{sortinithash}{02432525618c08e2b03cac47c19764af}
@@ -276,6 +298,29 @@
       \verb{url}
       \verb http://ruz.spbstu.ru
       \endverb
+    \endentry
+    \entry{gen}{book}{}
+      \name{author}{1}{}{%
+        {{hash=4ef72524c9d254897e4fa1c22e7b78b5}{%
+           family={Abraham\bibnamedelima A.},
+           familyi={A\bibinitperiod\bibinitdelim A\bibinitperiod},
+           given={Goldberg\bibnamedelima R.},
+           giveni={G\bibinitperiod\bibinitdelim R\bibinitperiod},
+           suffix={Jain\bibnamedelima L.},
+           suffixi={J\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+      }
+      \strng{namehash}{4ef72524c9d254897e4fa1c22e7b78b5}
+      \strng{fullhash}{4ef72524c9d254897e4fa1c22e7b78b5}
+      \strng{bibnamehash}{4ef72524c9d254897e4fa1c22e7b78b5}
+      \strng{authorbibnamehash}{4ef72524c9d254897e4fa1c22e7b78b5}
+      \strng{authornamehash}{4ef72524c9d254897e4fa1c22e7b78b5}
+      \strng{authorfullhash}{4ef72524c9d254897e4fa1c22e7b78b5}
+      \field{sortinit}{A}
+      \field{sortinithash}{a3dcedd53b04d1adfd5ac303ecd5e6fa}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Evolutionary Multiobjective Optimization. Theoretical Advances and Applications}
+      \field{year}{2005}
     \endentry
     \entry{minimax}{book}{}
       \name{author}{1}{}{%
